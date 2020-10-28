@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteRule "home" "index.php"
+
+#Alternate default index pages
+DirectoryIndex index.php index.html
