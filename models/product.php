@@ -25,5 +25,17 @@
             }
             return $list;
         }
+
+        static function find($id) {
+            $db = DB::getInstance();
+            $req = $db->prepare('SELECT * FROM products where id = :id');
+            $req->execute(array('id' => $id));
+
+            $item =  $req->fetch();
+            if (isset($item['id'])) {
+                return new Product($item['id'], $item['name'], $item['price']);
+            }
+            return null;
+        }
     }
 ?>

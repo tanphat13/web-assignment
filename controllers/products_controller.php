@@ -12,5 +12,12 @@
             $data = array('products' => $products);
             $this->render('index', $data);
         }
+
+        public function showProduct() {
+            $id = $_GET['id'];
+            $product = Product::find($id);
+            $data = array('product' => $product);
+            $this->render('show', $data);
+        }
     }
 ?>
