@@ -1,8 +1,8 @@
 <?php
     echo '<ul>';
-    foreach ($posts as $post) {
+    foreach ($products as $product) {
         echo '<li>
-            <a href="#"' . $post->name . '</a>
+            <a href="#">' . $product->name . '</a>
         </li>';
     }
     echo '</ul>';

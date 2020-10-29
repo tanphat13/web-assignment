@@ -13,10 +13,11 @@
         static function all() {
             $list = [];
             $db = DB::getInstance();
-            $req = $db->query('SELECT * FROM bk-phones');
+            $req = $db->query('SELECT * FROM products');
             
             if ($req !== FALSE) {
-                foreach ($req->fetchAll() as $item) {
+                $rows = $req->fetchAll();
+                foreach ($rows as $item) {
                     $list[] = new Product($item['id'], $item['name'], $item['price']);
                 }
             } else {
