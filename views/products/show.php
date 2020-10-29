@@ -1,5 +1,5 @@
 <?php
     echo "Product name: $product->name";
     echo "\n";
-    echo "Price: $product->price";
+    echo "Price: $product->price$";
 ?>
