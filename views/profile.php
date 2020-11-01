@@ -1,0 +1,1 @@
+<h1>This is profile password_get_info</h1>
