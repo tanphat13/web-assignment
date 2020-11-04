@@ -56,7 +56,7 @@ class Router{
     protected function layoutContent(){
         $layout = Application::$app->layout;
         if (Application::$app->controller) {
-            $layout  = Application::$app->controller->layout;
+            $layout = Application::$app->controller->layout;
         }
         ob_start();
         include_once Application::$ROOT_DIR."/views/layout/$layout.php";
