@@ -31,9 +31,9 @@ use app\core\DbModel;
                 $this->addErrorMessage('password', 'Email or password not correct!');
                 return false;
             }
-        echo '<pre>';
-        echo var_dump($user);
-        echo '</pre>';
+            // echo "<pre>";
+            // echo var_dump($user);
+            // echo "</pre>";
             Application::$app->login($user);
             return true;
         }
@@ -44,8 +44,9 @@ use app\core\DbModel;
         public function primaryKey(): string{
             return '';
         }
-
-
+        public function userRole(): string{
+            return '';
+        }
     }
 
 

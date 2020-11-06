@@ -8,7 +8,7 @@ abstract class DbModel extends Model{
     abstract public function tableName():string;
     abstract public function attribute():array;
     abstract public function primaryKey():string;
-
+    abstract public function userRole():string;
         public function save(){
             $tableName = $this->tableName();
             $attributes = $this->attribute();
@@ -32,22 +32,22 @@ abstract class DbModel extends Model{
     } 
 
     public function findOne($where){
-        $tableName = static::tableName();
         
+        $tableName = static::tableName();
+      
         $attributes =  array_keys(
            $where 
         );
-
+     
         $sql_params = implode("AND ", array_map(fn($attr)=> "$attr = :$attr",$attributes));
         $sql_command = self::prepare("SELECT *FROM $tableName WHERE $sql_params");
        
         foreach($where as $key => $item){
-           
             $sql_command->bindValue(":$key",$item);
+           // echo var_dump( $item);
         }
-        
         $sql_command->execute();
-
+        // echo var_dump($sql_command->fetchObject(static::class));
         return $sql_command->fetchObject(static::class);
     }
 }

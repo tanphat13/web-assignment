@@ -21,7 +21,7 @@ $app  = new Application(dirname(__DIR__),$config);
 
 $app->router->get('/',[SiteController::class,'home']);
 
-$app->router->get('/contact', [SiteController::class,"renderContact"]);
+$app->router->get('/contact', [SiteController::class,"renderContact",['admin', 'user',]]);
 
 $app->router->post('/contact', [SiteController::class, 'handleContactSubmit']);
 

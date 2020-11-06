@@ -16,7 +16,6 @@ class User extends UserModel  {
     public int $status = self::STATUS_INACTIVE;
 
     public function save(){
-     
         $this->status = self::STATUS_INACTIVE;
         $this->password = password_hash($this->password,PASSWORD_DEFAULT);
         return parent::save();
@@ -38,16 +37,18 @@ class User extends UserModel  {
     }
 
     public function attribute():array{
-        return ['fullname','gender','email','phone','password','status'];
+        return ['fullname','gender','email','phone','password','status','role'];
     }
     public function primaryKey() :string {
         return 'id';
     }
+
     public function displayName():string{
-        // echo "<pre>";
-        // echo var_dump($this->fullname);
-        // echo "</pre>";
         return $this->fullname;
+    }
+
+    public function userRole(): string {
+        return 'role';
     }
 }
 

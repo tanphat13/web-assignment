@@ -1,15 +1,19 @@
 <?php
     namespace app\core;
     use app\core\Controller;
+use app\core\exception\Forbidden;
+use app\core\Session;
     use app\core\exception\NotFound;
 
 class Router{
     public Request $request;
     public Response $response;
+    public Session $session;
     protected array $routes = [];
     // public Controller $controller;
     public function __construct(Request $request, Response $response)
     {
+        $this->session = new Session();
         $this->request = $request;
         $this->response = $response;
     }
@@ -27,25 +31,34 @@ class Router{
         $path = $this->request->getPath();
         $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
-        if($callback === false){
-            Application::$app->response->setStatusCode(404);
-            throw new NotFound();
-        }
-        else if(is_string($callback)){
-            return $this->renderViews($callback);
-        }else if (is_array($callback)){
-            //echo  $callback[0];
-            /** @var app\core\Controller $controller */
-            $controller = new $callback[0]();
-            Application::$app->controller = $controller; 
-            $controller->action = $callback[1];
-            $callback[0] = $controller;
+        $userRole = $this->session->get('authorization');
+        echo "<pre>";
+        echo "this is user role";
+        echo var_dump($userRole);
+        echo "</pre>";
+        if(in_array($userRole,$callback[2])|| !$callback[2]){
+            if ($callback === false) {
+                Application::$app->response->setStatusCode(404);
+                throw new NotFound();
+            } else if (is_string($callback)) {
+                return $this->renderViews($callback);
+            } else if (is_array($callback)) {
+                //echo  $callback[0];
+                /** @var app\core\Controller $controller */
+                $controller = new $callback[0]();
+                Application::$app->controller = $controller;
+                $controller->action = $callback[1];
+                $callback[0] = $controller;
 
-            foreach($controller->getMiddleware() as $middleware ){
-                $middleware->execute();
+                foreach ($controller->getMiddleware() as $middleware) {
+                    $middleware->execute();
+                }
             }
+            return  call_user_func($callback, $this->request, $this->response);
+        }else{
+            throw new Forbidden();
         }
-        return  call_user_func($callback,$this->request,$this->response);
+        
     }
 
     public function renderViews($view,$param = []){ 
