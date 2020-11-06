@@ -26,13 +26,10 @@ class Application{
             $this->controller = new Controller();
             $this->router = new Router($this->request, $this->response);
             $this->db = new Database($config['db']);  
-
-            
             $primaryValue = $this->session->get('user');
             if($primaryValue){
                 $primaryKey = $this->userClass::primaryKey();
                 $this->user= $this->userClass::findOne([$primaryValue => $primaryValue ]);
-
             }else{
                 $this->user = null;
             }
@@ -57,6 +54,12 @@ class Application{
             $this->user = $user ;
             $primaryKey  = $user->primaryKey();
             $primaryValue = $user->{$primaryKey};
+            $role = $user->userRole();
+            $userRole = $user->{$role};
+            echo "<pre>";
+            echo var_dump($userRole);
+            echo "</pre>";
+            $this->session->set('authorization', $userRole);
             $this->session->set('user',$primaryValue);
         }
         public function logout(){
