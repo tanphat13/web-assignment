@@ -33,7 +33,7 @@ class Router{
         $callback = $this->routes[$method][$path] ?? false;
         $userRole = $this->session->get('authorization');
 
-        if(in_array($userRole,$callback[2])|| !$callback[2]){
+        if(in_array($userRole,$callback[2]) || $callback[2]===null){
              
             if ($callback === false) {
                 Application::$app->response->setStatusCode(404);
