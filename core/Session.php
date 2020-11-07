@@ -11,7 +11,6 @@ class Session{
             //Sessions are not available
         } else
         if ($status == PHP_SESSION_ACTIVE) {
-            //Destroy current and start new one
             session_destroy();
             session_start();
         }

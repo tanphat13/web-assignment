@@ -32,8 +32,8 @@ class Router{
         $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
         $userRole = $this->session->get('authorization');
-
-        if(in_array($userRole,$callback[2]) || $callback[2]===null){
+        $roleList = $callback[2] ?? [];
+        if(in_array($userRole,$roleList)|| !$callback[2]){
              
             if ($callback === false) {
                 Application::$app->response->setStatusCode(404);
