@@ -24,7 +24,9 @@ class AuthController extends Controller{
         $loginForm =  new LoginForm();
         if($request->isPost()){
             $loginForm->loadData($request->getBody());
-            
+            echo "<pre>";
+            echo var_dump($loginForm->loadData($request->getBody()));
+            echo "</pre>";
             if($loginForm->validate() && $loginForm->login()){
                 $response->redirect('/');
                 return;

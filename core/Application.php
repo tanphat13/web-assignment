@@ -56,9 +56,9 @@ class Application{
             $primaryValue = $user->{$primaryKey};
             $role = $user->userRole();
             $userRole = $user->{$role};
-            echo "<pre>";
-            echo var_dump($userRole);
-            echo "</pre>";
+            // echo "<pre>";
+            // echo var_dump($userRole);
+            // echo "</pre>";
             $this->session->set('authorization', $userRole);
             $this->session->set('user',$primaryValue);
         }

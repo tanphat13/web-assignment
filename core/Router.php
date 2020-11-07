@@ -32,11 +32,9 @@ class Router{
         $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
         $userRole = $this->session->get('authorization');
-        echo "<pre>";
-        echo "this is user role";
-        echo var_dump($userRole);
-        echo "</pre>";
+
         if(in_array($userRole,$callback[2])|| !$callback[2]){
+             
             if ($callback === false) {
                 Application::$app->response->setStatusCode(404);
                 throw new NotFound();
