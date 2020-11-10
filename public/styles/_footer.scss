@@ -1,0 +1,38 @@
+#map{
+    height: 400px;
+    width: 80%;
+    border:1px solid red;
+}
+body {
+    min-height: 80vh;
+}
+
+.container{
+    height: 100%;
+    width: 100vw;
+    
+}
+.footer-container {
+    height: 10%;
+    position: relative;
+    bottom:0;
+    display: flex;
+    justify-content: space-between;
+    border-top: solid;
+    border-color: black;
+    background-color: azure;
+    
+    .col1 {
+        display: inline-block;
+        width: 24vw;
+        height: 100%; 
+        top: 0;
+        padding-left: 20px;
+        ul {
+
+        }
+        li {
+            list-style: none;
+        }
+    }
+}
