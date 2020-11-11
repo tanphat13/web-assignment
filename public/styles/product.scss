@@ -1,4 +1,5 @@
 .product {
+    padding: 2vh 2vw;
     display: flex;
     justify-content: space-between;
     border-top: 1px solid gray;
@@ -13,23 +14,40 @@
     }
     .rightInfo {
         width: 25%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         .more-info {
+            margin: 2vh 0;
             border: 1px solid rgba(166, 166, 166, 0.575);
             border-radius: 5%;
             ul {
-                padding: 0;
+                margin: 0;
+                padding: 10% 0;
                 list-style-type: none;
                 li {
                     display: flex;
+                    justify-content: space-between;
                     svg {
                         position: relative;
                         top: 1vh;
                     }
                     p {
                         margin: 0;
+                        width: 98%;
                     }
                 }
             }
+        }
+        .label {
+            margin: 1vh 0;
+            padding: 1em 0 1em 3%;
+            width: 95%;
+            height: 3.5em;
+            position: relative;
+            left: 2%;
+            border-radius: 10px;
         }
     }
 }

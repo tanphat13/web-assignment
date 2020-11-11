@@ -50,15 +50,11 @@
                 $this->addErrorMessage('product_id', 'Product Not Found');
                 return false;
             }
-            $sql_command = self::prepare("SELECT DISTINCT branch_id FROM products_items WHERE product_id = $product->product_id");
-            $sql_command->execute();
-            $list_branches_id = $sql_command->fetchAll();
+            $list_branches_id = self::findAll('products_items', ['product_id' => $product->product_id]);
             $branches = array();
             foreach ($list_branches_id as $branch) {
                 $branch_id = intval($branch['branch_id']);
-                $sql_command = self::prepare("SELECT * FROM branches WHERE branch_id = $branch_id");
-                $sql_command->execute();
-                array_push($branches, $sql_command->fetchObject());
+                array_push($branches, self::findOne('branches', ['branch_id' => $branch_id]));
             }
             return compact('product', 'branches');
         }
