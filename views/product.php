@@ -8,6 +8,26 @@
     <img class="product-image" src="./assets/iphone6s.jpg"/>
     <div class="product-info">
         <h4><?php echo $model['product']->product_price ?>$</h4>
+        <?php 
+            $list_alternative = "<div class='alternative'>";
+                foreach ($model['same_model'] as $product) {
+                    $list_alternative .= "
+                        <a href='product?id=$product[product_id]' class='model'>
+                            <p class='font-weight-bold'>$product[product_ram]GB/$product[product_rom]GB</p>
+                            <p class='text-danger'>$product[product_price]$</p>
+                        </a>
+                    ";
+                }
+            $list_alternative .= "</div>";
+            echo $list_alternative;
+        ?>
+        <button class='purchase-btn'>
+            <h6>Purchase Now</h6>
+            <p>Shipping Or Receive At Nearest Store</p>
+        </button>
+        <div class='divider'></div>
+        <p><em class="font-weight-bold">Hotline: </em>1800.9988</p>
+        <p>Working Time: <em class="font-weight-bold">9AM-9:30PM</em></p>
     </div>
     <div class="rightInfo" >
         <div class="more-info">

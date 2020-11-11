@@ -35,16 +35,16 @@ abstract class DbModel extends Model{
         $attributes =  array_keys(
            $where 
         );
-     
         $sql_params = implode("AND ", array_map(fn($attr)=> "$attr = :$attr",$attributes));
-        $sql_command = self::prepare("SELECT *FROM $tableName WHERE $sql_params");
-       
+
+        $sql_command = self::prepare("SELECT * FROM $tableName WHERE $sql_params");
         foreach($where as $key => $item){
             $sql_command->bindValue(":$key",$item);
            // echo var_dump( $item);
         }
+        
         $sql_command->execute();
-        // echo var_dump($sql_command->fetchObject(static::class));
+
         return $sql_command->fetchObject(static::class);
     }
     public function findAll($tableName, $where){
@@ -52,15 +52,15 @@ abstract class DbModel extends Model{
            $where 
         );
      
-        $sql_params = implode("AND ", array_map(fn($attr)=> "$attr = :$attr",$attributes));
-        $sql_command = self::prepare("SELECT *FROM $tableName WHERE $sql_params");
-       
+        $sql_params = implode(" AND ", array_map(fn($attr)=> "$attr = :$attr",$attributes));
+
+        $sql_command = self::prepare("SELECT * FROM $tableName WHERE $sql_params");
         foreach($where as $key => $item){
             $sql_command->bindValue(":$key",$item);
-           // echo var_dump( $item);
         }
+        
         $sql_command->execute();
-        // echo var_dump($sql_command->fetchObject(static::class));
+
         return $sql_command->fetchAll();
     }
 
