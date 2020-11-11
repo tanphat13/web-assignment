@@ -22,7 +22,7 @@ use app\core\DbModel;
         }
 
         public function login(){
-            $user = User::findOne(['email'=>$this->email]);
+            $user = User::findOne($this->tableName(), ['email'=>$this->email]);
             if(!$user){
                 $this->addErrorMessage('email','Email or password not correct!');
                 return false;

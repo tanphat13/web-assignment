@@ -77,7 +77,7 @@ class Router{
     protected function renderOnlyView($view,$param=[]){
         // // echo $view;
         foreach($param as $key => $value){
-            $$key =$value;
+            $$key = $value;
         }
         // var_dump($param);
         ob_start();

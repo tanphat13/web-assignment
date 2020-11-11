@@ -1,0 +1,35 @@
+.product {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    font-size: 2vh;
+    .product-image {
+        width: 30%;
+        height: 30%;
+    }
+    .product-info {
+        width: 30%;
+    }
+    .rightInfo {
+        width: 25%;
+        .more-info {
+            border: 1px solid rgba(166, 166, 166, 0.575);
+            border-radius: 5%;
+            ul {
+                padding: 0;
+                list-style-type: none;
+                li {
+                    display: flex;
+                    svg {
+                        position: relative;
+                        top: 1vh;
+                    }
+                    p {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+}

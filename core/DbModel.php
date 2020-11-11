@@ -31,10 +31,7 @@ abstract class DbModel extends Model{
         return  Application::$app->db->pdo->prepare($sql_command);
     } 
 
-    public function findOne($where){
-        
-        $tableName = static::tableName();
-      
+    public function findOne($tableName, $where){
         $attributes =  array_keys(
            $where 
         );

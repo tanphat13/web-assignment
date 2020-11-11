@@ -1,41 +1,66 @@
 <?php
-    class Product {
-        public $id;
-        public $name;
-        public $price;
+    namespace app\models;
+    use app\core\Application;
+    use app\core\DbModel;
 
-        function __construct($id, $name, $price) {
-            $this->id = $id;
-            $this->name = $name;
-            $this->price = $price;
+    class Product extends DbModel {
+        public int $product_id = 0;
+        public string $product_name = '';
+        public string $product_brand = '';
+        public float $product_price = 0.0;
+        public string $product_color = '';
+        public int $product_ram = 0;
+        public int $product_rom = 0;
+        public string $product_spec = '';
+        public int $warranty = 0;
+
+        public function rules(): array {
+            return [
+                'product_id' => [self::RULE_REQUIRED, self::RULE_UNIQUE],
+                'product_name' => [self::RULE_REQUIRED],
+                'product_brand' => [self::RULE_REQUIRED],
+                'product_price' => [self::RULE_REQUIRED],
+                'product_color' => [self::RULE_REQUIRED],
+                'product_ram' => [self::RULE_REQUIRED],
+                'product_rom' => [self::RULE_REQUIRED],
+                'product_spec' => [self::RULE_REQUIRED],
+                'product_warranty' => [self::RULE_REQUIRED],
+            ];
         }
 
-        static function all() {
-            $list = [];
-            $db = DB::getInstance();
-            $req = $db->query('SELECT * FROM products');
-            
-            if ($req !== FALSE) {
-                $rows = $req->fetchAll();
-                foreach ($rows as $item) {
-                    $list[] = new Product($item['id'], $item['name'], $item['price']);
-                }
-            } else {
-                echo "Error in SQL";
-            }
-            return $list;
+        public function tableName(): string {
+            return 'products';
         }
 
-        static function find($id) {
-            $db = DB::getInstance();
-            $req = $db->prepare('SELECT * FROM products where id = :id');
-            $req->execute(array('id' => $id));
+        public function attribute(): array {
+            return ['product_name', 'product_price', 'product_brand', 'product_color', 'product_ram', 'product_rom', 'product_spec', 'warranty'];
+        }
 
-            $item =  $req->fetch();
-            if (isset($item['id'])) {
-                return new Product($item['id'], $item['name'], $item['price']);
+        public function primaryKey(): string {
+            return 'product_id';
+        }
+
+        public function userRole(): string {
+            return '';
+        }
+
+        public function getSpecificProduct(int $id) {
+            $product = self::findOne($this->tableName(), ['product_id' => $id]);
+            if (!$product) {
+                $this->addErrorMessage('product_id', 'Product Not Found');
+                return false;
             }
-            return null;
+            $sql_command = self::prepare("SELECT DISTINCT branch_id FROM products_items WHERE product_id = $product->product_id");
+            $sql_command->execute();
+            $list_branches_id = $sql_command->fetchAll();
+            $branches = array();
+            foreach ($list_branches_id as $branch) {
+                $branch_id = intval($branch['branch_id']);
+                $sql_command = self::prepare("SELECT * FROM branches WHERE branch_id = $branch_id");
+                $sql_command->execute();
+                array_push($branches, $sql_command->fetchObject());
+            }
+            return compact('product', 'branches');
         }
     }
 ?>

@@ -39,6 +39,8 @@ $app->router->get('/logout', [AuthController::class, 'logout']);
 
 $app->router->get('/profile', [AuthController::class, 'profile']);
 
+$app->router->get('/product', [SiteController::class, 'renderProduct']);
+
 $app->run();
 
 ?>

@@ -7,7 +7,7 @@ use app\core\Request;
 use app\core\Response;
 use app\models\LoginForm;
 use app\core\Session;
-
+use app\models\Product;
 
 class SiteController extends Controller{
     public function home(Request $request,Response $response){
@@ -36,6 +36,11 @@ class SiteController extends Controller{
     public function handleContactSubmit(Request $request){
         $body = $request->getBody();
         return $body;
+    }
+    public function renderProduct(Request $request) {
+        $param = $request->getBody();
+        $product = (new Product())->getSpecificProduct(intval($param['id']));
+        return $this->render('product', ['model' => $product]);
     }
 }
 
