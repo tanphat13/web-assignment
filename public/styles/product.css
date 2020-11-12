@@ -79,6 +79,7 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  overflow: hidden;
 }
 
 .product .rightInfo .more-info {
@@ -120,4 +121,13 @@
   position: relative;
   left: 2%;
   border-radius: 10px;
+}
+
+.product .rightInfo .branch-container {
+  width: 90%;
+  height: 30vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }

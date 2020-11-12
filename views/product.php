@@ -54,7 +54,7 @@
             </ul>
         </div>
         <p class="font-weight-bold bg-warning text-light label">AVAILABLE AT: </p>
-        <ul>
+        <ul class="branch-container">
             <?php
                 foreach ($model['branches'] as $branch) {
                     echo "<li> $branch->branch_address - Contact: $branch->branch_phone</li>";
