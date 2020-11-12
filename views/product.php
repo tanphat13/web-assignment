@@ -21,6 +21,7 @@
             $list_alternative .= "</div>";
             echo $list_alternative;
         ?>
+        <button onclick="loadAvailableBranch(<?php echo $model['product']->product_id ?>)">Click here</button>
         <button class='purchase-btn'>
             <h6>Purchase Now</h6>
             <p>Shipping Or Receive At Nearest Store</p>
@@ -54,12 +55,20 @@
             </ul>
         </div>
         <p class="font-weight-bold bg-warning text-light label">AVAILABLE AT: </p>
-        <ul class="branch-container">
-            <?php
-                foreach ($model['branches'] as $branch) {
-                    echo "<li> $branch->branch_address - Contact: $branch->branch_phone</li>";
-                }
-            ?>
-        </ul>
+        <ul class="branch-container" id="branch-container"></ul>
     </div>
 </div>
+
+<script>
+    function loadAvailableBranch(product_id) {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                document.getElementById('branch-container').innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "../public/branch.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("product_id=", product_id);
+    }
+</script>

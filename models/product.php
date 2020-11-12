@@ -53,13 +53,7 @@
             $sql_command = self::prepare("SELECT * FROM products WHERE product_name = '$product->product_name' AND (NOT product_ram = $product->product_ram OR NOT product_rom = $product->product_rom)");
             $sql_command->execute();
             $same_model = $sql_command->fetchAll();
-            $list_branches_id = self::findAll('products_items', ['product_id' => $product->product_id]);
-            $branches = array();
-            foreach ($list_branches_id as $branch) {
-                $branch_id = intval($branch['branch_id']);
-                array_push($branches, self::findOne('branches', ['branch_id' => $branch_id]));
-            }
-            return compact('product', 'same_model', 'branches');
+            return compact('product', 'same_model');
         }
     }
 ?>
