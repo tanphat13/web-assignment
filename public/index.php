@@ -22,7 +22,7 @@ $app  = new Application(dirname(__DIR__),$config);
 $app->router->get('/',[SiteController::class,'home']);
 $app->router->post('/', [SiteController::class, 'home']);
 
-$app->router->get('/contact', [SiteController::class,"renderContact",['admin', 'user',]]);
+$app->router->get('/contact', [SiteController::class,"renderContact",['admin', 'user']]);
 
 $app->router->post('/contact', [SiteController::class, 'handleContactSubmit']);
 
@@ -41,9 +41,12 @@ $app->router->get('/profile', [AuthController::class, 'profile']);
 
 //Footer
 
-$app->router->get('/warranty', [SiteController::class, 'renderWarranty']);
+$app->router->get('/warranty', [SiteController::class, 'warranty']);
 $app->router->get('/returnpolicy', [SiteController::class, 'returnpolicy']);
 $app->router->get('/installment', [SiteController::class, 'installment']);
+$app->router->post('/warranty', [SiteController::class, 'warranty']);
+$app->router->post('/returnpolicy', [SiteController::class, 'returnpolicy']);
+$app->router->post('/installment', [SiteController::class, 'installment']);
 
 $app->run();
 

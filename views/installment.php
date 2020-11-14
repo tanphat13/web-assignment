@@ -1,4 +1,4 @@
-<html>
+
     <h1>Installment Purchase Policy</h1>
     <h3>CONDITIONS AND ORIGINAL DOCUMENTS REQUIRED</h3>
         <ul>
@@ -8,5 +8,3 @@
             If the loan is less than 10 million, you can replace your household registration with a driver's license.</li>
             <li>The finance company just finished checking and sent it back without keeping any customer papers.</li>
         </ul>
-
-</html>

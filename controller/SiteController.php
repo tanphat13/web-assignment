@@ -6,46 +6,101 @@ use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
 use app\models\LoginForm;
-use app\core\Session;
+
 
 
 class SiteController extends Controller{
+    //render HomePage
+    
     public function home(Request $request,Response $response){
         $loginForm = new LoginForm();
         $session = Application::$app->session;
+        $param =
+        ["model" => $loginForm, "session" => $session];
+        $path = 'home';
         $listField = array_keys($request->getBody());
+        //exit;
         if(in_array('email',$listField) && in_array('password',$listField)){
-            if($request->isPost()){
-                $loginForm->loadData($request->getBody());
-                if($loginForm->validate() && $loginForm->login()){
-                    $response->redirect('/');
-                }
-            }
+            self::login($path, $loginForm, $request, $response);
         }
-        
-        return
-        $this->render('home', ["model" => $loginForm, "session" => $session]);
+        return $this->render('home', $param);
     }
+
     public function renderContact()
     {
         $param = [
             'name' => "the NEGA"
         ];
-        //echo $this;
         return $this->render('contact',$param);
     }
+
+
+    //render view ...
     public function handleContactSubmit(Request $request){
         $body = $request->getBody();
         return $body;
     }
-    public function renderWarranty() {
-        return $this->render('warranty',[]);
+    // render view ...
+    public function warranty(Request $request, Response $response) {
+        $loginForm = new LoginForm();
+        $session = Application::$app->session;
+        $param =
+            ["model" => $loginForm, "session" => $session];
+        $path = $request->getPath();
+        $listField = array_keys($request->getBody());
+        if (in_array('email', $listField) && in_array('password', $listField)) {
+            self::login($path, $loginForm, $request, $response);
+        }
+        return $this->render('warranty',$param);
     }
-    public function returnpolicy() {
-        return $this->render('returnpolicy',[]);
+
+    //Render View ...
+    public function returnpolicy(Request $request, Response $response) {
+        $loginForm = new LoginForm();
+        $session = Application::$app->session;
+        $param =
+            ["model" => $loginForm, "session" => $session];
+        $path = $request->getPath();
+        $listField = array_keys($request->getBody());
+        // echo "<pre>";
+        // echo var_dump($request);
+        // echo "</pre>";
+        // exit;
+        if (in_array('email', $listField) && in_array('password', $listField)) {
+            self::login($path, $loginForm, $request, $response);
+        }
+        return $this->render('returnpolicy',$param);
     }
-    public function installment() {
-        return $this->render('installment',[]);
+
+
+    //Render View ...
+    public function installment(Request $request, Response $response) {
+        $loginForm = new LoginForm();
+        $session = Application::$app->session;
+        $param =
+            ["model" => $loginForm, "session" => $session];
+        $listField = array_keys($request->getBody());
+        $path = 'installment';
+       
+        //exit;
+        if (in_array('email', $listField) && in_array('password', $listField)) {
+            self::login($path, $loginForm, $request, $response);
+        } 
+        return $this->render('installment',$param);
+    }
+
+
+    //function login for login form on main layout;
+    public static function login($path,LoginForm $model,Request $request,Response  $response){
+        //$loginForm = new $model();
+        if ($request->isPost()) {
+            $model->loadData($request->getBody());
+            
+            if ($model->validate() && $model->login()) {
+                $response->redirect($path);
+                return;
+            }
+        }
     }
 }
 

@@ -1,8 +1,10 @@
 <form action="" method="post">
     <h1 class="show-error">
         <?php
-        if($model->hasError('email')|| $model->hasError('password')){
-            echo $model->getFirstError('email');
+        if($model->hasError('password')){
+            echo $model->getFirstError('password')??'';
+        }else if( $model->hasError('email')){
+            echo $model->getFirstError('email') ?? '';
         }
         ?>
     </h1>
@@ -20,3 +22,4 @@
     </div>
     <button onclick="test" ; class="btn btn-primary">Submit</button>
 </form>
+

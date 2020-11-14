@@ -17,7 +17,4 @@
             echo $exception->getMessage();
         ?>
     </div>
-
-
-
 </h3>

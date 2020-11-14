@@ -34,6 +34,7 @@ class Application{
                 $this->user = null;
             }
         }
+
         private function setController(Controller $controller){
             $this->controller = $controller;
         }
@@ -56,7 +57,7 @@ class Application{
             $primaryValue = $user->{$primaryKey};
             $role = $user->userRole();
             $userRole = $user->{$role};
-             $this->session->set('authorization', $userRole);
+            $this->session->set('authorization', $userRole);
             $this->session->set('user',$primaryValue);
             return true;
         }
