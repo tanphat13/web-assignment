@@ -3,17 +3,18 @@ namespace app\core;
 class Session{
     public const FLASH_KEY = 'flash_messages';
     public function __construct(){
-        $status = session_status();
-        if ($status == PHP_SESSION_NONE) {
-            session_start();
-        } else
-        if ($status == PHP_SESSION_DISABLED) {
-            //Sessions are not available
-        } else
-        if ($status == PHP_SESSION_ACTIVE) {
-            session_destroy();
-            session_start();
-        }
+        // $status = session_status();
+        // if ($status == PHP_SESSION_NONE) {
+        //     session_start();
+        // } else
+        // if ($status == PHP_SESSION_DISABLED) {
+        //     //Sessions are not available
+        // } else
+        // if ($status == PHP_SESSION_ACTIVE) {
+        //     session_destroy();
+        //     session_start();
+        // }
+        session_start();
         $flashMessages = $_SESSION[self::FLASH_KEY]?? [];
         foreach($flashMessages as $key => &$flashMessage){
             $flashMessage['remove'] = true;

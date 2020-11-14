@@ -1,0 +1,27 @@
+.location-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 400px;
+  border: 1px solid green;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.location-wrapper .map {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 400px;
+  width: 50%;
+  border: 1px solid red;
+}
+
+.location-wrapper .location-info {
+  height: 400px;
+  width: 50vw;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+/*# sourceMappingURL=location.css.map */

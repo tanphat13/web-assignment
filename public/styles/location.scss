@@ -1,0 +1,18 @@
+.location-wrapper{
+    position: relative;
+    width: 100vw;
+    height: 400px;
+    border:1px solid green;
+    display: flex;
+    .map{
+        flex:1;
+        height: 400px;
+        width: 50%;
+        border: 1px solid red;
+    }
+    .location-info{
+        height: 400px;
+        width: 50vw;
+        flex:1,
+    }
+}

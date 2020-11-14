@@ -12,18 +12,19 @@ use app\core\Session;
 class SiteController extends Controller{
     public function home(Request $request,Response $response){
         $loginForm = new LoginForm();
-        $session = Application::$app->session;
+        $session = new Session();
         $listField = array_keys($request->getBody());
         if(in_array('email',$listField) && in_array('password',$listField)){
             if($request->isPost()){
                 $loginForm->loadData($request->getBody());
                 if($loginForm->validate() && $loginForm->login()){
-                   
-                    return $this->render('home', ["model" => $loginForm,"session" => $session]);
+                    $response->redirect('/');
                 }
             }
         }
-        return $this->render('home',["model" => $loginForm]);
+        
+        return
+        $this->render('home', ["model" => $loginForm, "session" => $session]);
     }
     public function renderContact()
     {
