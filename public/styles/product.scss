@@ -50,6 +50,30 @@
             vertical-align: middle;
             text-align: center;
         }
+        .btn-group {
+            margin-bottom: 5vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 1vw;
+            justify-content: space-around;
+            .grid-item {
+                padding: 0;
+                padding-left: 5%;
+                text-align: left;
+                border: 1px solid black;
+                border-radius: 10px;
+                box-shadow: -5px 5px 10px 0px rgba(0, 0, 0, 0.15);
+                h6 {
+                    margin: 0;
+                }
+                p {
+                    text-align: left;
+                }
+                &:focus {
+                    border: 1px solid red;
+                }
+            }
+        }
     }
     .rightInfo {
         width: 25%;
@@ -92,7 +116,7 @@
         .branch-container {
             width: 90%;
             height: 30vh;
-            overflow-x: hidden;
+            // overflow-x: hidden;
             overflow-y: scroll;
             box-sizing: content-box;
         }

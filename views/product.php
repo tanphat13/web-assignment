@@ -5,23 +5,72 @@
 <link rel="stylesheet" href="./styles/product.css" />
 <h3><?php echo $model['product']->product_name . "(" . $model['product']->product_ram . "GB/" . $model['product']->product_rom . "GB)" ?></h3>
 <div class="product">
-    <img class="product-image" src="./assets/iphone6s.jpg"/>
-    <div class="product-info">
-        <h4><?php echo $model['product']->product_price ?>$</h4>
-        <?php 
-            $list_alternative = "<div class='alternative'>";
-                foreach ($model['same_model'] as $product) {
-                    $list_alternative .= "
-                        <a href='product?id=$product[product_id]' class='model'>
-                            <p class='font-weight-bold'>$product[product_ram]GB/$product[product_rom]GB</p>
-                            <p class='text-danger'>$product[product_price]$</p>
-                        </a>
+    <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <?php
+                foreach ($model['product_images'] as $image) {
+                    $image_link = $image['link'];
+                    $index = array_search($image, $model['product_images']);
+                    echo "<li data-target='#carouselIndicators' data-slide-to='$index'";
+                    if ($index === 0) echo " class='active'";
+                    echo ">
+                        <img src=$image_link class='img-thumbnail' alt='$model[product]->product_name'/>
+                        </li>
                     ";
                 }
+            ?>
+        </ol>
+        <div class="carousel-inner">
+            <?php
+                foreach ($model['product_images'] as $image) {
+                    $index = array_search($image, $model['product_images']);
+                    echo "<div class='carousel-item";
+                    if ($index === 0) echo " active'";
+                    echo ">
+                        <img src='$image[link]' class='d-block w-100' alt='$model[product]->product_name'/>
+                        </div>
+                    ";
+                }
+            ?>
+        </div>
+        <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div class="product-info">
+        <h4 id="price"><?php echo $model['product']->product_price ?>$</h4>
+        <?php 
+            $list_alternative = "<div class='alternative'>";
+            foreach ($model['diff_spec'] as $product) {
+                $list_alternative .= "
+                    <a href='product?id=$product[product_id]' class='model'>
+                        <p class='font-weight-bold'>$product[product_ram]GB/$product[product_rom]GB</p>
+                        <p class='text-danger'>$product[product_price]$</p>
+                    </a>
+                ";
+            }
             $list_alternative .= "</div>";
             echo $list_alternative;
         ?>
-        <button onclick="loadAvailableBranch(<?php echo $model['product']->product_id ?>)">Click here</button>
+        <h6>Choose Color:</h6>
+        <?php
+            $list_color = "<div class='btn-group'>";
+            foreach ($model['diff_color'] as $product) {
+                $list_color .= "
+                    <button type='button' class='btn grid-item' onclick='loadAvailableBranch($product[product_id], $product[product_price])'>
+                        <h6>$product[product_color]</h6>
+                        <p>$product[product_price]$</p>
+                    </button>
+                ";
+            }
+            $list_color .= "</div>";
+            echo $list_color;
+        ?>
         <button class='purchase-btn'>
             <h6>Purchase Now</h6>
             <p>Shipping Or Receive At Nearest Store</p>
@@ -60,15 +109,16 @@
 </div>
 
 <script>
-    function loadAvailableBranch(product_id) {
+    function loadAvailableBranch(product_id, new_price) {
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
+                document.cookie = "productId = " + product_id;
+                document.getElementById('price').innerText = new_price + "$";
                 document.getElementById('branch-container').innerHTML = this.responseText;
             }
         };
-        xhttp.open("POST", "../public/branch.php", true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("product_id=", product_id);
+        xhttp.open("GET", "/branch?id="+product_id, true);
+        xhttp.send();
     }
 </script>

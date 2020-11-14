@@ -8,6 +8,7 @@ use app\core\Response;
 use app\models\LoginForm;
 use app\core\Session;
 use app\models\Product;
+use app\models\Branch;
 
 class SiteController extends Controller{
     public function home(Request $request,Response $response){
@@ -41,6 +42,10 @@ class SiteController extends Controller{
         $param = $request->getBody();
         $product = (new Product())->getSpecificProduct(intval($param['id']));
         return $this->render('product', ['model' => $product]);
+    }
+    public function getBranch(Request $request) {
+        $param = $request->getBody();
+        return (new Branch())->getAvailableBranch(intval($param['id']));
     }
 }
 

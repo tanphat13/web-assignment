@@ -4,15 +4,6 @@
     use app\core\DbModel;
 
     class Product extends DbModel {
-        public int $product_id = 0;
-        public string $product_name = '';
-        public string $product_brand = '';
-        public float $product_price = 0.0;
-        public string $product_color = '';
-        public int $product_ram = 0;
-        public int $product_rom = 0;
-        public string $product_spec = '';
-        public int $warranty = 0;
 
         public function rules(): array {
             return [
@@ -50,10 +41,17 @@
                 $this->addErrorMessage('product_id', 'Product Not Found');
                 return false;
             }
-            $sql_command = self::prepare("SELECT * FROM products WHERE product_name = '$product->product_name' AND (NOT product_ram = $product->product_ram OR NOT product_rom = $product->product_rom)");
+
+            $product_images = self::findAll('images', ['product_id' => $product->product_id]);
+            
+            // Get list of same model but different specificity in RAM/ROM
+            $sql_command = self::prepare("SELECT product_id,product_ram,product_rom,product_price FROM products WHERE product_id IN (SELECT MIN(product_id) FROM products WHERE product_name = '$product->product_name' GROUP BY product_rom) AND (NOT product_ram = $product->product_ram OR NOT product_rom = $product->product_rom)");
             $sql_command->execute();
-            $same_model = $sql_command->fetchAll();
-            return compact('product', 'same_model');
+            $diff_spec = $sql_command->fetchAll();
+            
+            // Get list of same model but different color
+            $diff_color = self::findAll($this->tableName(), ['product_name' => $product->product_name, 'product_ram' => $product->product_ram, 'product_rom' => $product->product_rom]);
+            return compact('product', 'diff_spec', 'diff_color', 'product_images');
         }
     }
 ?>
