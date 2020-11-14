@@ -12,7 +12,7 @@ use app\core\Session;
 class SiteController extends Controller{
     public function home(Request $request,Response $response){
         $loginForm = new LoginForm();
-        $session = new Session();
+        $session = Application::$app->session;
         $listField = array_keys($request->getBody());
         if(in_array('email',$listField) && in_array('password',$listField)){
             if($request->isPost()){
@@ -37,6 +37,15 @@ class SiteController extends Controller{
     public function handleContactSubmit(Request $request){
         $body = $request->getBody();
         return $body;
+    }
+    public function renderWarranty() {
+        return $this->render('warranty',[]);
+    }
+    public function returnpolicy() {
+        return $this->render('returnpolicy',[]);
+    }
+    public function installment() {
+        return $this->render('installment',[]);
     }
 }
 

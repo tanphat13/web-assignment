@@ -39,6 +39,12 @@ $app->router->get('/logout', [AuthController::class, 'logout']);
 
 $app->router->get('/profile', [AuthController::class, 'profile']);
 
+//Footer
+
+$app->router->get('/warranty', [SiteController::class, 'renderWarranty']);
+$app->router->get('/returnpolicy', [SiteController::class, 'returnpolicy']);
+$app->router->get('/installment', [SiteController::class, 'installment']);
+
 $app->run();
 
 ?>

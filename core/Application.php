@@ -7,7 +7,7 @@ class Application{
 
         public static string $ROOT_DIR;
         public string $layout ='main_layout';
-        public string $userClass ;
+        public ?string $userClass ;
         public Request $request;
         public Router $router;
         public Response $response;
@@ -56,6 +56,7 @@ class Application{
             $primaryValue = $user->{$primaryKey};
             $role = $user->userRole();
             $userRole = $user->{$role};
+             $this->session->set('authorization', $userRole);
             $this->session->set('user',$primaryValue);
             return true;
         }

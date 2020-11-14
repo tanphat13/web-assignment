@@ -95,18 +95,49 @@ use app\core\Application;
         <?php endif; ?>
         {{content}}
     </div>
-
     <footer>
-        <div class="location-wrapper">
-            <div class="map" id="map">
+        <div class="footer-container">
+            <div class="col1"> 
+                <ul>
+                <li><a href="/warranty">Warranty Policy</a></li>
+                <li><a href="/returnpolicy">Return Policy</a></li>
+                <li><a href="/installment">Installment Purchase</a></li>
+                </ul>
             </div>
-            <div id='detail-info' class='location-info'>
+            <!-- ------------------------------------------- -->
+            <div class="col1"> 
+                <ul>
+                <li><a href="#">Send Feedback, Complain</a></li>
+                <li><a href="#">Recruitment</a></li>
+                <li><a href="#">Company Introduction</a></li>
+                </ul>
 
             </div>
+            <!-- ------------------------------------------- -->
+            <div class="col1"> 
+                <ul class="Contact_number">
+                    <li>Hotlines
+                    </li>
+                    <li>Purchase: (0123456789)</li>
+                    <li>Technical Help: (0123456789)</li>
+                    <li>Warranty: (0123456789)</li>
+                    <li>Complain: (0123456789)</li>
+                </ul>
+            </div>
+            <!-- ------------------------------------------- -->
+            <div class="col1"> 
+                <p>Location</p>
+                <div class="location-wrapper">
+                    <div class="map" id="map">
+                    </div>
+                </div>
+
+            </div>
+           
         </div>
-
+        
     </footer>
-    <!-- Optional JavaScript; choose one of the two!
+    <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

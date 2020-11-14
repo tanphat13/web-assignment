@@ -17,11 +17,87 @@
   flex: 1;
 }
 
-.login-wrapper {
+.home-wrapper {
   position: relative;
+  width: 100%;
+  height: 100vh;
+}
+.home-wrapper .login-wrapper {
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 5;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
+  border: 1px solid red;
+  visibility: hidden;
+  background-color: white;
+}
+.home-wrapper .active {
+  visibility: visible;
+}
+.home-wrapper .main-screen {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 1;
+}
+
+#map {
+  height: 400px;
+  width: 80%;
+  border: 1px solid red;
+}
+
+body {
+  min-height: 80vh;
+}
+
+.container {
+  height: 100%;
+  width: 100vw;
+}
+
+.footer-container {
+  height: 10%;
+  position: relative;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  border-top: solid;
+  border-color: black;
+  background-color: azure;
+}
+.footer-container .col1 {
+  display: inline-block;
+  width: 24vw;
+  height: 100%;
+  top: 0;
+  padding-left: 20px;
+}
+.footer-container .col1 li {
+  list-style: none;
+}
+
+body {
+  height: 80%;
+}
+
+.return_table {
+  border: solid 4px;
+  width: 100%;
+  justify-content: center;
+  background-color: #f5fcce;
+}
+.return_table th {
+  border: solid 4px;
+  text-align: center;
+  width: 50%;
+}
+.return_table td {
+  border: solid 4px;
+}
+
+h1 {
+  text-align: center;
 }
