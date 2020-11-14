@@ -54,9 +54,8 @@ function createMarker(location, storeInfo, index) {
   });
   google.maps.event.addListener(marker, "click", function () {
     infoWindow.setContent(html);
-    infoWindow.open(map, marker);
-    var inforCard = document.getElementById("detail-info");
-    inforCard.innerHTML = html;
+    infoWindow.open(map, marker); // let inforCard = document.getElementById("detail-info");
+    // inforCard.innerHTML = html;
   });
   Marker.push(marker);
 }
