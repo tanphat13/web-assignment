@@ -53,7 +53,7 @@ function createMarker(location, storeInfo, index) {
     label: index.toString()
   });
   google.maps.event.addListener(marker, "click", function () {
-    // infoWindow.setContent(html);
+    infoWindow.setContent(html);
     infoWindow.open(map, marker);
     var inforCard = document.getElementById("detail-info");
     inforCard.innerHTML = html;
