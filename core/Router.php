@@ -1,6 +1,7 @@
 <?php
     namespace app\core;
     use app\core\Controller;
+    use app\controller\AdminController; 
     use app\core\exception\Forbidden;
     use app\core\Session;
     use app\core\exception\NotFound;
@@ -10,10 +11,12 @@ class Router{
     public Response $response;
     public Session $session;
     protected array $routes = [];
+    // public $adminController;
     // public Controller $controller;
     public function __construct(Request $request, Response $response)
     {
         $this->session = new Session();
+        //$this->adminController = AdminController::$test;
         $this->request = $request;
         $this->response = $response;
     }
@@ -44,6 +47,13 @@ class Router{
             } else if (is_array($callback)) {
                 //echo  $callback[0];
                 /** @var app\core\Controller $controller */
+                
+                echo "<pre>";
+                echo var_dump($callback);
+                echo var_dump(new $callback[0]());
+                echo "</pre>";
+                exit;
+                
                 $controller = new $callback[0]();
                 Application::$app->controller = $controller;
                 $controller->action = $callback[1];

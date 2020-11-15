@@ -1,7 +1,8 @@
-<?php   
+<?php
 
 
 use app\core\Application;
+use app\controller\AdminController;
 use app\controller\SiteController;
 use app\controller\AuthController;
 
@@ -40,7 +41,6 @@ $app->router->get('/logout', [AuthController::class, 'logout']);
 $app->router->get('/profile', [AuthController::class, 'profile']);
 
 //Footer
-
 $app->router->get('/warranty', [SiteController::class, 'warranty']);
 $app->router->get('/returnpolicy', [SiteController::class, 'returnpolicy']);
 $app->router->get('/installment', [SiteController::class, 'installment']);
@@ -48,6 +48,8 @@ $app->router->post('/warranty', [SiteController::class, 'warranty']);
 $app->router->post('/returnpolicy', [SiteController::class, 'returnpolicy']);
 $app->router->post('/installment', [SiteController::class, 'installment']);
 
+// For admin routers
+$app->router->get('/admin', [\app\controller\AdminController::class, 'admin']);
 $app->run();
 
 ?>
