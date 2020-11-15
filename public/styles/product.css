@@ -11,9 +11,12 @@
   font-size: 2vh;
 }
 
-.product .product-image {
-  width: 30%;
-  height: 30%;
+.product .carousel-indicators {
+  border: 1px solid black;
+}
+
+.product .carousel-indicators li {
+  background-color: black;
 }
 
 .product .product-info {

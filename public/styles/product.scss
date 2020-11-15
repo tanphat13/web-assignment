@@ -5,9 +5,11 @@
     border-top: 2px solid rgba(213, 213, 213, 0.5);
     border-bottom: 2px solid rgba(213, 213, 213, 0.5);
     font-size: 2vh;
-    .product-image {
-        width: 30%;
-        height: 30%;
+    .carousel-indicators {
+        border: 1px solid black;
+        li {
+            background-color: black;
+        }
     }
     .product-info {
         width: 30%;

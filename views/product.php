@@ -14,7 +14,7 @@
                     echo "<li data-target='#carouselIndicators' data-slide-to='$index'";
                     if ($index === 0) echo " class='active'";
                     echo ">
-                        <img src=$image_link class='img-thumbnail' alt='$model[product]->product_name'/>
+                        <img src='" . $image_link . "class='img-thumbnail' alt='" . $model['product']->product_name . "'/>
                         </li>
                     ";
                 }
@@ -25,9 +25,9 @@
                 foreach ($model['product_images'] as $image) {
                     $index = array_search($image, $model['product_images']);
                     echo "<div class='carousel-item";
-                    if ($index === 0) echo " active'";
-                    echo ">
-                        <img src='$image[link]' class='d-block w-100' alt='$model[product]->product_name'/>
+                    if ($index === 0) echo " active";
+                    echo "'>
+                        <img src='" . $image['link'] . "'class='d-block w-100' alt='" . $model['product']->product_name . "'/>
                         </div>
                     ";
                 }
