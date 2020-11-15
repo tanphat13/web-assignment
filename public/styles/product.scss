@@ -5,10 +5,36 @@
     border-top: 2px solid rgba(213, 213, 213, 0.5);
     border-bottom: 2px solid rgba(213, 213, 213, 0.5);
     font-size: 2vh;
-    .carousel-indicators {
-        border: 1px solid black;
-        li {
-            background-color: black;
+    #carouselIndicators {
+        width: 50%;
+        height: 50%;
+        .carousel-indicators {
+            border: 1px solid black;
+            li {
+                background-color: black;
+            }
+        }
+        .carousel-inner {
+            width: 100%;
+            height: 100%;
+            .carousel-item {
+                img {
+                    width: 100%;
+                    height: 100%;
+                    margin: auto;
+                }
+            }
+            .carousel-item-left {
+                width: 100%;
+                height: 100%
+            }
+            .carousel-item-right {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .carousel-control-prev-icon {
+            color: #FFC107;
         }
     }
     .product-info {
