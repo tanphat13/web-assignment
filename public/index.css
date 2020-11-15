@@ -46,6 +46,10 @@ body {
   list-style: none;
 }
 
+h1 {
+  text-align: center;
+}
+
 body {
   height: 80%;
 }
@@ -67,9 +71,5 @@ body {
 
 .return_table td {
   border: solid 4px;
-}
-
-h1 {
-  text-align: center;
 }
 /*# sourceMappingURL=index.css.map */
