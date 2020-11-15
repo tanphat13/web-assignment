@@ -3,9 +3,9 @@
     width: 100vw;
     border:1px solid red;
 }
-.container {
-    width: 100%;
-    margin: 0;
-    align-self: start;
-}
-@import "./styles/long.scss"
+
+@import "./styles/footer";
+@import "./styles/installment";
+@import "./styles/returnpolicy";
+@import "./styles/warranty";
+@import "./styles/category";
