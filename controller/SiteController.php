@@ -6,6 +6,7 @@ use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
 use app\models\LoginForm;
+use app\models\Categories;
 use app\core\Session;
 
 
@@ -45,6 +46,16 @@ class SiteController extends Controller{
     }
     public function installment() {
         return $this->render('installment',[]);
+    }
+    public function renderCategory(Request $request) {
+        $param = $request->getBody();
+        $categoryList = (new Categories())->getCategoryList();
+        // echo var_dump($categoryList[0]);
+        if ($param == null) {
+            $productList = (new Categories())->getBrandProduct($categoryList[0]);            
+        }
+        else $productList = (new Categories())->getBrandProduct($param['brand']);
+        return $this->render('categories', ['model' => $categoryList, 'product' => $productList]);
     }
 }
 

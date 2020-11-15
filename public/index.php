@@ -44,7 +44,7 @@ $app->router->get('/profile', [AuthController::class, 'profile']);
 $app->router->get('/warranty', [SiteController::class, 'renderWarranty']);
 $app->router->get('/returnpolicy', [SiteController::class, 'returnpolicy']);
 $app->router->get('/installment', [SiteController::class, 'installment']);
-
+$app->router->get('/category', [SiteController::class, 'renderCategory']);
 $app->run();
 
 ?>
