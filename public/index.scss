@@ -3,6 +3,11 @@
     width: 100vw;
     border:1px solid red;
 }
+.container {
+    width: 100%;
+    margin:0;
+}
 @import "./styles/footer";
 @import "./styles/installment";
-@import "./styles/returnpolicy"
+@import "./styles/returnpolicy";
+@import "./styles/warranty";
