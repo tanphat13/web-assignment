@@ -12,8 +12,9 @@
 }
 
 .product #carouselIndicators {
-  width: 50%;
-  height: 50%;
+  margin: 0 5%;
+  width: 60vh;
+  height: 60vh;
 }
 
 .product #carouselIndicators .carousel-indicators li {

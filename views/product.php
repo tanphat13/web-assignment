@@ -50,7 +50,7 @@
                 $list_alternative .= "
                     <a href='product?id=$product[product_id]' class='product'>
                         <p class='font-weight-bold'>$product[product_ram]GB/$product[product_rom]GB</p>
-                        <p class='text-danger'>" . number_format($product[product_price], 0, '', '.') . "VND </p>
+                        <p class='text-danger'>" . number_format($product['product_price'], 0, '', '.') . "VND </p>
                     </a>
                 ";
             }
