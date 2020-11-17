@@ -46,8 +46,9 @@ class SiteController extends Controller{
     public function renderProduct(Request $request) {
         $param = $request->getBody();
         $product = (new Product())->getSpecificProduct(intval($param['id']));
-        return $this->render('product', ['model' => $product]);
+        return $this->render('product', ['product' => $product]);
     }
+
     public function getBranch(Request $request) {
         $param = $request->getBody();
         return (new Branch())->getAvailableBranch(intval($param['id']));
