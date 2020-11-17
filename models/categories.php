@@ -19,18 +19,29 @@ class Categories extends DbModel {
         }
 
         public function getBrandProduct($brand) {
-            $sql_command = $this->prepare("SELECT product_id, product_name, product_price FROM products WHERE product_brand='$brand' ORDER BY product_price DESC");
+            $sql_command = $this->prepare("SELECT products.product_id, products.product_name, products.product_price, products.product_brand, MIN(images.image_id), images.link 
+                FROM products LEFT JOIN images ON products.product_id = images.product_id WHERE products.product_brand = '$brand' GROUP BY products.product_id ORDER BY products.product_price DESC");
             $sql_command->execute();
             $productList = $sql_command->fetchAll();
-            //echo var_dump($productList);
             $products = array();
             foreach ($productList as $key) {
                 array_push($products, $key);
             }
-            
+            // echo var_dump($products);
             return $products;
-
-        
+        }
+        public function getProductByRange($low_bound, $high_bound) {
+            $sql_command = $this->prepare("SELECT products.product_id, products.product_name, products.product_price, products.product_brand, MIN(images.image_id), images.link 
+                FROM products LEFT JOIN images ON products.product_id = images.product_id WHERE (products.product_price > '$low_bound' AND products.product_price < '$high_bound') 
+                GROUP BY products.product_id ORDER BY products.product_price DESC");
+            $sql_command->execute();
+            $productList = $sql_command->fetchAll();
+            $products = array();
+            foreach ($productList as $key) {
+                array_push($products, $key);
+            }
+            // echo var_dump($products);
+            return $products;
         }
         public function rules() : array{
             return [];
