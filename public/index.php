@@ -49,7 +49,9 @@ $app->router->post('/returnpolicy', [SiteController::class, 'returnpolicy']);
 $app->router->post('/installment', [SiteController::class, 'installment']);
 
 // For admin routers
-$app->router->get('/admin', [\app\controller\AdminController::class, 'admin']);
+//$app->router->get('/admin', [AdminController::class, 'admin']);
+// $app->router->get('/admin/login/user', [AdminController::class, 'test']);
+ $app->router->get('/admin/login', [AdminController::class, 'test']);
+// $app->router->get('/admin', [AdminController::class, 'admin']);
 $app->run();
-
 ?>
