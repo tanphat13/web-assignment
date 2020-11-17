@@ -1,5 +1,4 @@
-<html>
-  
+
         <!-- <h2>Product error caused by the manufacturer:</h2>
         <div class="return_col">
             <p>First month</p>
@@ -53,5 +52,3 @@
         </tr>
     </table>
     </div>
-
-</html>

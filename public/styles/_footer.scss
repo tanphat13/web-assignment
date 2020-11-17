@@ -1,8 +1,4 @@
-#map{
-    height: 400px;
-    width: 80%;
-    border:1px solid red;
-}
+
 body {
     min-height: 80vh;
 }
@@ -16,16 +12,17 @@ body {
     border-top: solid;
     border-color: black;
     background-color: azure;
-    
+    padding:0px 16px;
     .col1 {
         display: inline-block;
         width: 24vw;
         height: 100%; 
         top: 0;
         padding-left: 20px;
-        ul {
+        min-height: 200px;
+        // ul {
 
-        }
+        // }
         li {
             list-style: none;
         }

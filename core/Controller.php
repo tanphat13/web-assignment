@@ -8,7 +8,7 @@ class Controller{
     public string $layout = 'main_layout';
     /**
       @var app\core\middlewares\BaseMiddleware[];
-     */
+     **/
     public array  $middlewares = []; 
     public string $action = '';
     public function setLayout($layout){

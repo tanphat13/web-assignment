@@ -26,6 +26,7 @@ abstract class Model{
                     $ruleName = $rule[0];
                 }
                 if($ruleName === self::RULE_REQUIRED && !$value){
+                    
                     $this->addError($attribute, self::RULE_REQUIRED);
                 }
                 if ($ruleName === self::RULE_EMAIL && !filter_var($value,FILTER_VALIDATE_EMAIL)) {
@@ -57,6 +58,7 @@ abstract class Model{
                 }
         }
         }
+       
         return empty($this->errors);
     }
 
@@ -69,6 +71,7 @@ abstract class Model{
         $this->errors[$attribute][] = $message;
     }
     public function addErrorMessage(string $attribute,$message){
+      
         $this->errors[$attribute][] = $message;
     }
     public function errorMessage()

@@ -1,4 +1,4 @@
-<html>
+
     <div class="warranty">
         <h1>Warranty conditions</h1>
         <p>Products are free warranty if guaranteed all the following conditions:</p>
@@ -29,4 +29,3 @@
     </div>
     
     
-</html>
