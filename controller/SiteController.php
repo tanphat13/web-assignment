@@ -130,7 +130,7 @@ class SiteController extends Controller{
         else if (array_key_exists('low_bound', $param) && array_key_exists('high_bound', $param)) {
             $productList = (new Categories())->getProductByRange($param['low_bound'], $param['high_bound']);
         }
-        return $this->render('categories', ['model' => $categoryList, 'product' => $productList]);
+        return $this->render('categories', ['category' => $categoryList, 'product' => $productList]);
     }
 }
 

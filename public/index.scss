@@ -1,6 +1,6 @@
 #map{
     height: 400px;
-    width: 100vw;
+    width: 80%;
     border:1px solid red;
 }
 .container {
@@ -12,6 +12,6 @@
 @import "./styles/returnpolicy";
 @import "./styles/warranty";
 @import "./styles/category";
-@import './styles/location.scss';
-@import './styles/loginForm.scss';
-@import "./styles/long.scss";
+@import './styles/location';
+@import './styles/loginForm';
+
