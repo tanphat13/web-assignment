@@ -44,12 +44,16 @@ $app->router->get('/profile', [AuthController::class, 'profile']);
 $app->router->get('/warranty', [SiteController::class, 'warranty']);
 $app->router->get('/returnpolicy', [SiteController::class, 'returnpolicy']);
 $app->router->get('/installment', [SiteController::class, 'installment']);
+<<<<<<< HEAD
+$app->router->get('/category', [SiteController::class, 'renderCategory']);
+=======
 $app->router->post('/warranty', [SiteController::class, 'warranty']);
 $app->router->post('/returnpolicy', [SiteController::class, 'returnpolicy']);
 $app->router->post('/installment', [SiteController::class, 'installment']);
 
 // For admin routers
 $app->router->get('/admin', [\app\controller\AdminController::class, 'admin']);
+>>>>>>> main
 $app->run();
 
 ?>

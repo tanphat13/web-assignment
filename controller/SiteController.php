@@ -6,6 +6,8 @@ use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
 use app\models\LoginForm;
+use app\models\Categories;
+use app\core\Session;
 
 
 
@@ -101,6 +103,23 @@ class SiteController extends Controller{
                 return;
             }
         }
+    }
+    public function renderCategory(Request $request) {
+        $param = $request->getBody();
+        $categoryList = (new Categories())->getCategoryList();
+        // echo var_dump($categoryList[0]);
+        // echo var_dump($param);
+        if ($param == null) {
+            $productList = (new Categories())->getBrandProduct($categoryList[0]);            
+        }
+        // else $productList = (new Categories())->getBrandProduct($param['brand']);
+        else if (array_key_exists('brand', $param))  {
+            $productList = (new Categories())->getBrandProduct($param['brand']);
+        }
+        else if (array_key_exists('low_bound', $param) && array_key_exists('high_bound', $param)) {
+            $productList = (new Categories())->getProductByRange($param['low_bound'], $param['high_bound']);
+        }
+        return $this->render('categories', ['model' => $categoryList, 'product' => $productList]);
     }
 }
 
