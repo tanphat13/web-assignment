@@ -2,6 +2,14 @@
   border: 1px solid green;
 }
 
+<<<<<<< HEAD
+.container {
+  width: 100%;
+  margin: 0;
+}
+
+#map {
+=======
 .footer-container .col1 .location-wrapper {
   width: 100%;
   height: 100%;
@@ -9,6 +17,7 @@
 }
 
 .footer-container .col1 .location-wrapper .map {
+>>>>>>> main
   height: 400px;
   width: 100%;
   border: 1px solid green;
@@ -47,11 +56,6 @@ body {
   min-height: 80vh;
 }
 
-.container {
-  height: 100%;
-  width: 100vw;
-}
-
 .footer-container {
   height: 10%;
   position: relative;
@@ -81,11 +85,29 @@ body {
   list-style: none;
 }
 
+.installment {
+  position: relative;
+  left: 20vw;
+}
+
+.installment h1 {
+  text-align: center;
+}
+
 body {
   height: 80%;
 }
 
-.return_table {
+.returnpolicy {
+  position: relative;
+  left: 20vw;
+}
+
+.returnpolicy h1 {
+  text-align: center;
+}
+
+.returnpolicy .return_table {
   border: solid 4px;
   width: 100%;
   -webkit-box-pack: center;
@@ -94,17 +116,60 @@ body {
   background-color: #f5fcce;
 }
 
-.return_table th {
+.returnpolicy .return_table th {
   border: solid 4px;
   text-align: center;
   width: 50%;
 }
 
-.return_table td {
+.returnpolicy .return_table td {
   border: solid 4px;
 }
 
-h1 {
+.warranty {
+  position: relative;
+  left: 20vw;
+}
+
+.warranty h1 {
   text-align: center;
+}
+
+.categoryPage {
+  width: 95vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.categoryPage .categoryList {
+  margin: 0%;
+  border: solid;
+  border-color: black;
+  background-color: #9ed7ee;
+  width: 15vw;
+  height: 100%;
+  display: inline-block;
+}
+
+.categoryPage .product_matrix {
+  display: inline;
+  right: 0;
+  width: 80vw;
+}
+
+.categoryPage .product_matrix .product_item {
+  border: solid;
+  display: inline-block;
+  margin: 5px;
+}
+
+.categoryPage .product_matrix .product_item img {
+  height: 250px;
+  width: 15vw;
+}
+
+.categoryPage .product_matrix .product_item:hover {
+  border-color: red;
 }
 /*# sourceMappingURL=index.css.map */

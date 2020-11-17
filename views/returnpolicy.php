@@ -6,6 +6,8 @@
         <div class="return_col">
             <p>Month 2 - 12</p>
         </div> -->
+    <div class="returnpolicy">
+    
     <h1>RETURN POLICY</h1>
     <table class="return_table">
         <tr>
@@ -49,4 +51,4 @@
             </td>
         </tr>
     </table>
-    
+    </div>
