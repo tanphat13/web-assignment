@@ -2,6 +2,7 @@
 
 
 use app\core\Application;
+use app\controller\AdminController;
 use app\controller\SiteController;
 use app\controller\AuthController;
 

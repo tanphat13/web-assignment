@@ -31,11 +31,7 @@ use app\core\DbModel;
                 $this->addErrorMessage('password', 'Email or password not correct!');
                 return false;
             }
-            // echo "<pre>";
-            // echo var_dump($user);
-            // echo "</pre>";
-            Application::$app->login($user);
-            return true;
+            return Application::$app->login($user);
         }
         public function attribute(): array
         {

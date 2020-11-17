@@ -1,0 +1,41 @@
+.categoryPage {
+    width: 95vw;
+    // margin: 0;
+    // border: 0;
+    display: flex;
+    .categoryList {
+        margin: 0%;
+        border: solid;
+        border-color: black;
+        background-color: rgb(158, 215, 238);
+        width: 15vw;
+        height: 100%;
+        display: inline-block;
+    }
+    .product_matrix {
+    
+        display: inline;
+        right:0;
+        width: 80vw;
+        .product_item {
+            border: solid;
+            display: inline-block;
+            margin: 5px;
+            
+            img {
+                height: 250px;
+                width: 15vw;
+            }
+            &:hover {
+                border-color: red ;
+            }
+        }
+    }
+
+}
+
+
+
+
+
+

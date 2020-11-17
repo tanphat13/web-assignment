@@ -1,0 +1,28 @@
+@mixin border {
+    border:solid 4px;
+}
+body {
+    height: 80%;
+}
+.returnpolicy {
+    position: relative;
+    left: 20vw;
+    h1 {
+        text-align: center;
+    }
+    .return_table {
+        @include border();
+        width: 100%;
+        justify-content: center;
+        background-color: rgb(245, 252, 206);
+        th {
+            @include border();
+            text-align: center;
+            width: 50%;
+        }
+        td {
+            @include border();
+            
+        }
+    }
+}

@@ -1,6 +1,9 @@
 <?php
 
 use app\core\Application;
+
+// echo var_dump(Application::$app->user);
+// echo var_dump($model);
 ?>
 <!doctype html>
 <html lang="en">
@@ -27,7 +30,7 @@ use app\core\Application;
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/category">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
@@ -51,10 +54,11 @@ use app\core\Application;
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form> -->
+           
             <?php if (Application::$app->isGuest()) : ?>
                 <ul class='navbar-nav ml-auto'>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login">Login</a>
+                    <li class="nav-item" id="loginBtn">
+                        <p class="nav-link">Login</p>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/register">register</a>
@@ -83,6 +87,45 @@ use app\core\Application;
             <?php endif ?>
         </div>
     </nav>
+    <div class="home-wrapper">
+    <div class='login-wrapper <?php 
+    
+    if($model){
+                                    if ($model->getFirstError('email') || $model->getFirstError('password')) {
+                                        echo "active";
+                                    } else {
+                                        echo '';
+                                    }
+    }else{
+        echo "";
+    }
+        ?>' id="loginForm">
+        <form action="" method="post">
+            <h1 class="show-error">
+                <?php
+                if($model){
+                    if ($model->hasError('password')) {
+                        echo $model->getFirstError('password') ?? '';
+                    } else if ($model->hasError('email')) {
+                        echo $model->getFirstError('email') ?? '';
+                    }
+                }
+                ?>
+            </h1>
+            <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" name="email" class="form-control
+        " id="email" aria-describedby="emailHelp">
+            </div>
+            <div class="form-group ">
+                <label for="password">Password:</label>
+                <input type="password" name="password" class="form-control
+       " id="password" aria-describedby="emailHelp">
+
+            </div>
+            <button onclick="test" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
 
     <div class="container">
         <?php if (Application::$app->session->getFlash("success")) : ?>
@@ -92,12 +135,48 @@ use app\core\Application;
         <?php endif; ?>
         {{content}}
     </div>
+    <footer>
+        <div class="footer-container">
+            <div class="col1"> 
+                <ul>
+                <li><a href="/warranty">Warranty Policy</a></li>
+                <li><a href="/returnpolicy">Return Policy</a></li>
+                <li><a href="/installment">Installment Purchase</a></li>
+                </ul>
+            </div>
+            <!-- ------------------------------------------- -->
+            <div class="col1"> 
+                <ul>
+                <li><a href="#">Send Feedback, Complain</a></li>
+                <li><a href="#">Recruitment</a></li>
+                <li><a href="#">Company Introduction</a></li>
+                </ul>
 
-    <!-- <footer>
-        <div id="map">
+            </div>
+            <!-- ------------------------------------------- -->
+            <div class="col1"> 
+                <ul class="Contact_number">
+                    <li>Hotlines
+                    </li>
+                    <li>Purchase: (0123456789)</li>
+                    <li>Technical Help: (0123456789)</li>
+                    <li>Warranty: (0123456789)</li>
+                    <li>Complain: (0123456789)</li>
+                </ul>
+            </div>
+            <!-- ------------------------------------------- -->
+            <div class="col1"> 
+                <p>Location</p>
+                <div class="location-wrapper">
+                    <div class="map" id="map">
+                    </div>
+                </div>
 
+            </div>
+           
         </div>
-    </footer> -->
+        
+    </footer>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
@@ -110,10 +189,10 @@ use app\core\Application;
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     -->
     <script src="js/key.js"></script>
-    <script src="js/index.js">
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9PJUeg35P_24EKRatl9OEB4nWj4R2ORs&callback=initMap">
-    </script>
+    <script src="js/store-data.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/login-form.js"></script>
+    <script script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9PJUeg35P_24EKRatl9OEB4nWj4R2ORs&callback=initMap"></script>
 </body>
 
 </html>

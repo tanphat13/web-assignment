@@ -20,7 +20,7 @@ abstract class DbModel extends Model{
             foreach($attributes as $attribute){
                 $sql_command->bindValue(":$attribute",$this->{$attribute});
             }
-             $sql_command->execute();
+            $sql_command->execute();
             // echo "<pre>";
             // echo var_dump($params , $attribute);
             // echo "</pre>";
