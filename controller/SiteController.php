@@ -8,7 +8,8 @@ use app\core\Response;
 use app\models\LoginForm;
 use app\models\Categories;
 use app\core\Session;
-
+use app\models\Product;
+use app\models\Branch;
 
 
 class SiteController extends Controller{
@@ -41,6 +42,16 @@ class SiteController extends Controller{
     public function handleContactSubmit(Request $request){
         $body = $request->getBody();
         return $body;
+    }
+    public function renderProduct(Request $request) {
+        $param = $request->getBody();
+        $product = (new Product())->getSpecificProduct(intval($param['id']));
+        return $this->render('product', ['product' => $product]);
+    }
+
+    public function getBranch(Request $request) {
+        $param = $request->getBody();
+        return (new Branch())->getAvailableBranch(intval($param['id']));
     }
     // render view ...
     public function warranty(Request $request, Response $response) {

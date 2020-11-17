@@ -1,41 +1,57 @@
 <?php
-    class Product {
-        public $id;
-        public $name;
-        public $price;
+    namespace app\models;
+    use app\core\Application;
+    use app\core\DbModel;
 
-        function __construct($id, $name, $price) {
-            $this->id = $id;
-            $this->name = $name;
-            $this->price = $price;
+    class Product extends DbModel {
+
+        public function rules(): array {
+            return [
+                'product_id' => [self::RULE_REQUIRED, self::RULE_UNIQUE],
+                'product_name' => [self::RULE_REQUIRED],
+                'product_brand' => [self::RULE_REQUIRED],
+                'product_price' => [self::RULE_REQUIRED],
+                'product_color' => [self::RULE_REQUIRED],
+                'product_ram' => [self::RULE_REQUIRED],
+                'product_rom' => [self::RULE_REQUIRED],
+                'product_spec' => [self::RULE_REQUIRED],
+                'product_warranty' => [self::RULE_REQUIRED],
+            ];
         }
 
-        static function all() {
-            $list = [];
-            $db = DB::getInstance();
-            $req = $db->query('SELECT * FROM products');
+        public function tableName(): string {
+            return 'products';
+        }
+
+        public function attribute(): array {
+            return ['product_name', 'product_price', 'product_brand', 'product_color', 'product_ram', 'product_rom', 'product_spec', 'warranty'];
+        }
+
+        public function primaryKey(): string {
+            return 'product_id';
+        }
+
+        public function userRole(): string {
+            return '';
+        }
+
+        public function getSpecificProduct(int $id) {
+            $product = self::findOne($this->tableName(), ['product_id' => $id]);
+            if (!$product) {
+                $this->addErrorMessage('product_id', 'Product Not Found');
+                return false;
+            }
+
+            $product_images = self::findAll('images', ['product_id' => $product->product_id]);
             
-            if ($req !== FALSE) {
-                $rows = $req->fetchAll();
-                foreach ($rows as $item) {
-                    $list[] = new Product($item['id'], $item['name'], $item['price']);
-                }
-            } else {
-                echo "Error in SQL";
-            }
-            return $list;
-        }
-
-        static function find($id) {
-            $db = DB::getInstance();
-            $req = $db->prepare('SELECT * FROM products where id = :id');
-            $req->execute(array('id' => $id));
-
-            $item =  $req->fetch();
-            if (isset($item['id'])) {
-                return new Product($item['id'], $item['name'], $item['price']);
-            }
-            return null;
+            // Get list of same model but different specificity in RAM/ROM
+            $sql_command = self::prepare("SELECT product_id,product_ram,product_rom,product_price FROM products WHERE product_id IN (SELECT MIN(product_id) FROM products WHERE product_name = '$product->product_name' GROUP BY product_rom) AND (NOT product_ram = $product->product_ram OR NOT product_rom = $product->product_rom)");
+            $sql_command->execute();
+            $diff_spec = $sql_command->fetchAll();
+            
+            // Get list of same model but different color
+            $diff_color = self::findAll($this->tableName(), ['product_name' => $product->product_name, 'product_ram' => $product->product_ram, 'product_rom' => $product->product_rom]);
+            return compact('product', 'diff_spec', 'diff_color', 'product_images');
         }
     }
 ?>

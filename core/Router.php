@@ -90,7 +90,7 @@ class Router{
     protected function renderOnlyView($view,$param=[]){
        
         foreach($param as $key => $value){
-            $$key =$value;
+            $$key = $value;
         }
         // var_dump($param);
         ob_start();

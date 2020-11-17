@@ -40,6 +40,9 @@ $app->router->get('/logout', [AuthController::class, 'logout']);
 
 $app->router->get('/profile', [AuthController::class, 'profile']);
 
+$app->router->get('/product', [SiteController::class, 'renderProduct']);
+$app->router->get('/branch', [SiteController::class, 'getBranch']);
+
 //Footer
 $app->router->get('/warranty', [SiteController::class, 'warranty']);
 $app->router->get('/returnpolicy', [SiteController::class, 'returnpolicy']);

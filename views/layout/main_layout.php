@@ -188,10 +188,10 @@ use app\core\Application;
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     -->
-    <script src="/js/key.js"></script>
-    <script src="/js/store-data.js"></script>
-    <script src="/js/index.js"></script>
-    <script src="/js/login-form.js"></script>
+    <script src="js/key.js"></script>
+    <script src="js/store-data.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/login-form.js"></script>
     <script script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9PJUeg35P_24EKRatl9OEB4nWj4R2ORs&callback=initMap"></script>
 </body>
 
