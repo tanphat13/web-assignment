@@ -28,7 +28,7 @@ class SiteController extends Controller{
         return $this->render('home', $param);
     }
 
-    public function renderContact()
+    public function Contact()
     {
         $param = [
             'name' => "the NEGA"

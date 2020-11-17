@@ -33,7 +33,11 @@ class Router{
         $path = $this->request->getPath();
         $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
-    
+        // echo "<pre>";
+        // echo var_dump($path);
+        // echo var_dump($method);
+        // echo "</pre>";
+        // exit;
         $userRole = $this->session->get('authorization');
         $roleList = $callback[2] ?? [];
         if(in_array($userRole,$roleList)|| !$roleList){
@@ -46,14 +50,7 @@ class Router{
                 return $this->renderViews($callback);
             } else if (is_array($callback)) {
                 //echo  $callback[0];
-                /** @var app\core\Controller $controller */
-                
-                echo "<pre>";
-                echo var_dump($callback);
-                echo var_dump(new $callback[0]());
-                echo "</pre>";
-                exit;
-                
+                /** @var app\core\Controller $controller */            
                 $controller = new $callback[0]();
                 Application::$app->controller = $controller;
                 $controller->action = $callback[1];

@@ -8,7 +8,6 @@ class Database{
         $user = $config['user'] ?? '';
         $password = $config['password'] ?? '';
         $this->pdo = new \PDO($dsn,$user,$password);
-
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE,\PDO::ERRMODE_EXCEPTION);
     }
     public function applyMigrations(){
@@ -17,9 +16,8 @@ class Database{
         $newMigatrions=[];
         $file =  scandir(Application::$ROOT_DIR.'/migrations');
         $toApplyMigrations = array_diff($file,$appliedMigartions);
-        var_dump( $toApplyMigrations);
         foreach($toApplyMigrations as $migration){
-            if($migration==='.' ||$migration==='..'){
+            if($migration ==='.' ||$migration ==='..'){
                 continue;
             }
             require_once Application::$ROOT_DIR.'/migrations/'.$migration;
@@ -27,12 +25,11 @@ class Database{
             $instance = new $object();
             $instance->up();
             $newMigatrions[]=$migration;
-
-            if(!empty($newMigatrions)){
-                $this->saveMigration($newMigatrions);
-            }else{
-                echo "All migrations is applied";
-            }
+        }
+        if (!empty($newMigatrions)) {
+            $this->saveMigration($newMigatrions);
+        } else {
+            echo "All migrations is applied";
         }
     }
     public function  createMigrationTable(){
@@ -50,6 +47,8 @@ class Database{
     }
     public function saveMigration(array $newMigration){
         $newMigration =  implode(",",array_map(fn($m)=>"('$m')", $newMigration));
+        var_dump($newMigration);
+        // exit;
         $sql_command = $this->pdo->prepare("
             INSERT INTO migrations (migration) VALUES  $newMigration
         ");
