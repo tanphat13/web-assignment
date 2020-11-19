@@ -22,7 +22,7 @@
                     product_id INT NOT NULL,
                     user_id INT NOT NULL,
                     is_answer INT NOT NULL,
-                    answer_id INT NUL,
+                    answer_id INT NULL,
                     created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
                     created_by INT NULL,
                     updated_at TIMESTAMP NULL,

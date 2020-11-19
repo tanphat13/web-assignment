@@ -42,6 +42,7 @@ $app->router->get('/profile', [AuthController::class, 'profile']);
 
 $app->router->get('/product', [SiteController::class, 'renderProduct']);
 $app->router->get('/branch', [SiteController::class, 'getBranch']);
+$app->router->post('/rating', [SiteController::class, 'updateRating']);
 
 //Footer
 $app->router->get('/warranty', [SiteController::class, 'warranty']);

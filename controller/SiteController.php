@@ -10,7 +10,7 @@ use app\models\Categories;
 use app\core\Session;
 use app\models\Product;
 use app\models\Branch;
-
+use app\models\Rating;
 
 class SiteController extends Controller{
     //render HomePage
@@ -43,6 +43,8 @@ class SiteController extends Controller{
         $body = $request->getBody();
         return $body;
     }
+    
+    // Render Page For Specific Product
     public function renderProduct(Request $request) {
         $param = $request->getBody();
         $product = (new Product())->getSpecificProduct(intval($param['id']));
@@ -53,6 +55,15 @@ class SiteController extends Controller{
         $param = $request->getBody();
         return (new Branch())->getAvailableBranch(intval($param['id']));
     }
+
+    public function updateRating(Request $request) {
+        $body = $request->getBody();
+        $rating = (new Rating())->updateRating($body['product_id'], $body['user_id'], $body['rate']);
+        if ($rating === TRUE) {
+            (new Product())->updateProductRating($body['product_id'], $body['rate']);
+        }
+    }
+
     // render view ...
     public function warranty(Request $request, Response $response) {
         $loginForm = new LoginForm();
