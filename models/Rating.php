@@ -26,11 +26,11 @@
         public function userRole(): string {
             return 'user';
         }
-        public function updateRating(int $product_id, int $user_id, ?float $rate) {
+        public function updateRating(int $product_id, int $user_id, float $rate) {
             $this->product_id = $product_id;
             $this->user_id = $user_id;
             $this->rate = $rate;
-            return parent::save();
+            return $this->save();
         }
     }
 ?>
