@@ -21,17 +21,23 @@ Class AdminController extends Controller {
         $session = new Session();
         $adminModel = new Admin();
         $user = $session->get('user');
-        // echo "<pre>";
-        // echo var_dump($user);
-        // echo "</pre>";
-        // exit;
+        $page = 0;
+        if(isset($_GET['page']) && isset($_GET["limit"])){
+            $page=intval($_GET['page']);
+            $limit = intval($_GET['limit']);
+        }else{
+            $page = 1;
+            $limit = 10;
+        }
         if(!$user){
             $res->redirect('/admin/login');
         }
         $adminModel = new Admin();
-        $staffList = $adminModel->getStaffList();
+        $fetchResult = $adminModel->getStaffList($page,$limit);
+        $totalPage = $fetchResult['totalPage'];
+        $staffList = $fetchResult['staffList'];  
         $this->setLayout('adminLayout');
-        return $this->render('admin',['model'=>$adminModel,'staffList'=>$staffList]);
+        return $this->render('admin',['model'=>$adminModel,'staffList'=>$staffList,'totalPage'=>$totalPage,'page'=>$page]);
        
     }
 
@@ -43,9 +49,8 @@ Class AdminController extends Controller {
             ["model" => $loginForm, "session" => $session];
         if ($req->isPost()) {
             $loginForm->loadData($req->getBody());
-
             if ($loginForm->validate() && $loginForm->login()) {
-                $res->redirect('/admin');
+                $res->redirect('/admin?page=1&limit=10');
                 return;
             }
         }

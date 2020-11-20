@@ -34,14 +34,18 @@ use app\core\AdminModel;
         return 'admin';
     }
 
-    public function getStaffList (){
-        $arrayStaff = self::findAll($this->tableName(),['role'=>"staff"]);
+    public function getStaffList ( $page, $limit){
+        $totalStaff = count(self::findAll($this->tableName(), ['role' => "staff"]));
+        $pageOffset = ($page - 1) * $limit;
+        $totalPage = ceil($totalStaff / $limit);
+        $sql_command = self::prepare("SELECT * FROM users WHERE role = 'staff' LIMIT $pageOffset, $limit  ");
+        $sql_command->execute();
         $staffList='';
+        $arrayStaff = $sql_command->fetchAll();
+        // echo "<pre>";
+        // echo var_dump($arrayStaff);
+        // echo "</pre>";
         foreach($arrayStaff as $staff){
-            // echo "<pre>";
-            // echo var_dump($staff['id']);
-            // echo "</pre>";
-            // exit;
             $staffList .=
              '<div class="staff-table-row">'.
              '<div class="col-sm-1 table-cell">' . $staff['id'] . '</div>'.
@@ -52,6 +56,6 @@ use app\core\AdminModel;
              '</div>';
         }
         
-        return $staffList;
+        return ['staffList'=>$staffList,'totalPage'=>$totalPage];
     }
 }

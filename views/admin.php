@@ -1,7 +1,10 @@
 <div class="manage-staff-container">
-    <div class="btn-create-staff">
-        <a href="/admin/create-new-staff">Add new staff</a>
+    <div class="table-action">
+        <div class="btn-create-staff">
+            <a href="/admin/create-new-staff">Add new staff</a>
+        </div>
     </div>
+
     <div class="staff-table-wrapper">
         <div class="staff-table-row">
             <div class='col-sm-1 table-cell'>Id</div>
@@ -13,9 +16,41 @@
         <?php
         echo $staffList;
         ?>
+        <ul class="navigation-btn">
+            <li>
+                <?php if ($page > 1) : ?>
+                    <a href="?page=1&limit=1">
+                        First
+                    </a>
+                <?php endif ?>
+
+            </li>
+            <li>
+                <?php if ($page > 1) : ?>
+                    <a href=<?php echo "?page=" . ($page - 1) . "&limit=1" ?>>
+                        Previous
+                    </a>
+                <?php endif ?>
+                
+            </li>
+            <li>
+                <?php if ($page < $totalPage) : ?>
+                    <a href=<?php echo "?page=" . ($page + 1) . "&limit=1" ?>>
+                        Next
+                    </a>
+                <?php endif ?>
+            </li>
+            <li>
+                <?php if ($page < $totalPage) : ?>
+                    <a href=<?php echo "?page=$totalPage&limit=1" ?>>
+                        Last
+                    </a>
+                <?php endif ?>
+            </li>
+        </ul>
     </div>
 
-    <form>
+    <form class="staff-update-form">
         <div class="form-group">
             <label for="fullname">Name</label>
             <input type="text" name="fullname" class="form-control
