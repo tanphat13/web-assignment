@@ -1,12 +1,4 @@
-#map{
-    height: 400px;
-    width: 80%;
-    border:1px solid red;
-}
-.container {
-    width: 100%;
-    margin: 0 5%;
-}
+
 @import "./styles/footer";
 @import "./styles/installment";
 @import "./styles/returnpolicy";
@@ -14,3 +6,5 @@
 @import "./styles/category";
 @import './styles/location';
 @import './styles/loginForm';
+@import './styles/admin';
+

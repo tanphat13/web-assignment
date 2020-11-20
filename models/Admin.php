@@ -1,25 +1,9 @@
 <?php
 namespace app\models;
-use app\core\UserModel;
 
- class User extends UserModel  {
+use app\core\AdminModel;
 
-    const STATUS_INACTIVE = 0 ;
-    const STATUS_ACTIVE = 1;
-    const STATUS_DELETE = 2;
-    public string $fullname='';
-    public ?string $gender = '';
-    public string $email ='';
-    public string $phone ='';
-    public string $password = '';
-    public string $comfirmPassword='';
-    public int $status = self::STATUS_INACTIVE;
-
-    public function save(){
-        $this->status = self::STATUS_INACTIVE;
-        $this->password = password_hash($this->password,PASSWORD_DEFAULT);
-        return parent::save();
-    }
+ class Admin extends AdminModel  {
 
     public function rules():array{
         return [
@@ -46,11 +30,28 @@ use app\core\UserModel;
     public function displayName():string{
         return $this->fullname;
     }
+    public function userRole():string{
+        return 'admin';
+    }
 
-    public function userRole(): string
-    {
-        return 'role';
+    public function getStaffList (){
+        $arrayStaff = self::findAll($this->tableName(),['role'=>"staff"]);
+        $staffList='';
+        foreach($arrayStaff as $staff){
+            // echo "<pre>";
+            // echo var_dump($staff['id']);
+            // echo "</pre>";
+            // exit;
+            $staffList .=
+             '<div class="staff-table-row">'.
+             '<div class="col-sm-1 table-cell">' . $staff['id'] . '</div>'.
+            '<div class="col-md table-cell">' . $staff['fullname'] . '</div>'.
+            '<div class="col-md table-cell">' . $staff['phone'] . '</div>'.
+            '<div class="col-md table-cell">' . $staff['email'] . '</div>'.
+            '<div class="col-sm-1 table-cell">' . $staff['gender'] . '</div>'.
+             '</div>';
+        }
+        
+        return $staffList;
     }
 }
-
-?>

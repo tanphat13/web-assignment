@@ -60,10 +60,8 @@ class Router{
                 foreach ($controller->getMiddleware() as $middleware) {
                     $middleware->execute();
                 }
-                // echo "beforece exit";
-                // exit;
             }
-            return  call_user_func($callback, $this->request, $this->response);
+            return  call_user_func([$callback[0],$callback[1]], $this->request, $this->response);
         }else{
             throw new Forbidden();
         }

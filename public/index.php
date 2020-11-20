@@ -23,7 +23,7 @@ $app  = new Application(dirname(__DIR__),$config);
 $app->router->get('/',[SiteController::class,'home']);
 $app->router->post('/', [SiteController::class, 'home']);
 
-$app->router->get('/contact', [SiteController::class,"renderContact",['admin', 'user']]);
+$app->router->get('/contact', [SiteController::class,"Contact",['admin', 'user']]);
 
 $app->router->post('/contact', [SiteController::class, 'handleContactSubmit']);
 
@@ -55,8 +55,11 @@ $app->router->post('/installment', [SiteController::class, 'installment']);
 // For admin routers
 //$app->router->get('/admin', [AdminController::class, 'admin']);
 // $app->router->get('/admin/login/user', [AdminController::class, 'test']);
- $app->router->get('/admin/login', [AdminController::class, 'test']);
-// $app->router->get('/admin', [AdminController::class, 'admin']);
-$app->router->get('/admin', [\app\controller\AdminController::class, 'admin']);
+$app->router->get('/admin', [AdminController::class, 'admin',['admin']]);
+$app->router->get('/admin/login', [AdminController::class, 'login']);
+$app->router->get('/admin/create-new-staff', [AdminController::class, 'createStaff', ['admin']]);
+$app->router->post('/admin/create-new-staff', [AdminController::class, 'createStaff',['admin']]);
+$app->router->post('/admin/login', [AdminController::class, 'login']);
+// $app->router->get('/admin', [\app\controller\AdminController::class, 'admin']);
 $app->run();
 ?>

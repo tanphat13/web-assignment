@@ -9,57 +9,61 @@ use app\models\LoginForm;
 use app\models\User;
 use app\core\Response;
 use app\core\middleware\AuthMiddleware;
-
-// class AdminController extends Controller{
-//     // public function __construct(){
-//     //     $this->registerMiddleware(new AuthMiddleware(['admin']));
-//     // }
-//     public function admin (Request $req,Response $res){
-//         //$this->setLayout('AdminLayout');
-//         return $this->render('admin');
-//     }
-// }
+use app\core\Session;
+use app\models\Admin;
+use app\models\Staff;
 
 Class AdminController extends Controller {
-    //  public function __construct(){
-    //     $this->registerMiddleware(new AuthMiddleware(['admin']));
-    // }
+    public function __construct(){
+        $this->registerMiddleware(new AuthMiddleware(['createStaff']));
+    }
     public function admin (Request $req,Response $res){
-        // echo "accsess this function okay";
+        $session = new Session();
+        $adminModel = new Admin();
+        $user = $session->get('user');
+        // echo "<pre>";
+        // echo var_dump($user);
+        // echo "</pre>";
         // exit;
+        if(!$user){
+            $res->redirect('/admin/login');
+        }
+        $adminModel = new Admin();
+        $staffList = $adminModel->getStaffList();
+        $this->setLayout('adminLayout');
+        return $this->render('admin',['model'=>$adminModel,'staffList'=>$staffList]);
+       
+    }
+
+
+    public  function login(Request $req,Response $res){
         $loginForm = new LoginForm();
         $session = Application::$app->session;
         $param =
             ["model" => $loginForm, "session" => $session];
-        $path = $req->getPath();
-        echo var_dump($path);
-        $listField = array_keys($req->getBody());
-        //exit;
-        if (in_array('email', $listField) && in_array('password', $listField)) {
-            self::login($path, $loginForm, $req, $res);
-        }
-        $this->setLayout('AdminLayout');
-        return $this->render('admin',$param);
-    }
-    public function test (){
-        // echo "<pre>";
-        // echo var_dump(getcwd());
-        // echo "</pre>";
-        //exit;
-        $this->setLayout('AdminLayout');
-        return $this->render("home");
-    }
-    public static function login($path, LoginForm $model, Request $request, Response  $response)
-    {
-        //$loginForm = new $model();
-        if ($request->isPost()) {
-            $model->loadData($request->getBody());
+        if ($req->isPost()) {
+            $loginForm->loadData($req->getBody());
 
-            if ($model->validate() && $model->login()) {
-                $response->redirect($path);
+            if ($loginForm->validate() && $loginForm->login()) {
+                $res->redirect('/admin');
                 return;
             }
         }
+        $this->setLayout('AdminLayout');
+        return $this->render('login', $param);
+    }
+    public function  createStaff(Request $req,Response $res){
+        $staff = new Staff();
+        if($req->isPost()){
+                $staff->loadData($req->getBody());
+                if($staff->validate() && $staff->save()){
+                    Application::$app->session->setFlash("success", "Create new staff scucessfull");
+                    $res->redirect('/admin');
+                }
+        }
+        $this->setLayout('adminLayout');
+        return $this->render('create-staff', ['model' => $staff]);
+       
     }
 }
 
