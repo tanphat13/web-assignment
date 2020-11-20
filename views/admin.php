@@ -19,7 +19,7 @@
         <ul class="navigation-btn">
             <li>
                 <?php if ($page > 1) : ?>
-                    <a href="?page=1&limit=1">
+                    <a href="?page=1&limit=10">
                         First
                     </a>
                 <?php endif ?>
@@ -27,7 +27,7 @@
             </li>
             <li>
                 <?php if ($page > 1) : ?>
-                    <a href=<?php echo "?page=" . ($page - 1) . "&limit=1" ?>>
+                    <a href=<?php echo "?page=" . ($page - 1) . "&limit=10" ?>>
                         Previous
                     </a>
                 <?php endif ?>
@@ -35,14 +35,14 @@
             </li>
             <li>
                 <?php if ($page < $totalPage) : ?>
-                    <a href=<?php echo "?page=" . ($page + 1) . "&limit=1" ?>>
+                    <a href=<?php echo "?page=" . ($page + 1) . "&limit=10" ?>>
                         Next
                     </a>
                 <?php endif ?>
             </li>
             <li>
                 <?php if ($page < $totalPage) : ?>
-                    <a href=<?php echo "?page=$totalPage&limit=1" ?>>
+                    <a href=<?php echo "?page=$totalPage&limit=10" ?>>
                         Last
                     </a>
                 <?php endif ?>
