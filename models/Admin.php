@@ -21,7 +21,7 @@ use app\core\AdminModel;
     }
 
     public function attribute():array{
-        return ['fullname','gender','email','phone','password','status','role'];
+        return ['fullname','email','phone',];
     }
     public function primaryKey() :string {
         return 'id';
@@ -53,9 +53,16 @@ use app\core\AdminModel;
             '<div class="col-md table-cell">' . $staff['phone'] . '</div>'.
             '<div class="col-md table-cell">' . $staff['email'] . '</div>'.
             '<div class="col-sm-1 table-cell">' . $staff['gender'] . '</div>'.
-             '</div>';
+            '<div class="col-sm-1 table-cell">' .
+                '<button onClick="getStaffId('.$staff["id"].')"> Upadte</button></div> 
+             </div>';
         }
         
         return ['staffList'=>$staffList,'totalPage'=>$totalPage];
     }
+    public function getStaff($staffId){
+        $staff =  self::findOne($this->tableName(),['id'=>$staffId]);
+        return $staff;
+    }
+ 
 }

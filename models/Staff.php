@@ -24,8 +24,7 @@ use app\core\UserModel;
     public function rules():array{
         return [
             'fullname' =>[self::RULE_REQUIRED],
-            'gender' => [self::RULE_REQUIRED],
-            'email' => [self::RULE_REQUIRED,self::RULE_EMAIL,[self::RULE_UNIQUE,'class'=>self::class,'attribute'=>'email']],
+            'email' => [self::RULE_REQUIRED],
             'phone' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 9], [self::RULE_MAX, 'max' => 11]],
         ];
     }
@@ -35,7 +34,7 @@ use app\core\UserModel;
     }
 
     public function attribute():array{
-        return ['fullname','gender','email','phone','password','role'];
+        return ['fullname','email','phone'];
     }
     public function primaryKey() :string {
         return 'id';
@@ -48,5 +47,26 @@ use app\core\UserModel;
     public function userRole(): string
     {
         return 'role';
+    }
+    public function updateStaffInfo()
+    {
+        // echo "<pre>";
+        // echo "res from staff model";
+        // echo var_dump($this);
+        // echo "</pre>";
+        // return var_dump($this);
+        // exit;
+        $tableName = $this->tableName();
+        $attributes = $this->attribute();
+        $params = array_map(fn ($attr) => "$attr = :$attr", $attributes);
+        $sql_command = self::prepare("
+            UPDATE $tableName
+            SET ". implode(',',$params)."
+            WHERE id = ". $this->id."; 
+        ");
+        foreach ($attributes as $attribute) {
+            $sql_command->bindValue(":$attribute", $this->{$attribute});
+        }
+        return $sql_command->execute();
     }
 }

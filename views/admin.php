@@ -12,6 +12,7 @@
             <div class='col-md table-cell'>Phone number</div>
             <div class='col-md table-cell'>Email</div>
             <div class='col-sm-1 table-cell'>Gender</div>
+            <div class='col-sm-1 table-cell'>Actions</div>
         </div>
         <?php
         echo $staffList;
@@ -31,7 +32,7 @@
                         Previous
                     </a>
                 <?php endif ?>
-                
+
             </li>
             <li>
                 <?php if ($page < $totalPage) : ?>
@@ -50,7 +51,7 @@
         </ul>
     </div>
 
-    <form class="staff-update-form">
+    <form method="post" id="staff-update-form" class="staff-update-form">
         <div class="form-group">
             <label for="fullname">Name</label>
             <input type="text" name="fullname" class="form-control
@@ -80,7 +81,7 @@
             <label for="phone">Phone number</label>
             <input id="phone" name="phone" type="number" class="form-control <?php
                                                                                 echo $model->hasError('phone') ? ' is-invalid' : '';
-                                                                                ?>" id="phone" aria-describedby="emailHelp">
+                                                                                ?>" aria-describedby="emailHelp">
             <div class="invalid-feedback">
                 <?php
                 echo $model->getFirstError('phone');
@@ -88,6 +89,10 @@
             </div>
         </div>
 
-        <button class="btn btn-primary">Update</button>
+        <div class="btn btn-primary" onClick="updateStaffInfo()">Update</div>
     </form>
 </div>
+
+<input id="test" name="phone" type="number" class="form-control <?php
+                                                                    echo $model->hasError('phone') ? ' is-invalid' : '';
+                                                                    ?>" aria-describedby="emailHelp">

@@ -82,5 +82,5 @@
             ?>
         </div>
     </div>
-    <button onclick="test" ; class="btn btn-primary">Submit</button>
+    <button onclick="test"  class="btn btn-primary">Submit</button>
 </form>

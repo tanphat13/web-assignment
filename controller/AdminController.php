@@ -18,6 +18,7 @@ Class AdminController extends Controller {
         $this->registerMiddleware(new AuthMiddleware(['createStaff']));
     }
     public function admin (Request $req,Response $res){
+        
         $session = new Session();
         $adminModel = new Admin();
         $user = $session->get('user');
@@ -32,7 +33,6 @@ Class AdminController extends Controller {
         if(!$user){
             $res->redirect('/admin/login');
         }
-        $adminModel = new Admin();
         $fetchResult = $adminModel->getStaffList($page,$limit);
         $totalPage = $fetchResult['totalPage'];
         $staffList = $fetchResult['staffList'];  
@@ -69,6 +69,29 @@ Class AdminController extends Controller {
         $this->setLayout('adminLayout');
         return $this->render('create-staff', ['model' => $staff]);
        
+    }
+    public function getSpecificStaff(){
+        $admin =  new Admin() ;
+        $staffId = $_GET['id'];
+        $staffJSON = json_encode($admin->getStaff($staffId));
+        echo $staffJSON;
+    }
+    public function  updateStaff(Request $req,Response $res){
+        $dataStr = array_keys($_REQUEST)[0];
+        $dataArr = json_decode($dataStr, true);
+        $staff = new Staff();
+        // echo $staff->loadData($dataArr);
+        if($req->isPost()){
+             $staff->loadData($dataArr);
+            if($staff->validate()){
+                if($staff->updateStaffInfo()){
+                    echo "Update successfull";
+                    return;
+                }else{
+                    echo "Update faild";
+                }
+            }
+        }
     }
 }
 
