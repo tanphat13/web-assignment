@@ -18,8 +18,9 @@ class SiteController extends Controller{
     public function home(Request $request,Response $response){
         $loginForm = new LoginForm();
         $session = Application::$app->session;
+        $homepage = (new Categories())->getBrandList();
         $param =
-        ["model" => $loginForm, "session" => $session];
+        ["model" => $loginForm, "session" => $session, "product_home"];
         $path = 'home';
         $listField = array_keys($request->getBody());
         //exit;
