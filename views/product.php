@@ -33,6 +33,7 @@
                 }
             ?>
         </div>
+        <?php if (count($product['product_images']) > 1) : ?>
         <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
@@ -41,16 +42,17 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
+        <?php endif ?>
     </div>
     <div class="product-info">
         <h4 id="price"><?php echo number_format($product['product']->product_price, 0, '', '.') ?> VND</h4>
         <?php 
             $list_alternative = "<div class='alternative'>";
-            foreach ($product['diff_spec'] as $product) {
+            foreach ($product['diff_spec'] as $alternativeModel) {
                 $list_alternative .= "
-                    <a href='product?id=$product[product_id]' class='product'>
-                        <p class='font-weight-bold'>$product[product_ram]GB/$product[product_rom]GB</p>
-                        <p class='text-danger'>" . number_format($product['product_price'], 0, '', '.') . "VND </p>
+                    <a href='product?id=$alternativeModel[product_id]' class='model'>
+                        <p class='font-weight-bold'>$alternativeModel[product_ram]GB/$alternativeModel[product_rom]GB</p>
+                        <p class='text-danger'>" . number_format($alternativeModel['product_price'], 0, '', '.') . "VND </p>
                     </a>
                 ";
             }
@@ -60,18 +62,18 @@
         <h6>Choose Color:</h6>
         <?php
             $list_color = "<div class='btn-group'>";
-            foreach ($product['diff_color'] as $product) {
+            foreach ($product['diff_color'] as $diffColorModel) {
                 $list_color .= "
-                    <button type='button' class='btn grid-item' onclick='loadAvailableBranch($product[product_id], $product[product_price])'>
-                        <h6>$product[product_color]</h6>
-                        <p>" . number_format($product['product_price'], 0, '', '.') . " VND</p>
+                    <button type='button' class='btn grid-item' onclick='loadAvailableBranch($diffColorModel[product_id])'>
+                        <h6>$diffColorModel[product_color]</h6>
+                        <p id='new_price_$diffColorModel[product_id]'>" . number_format($diffColorModel['product_price'], 0, '', '.') . " VND</p>
                     </button>
                 ";
             }
             $list_color .= "</div>";
             echo $list_color;
         ?>
-        <button class='purchase-btn'>
+        <button class='purchase-btn' onclick="addToCart()">
             <h6>Purchase Now</h6>
             <p>Shipping Or Receive At Nearest Store</p>
         </button>
@@ -107,6 +109,83 @@
         <ul class="branch-container" id="branch-container"></ul>
     </div>
 </div>
+<div class="additional-info">
+    <div class="about-product">
+        <h4>About Product</h4>
+        <?php echo $product['product']->product_spec ?>
+    </div>
+    <div id="rating">
+        <input type="radio" id="star5" name="rating" value="5" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . $session->get('user')?>)"/>
+        <label class = "full" for="star5" title="Awesome - 5 stars"></label>
+        
+        <input type="radio" id="star4half" name="rating" value="4.5" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . $session->get('user')?>)"/>
+        <label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+        
+        <input type="radio" id="star4" name="rating" value="4" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . $session->get('user')?>)"/>
+        <label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+        
+        <input type="radio" id="star3half" name="rating" value="3.5" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . $session->get('user')?>)"/>
+        <label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+        
+        <input type="radio" id="star3" name="rating" value="3" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . $session->get('user')?>)"/>
+        <label class = "full" for="star3" title="Meh - 3 stars"></label>
+        
+        <input type="radio" id="star2half" name="rating" value="2.5" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . $session->get('user')?>)"/>
+        <label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+        
+        <input type="radio" id="star2" name="rating" value="2" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . $session->get('user')?>)"/>
+        <label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+        
+        <input type="radio" id="star1half" name="rating" value="1.5" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . $session->get('user')?>)"/>
+        <label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+        
+        <input type="radio" id="star1" name="rating" value="1" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . $session->get('user')?>)"/>
+        <label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+        
+        <input type="radio" id="starhalf" name="rating" value="0.5" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . $session->get('user')?>)"/>
+        <label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+    </div>
+    <div class="form-group">
+        <textarea id="input-comment" class="form-control input-comment" rows="3" placeholder="Ask a question"></textarea>
+        <button type="submit" value="Submit" class="btn btn-primary mb-2" onclick="submitComment(<?php echo $product['product']->product_id . ',' . $session->get('user') ?>)">Submit</button>
+    </div>
+    <div id="comments" class="comment-container">
+        <?php
+        $comments_element = "";
+            foreach ($comments as $comment) {
+                if (is_string($comment)) {
+                    $comments_element .= "
+                        <div id='$comment'></div>
+                    ";
+                    continue;
+                }
+                $date = date_create($comment['created_at'], timezone_open('Asia/Ho_Chi_Minh'));
+                $date_format = date_format($date, 'H:i - d/m/Y');
+                $comments_element .= "<div class='comment-element";
+                if ($comment['is_answer'] === "2") {
+                    $comments_element .= " answer-comment";
+                }
+                $comments_element .= "'>
+                    <div class='comment-info'>
+                        <p class='font-weight-bold m-0'>" . $comment['fullname'] . "</p>
+                        <p class='font-italic text-muted time'>Sent at " . $date_format ."</p>
+                    </div>
+                    <div class='text-break content'>" . $comment['content'] . "</div>
+               ";
+                $comment_id = $comment['answer_id'];
+                if ($comment['is_answer'] === '1') $comment_id = $comment['comment_id'];
+                $comments_element .= "
+                    <button onclick='loadAnswerInput($comment_id)'>
+                        Reply
+                    </button>
+                    </div>
+                ";
+            }
+            echo $comments_element;
+        ?>
+    </div>
+</div>
+
 
 <script>
     function loadAvailableBranch(product_id, new_price) {
@@ -114,11 +193,41 @@
         xhttp.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
                 document.cookie = "productId = " + product_id;
-                document.getElementById('price').innerText = new_price + "$";
+                document.getElementById('price').innerText = number_format(new_price, 0, '', '.') + " VND";
                 document.getElementById('branch-container').innerHTML = this.responseText;
             }
         };
         xhttp.open("GET", "/branch?id="+product_id, true);
         xhttp.send();
+    }
+    function handleRating(myRadio, product_id, user_id) {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                document.getElementById('rating').innerHTML = '<p>Thank you for your rating</p>';
+            }
+        };
+        xhttp.open("POST", "/rating", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("product_id="+product_id+"&user_id="+user_id+"&rate="+myRadio.value);
+    }
+    function loadAnswerInput(comment_id) {
+        document.getElementById('comment-' + comment_id).innerHTML = 
+        "<textarea id='input-comment" + comment_id + "'class='form-control input-comment' rows='3' placeholder='Input your answer'></textarea><button type='submit' value='Submit' class='btn btn-primary mb-2' onclick='submitComment(<?php echo $product['product']->product_id . ',' . $session->get('user') ?>, " + comment_id + ")'>Submit</button>"
+    }
+    function submitComment(product_id, user_id, answer_id = '') {
+        let xhttp = new XMLHttpRequest();
+        let is_answer = answer_id === '' ? 1 : 2;
+        let input = document.getElementById('input-comment' + answer_id);
+        let content = input.value;
+        input.value = '';
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                document.getElementById('comments').innerHTML = this.responseText;
+            }
+        }
+        xhttp.open("POST", "/comment", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("product_id="+product_id+"&user_id="+user_id+"&is_answer="+is_answer+"&content="+content+"&answer_id="+answer_id);
     }
 </script>

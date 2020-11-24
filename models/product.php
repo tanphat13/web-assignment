@@ -19,19 +19,19 @@
             ];
         }
 
-        public function tableName(): string {
+        public static function tableName(): string {
             return 'products';
         }
 
-        public function attribute(): array {
+        public static function attribute(): array {
             return ['product_name', 'product_price', 'product_brand', 'product_color', 'product_ram', 'product_rom', 'product_spec', 'warranty'];
         }
 
-        public function primaryKey(): string {
+        public static function primaryKey(): string {
             return 'product_id';
         }
 
-        public function userRole(): string {
+        public static function userRole(): string {
             return '';
         }
 
@@ -41,7 +41,7 @@
                 $this->addErrorMessage('product_id', 'Product Not Found');
                 return false;
             }
-
+            setcookie('productId', $id);
             $product_images = self::findAll('images', ['product_id' => $product->product_id]);
             
             // Get list of same model but different specificity in RAM/ROM
@@ -52,6 +52,20 @@
             // Get list of same model but different color
             $diff_color = self::findAll($this->tableName(), ['product_name' => $product->product_name, 'product_ram' => $product->product_ram, 'product_rom' => $product->product_rom]);
             return compact('product', 'diff_spec', 'diff_color', 'product_images');
+        }
+
+        public function updateProductRating(int $product_id, float $rate) {
+            $product = self::findOne($this->tableName(), ['product_id' => $product_id]);
+            
+            $sql_command = self::prepare("SELECT COUNT(*) AS number_of_rating FROM ratings WHERE product_id = $product_id GROUP BY product_id");
+            $sql_command->execute();
+            $number_of_rating = $sql_command->fetchObject()->number_of_rating;
+
+            $new_rate = ($product->rating*($number_of_rating - 1) + $rate)/($number_of_rating);
+            $new_rate = round($new_rate, 2);
+
+            $sql_command = self::prepare("UPDATE products SET rating = $new_rate WHERE product_id = $product_id");
+            $sql_command->execute();
         }
     }
 ?>

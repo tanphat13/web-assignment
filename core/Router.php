@@ -15,7 +15,7 @@ class Router{
     // public Controller $controller;
     public function __construct(Request $request, Response $response)
     {
-        $this->session = new Session();
+        $this->session = Application::$app->session;
         //$this->adminController = AdminController::$test;
         $this->request = $request;
         $this->response = $response;

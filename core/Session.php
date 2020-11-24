@@ -1,6 +1,6 @@
 <?php
 namespace app\core;
-class Session{
+    class Session{
     public const FLASH_KEY = 'flash_messages';
     public function __construct(){
         // $status = session_status();

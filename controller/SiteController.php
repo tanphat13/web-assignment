@@ -10,7 +10,8 @@ use app\models\Categories;
 use app\core\Session;
 use app\models\Product;
 use app\models\Branch;
-
+use app\models\Comment;
+use app\models\Rating;
 
 class SiteController extends Controller{
     //render HomePage
@@ -43,16 +44,75 @@ class SiteController extends Controller{
         $body = $request->getBody();
         return $body;
     }
-    public function renderProduct(Request $request) {
+    
+    // Render Page For Specific Product
+    public function renderProduct(Request $request, Response $response) {
+        $loginForm = new LoginForm();
+        $session = Application::$app->session;
+        $path = $request->getPath();
         $param = $request->getBody();
+        $listField = array_keys($param);
+        if (in_array('email', $listField) && in_array('password', $listField)) {
+            self::login($path, $loginForm, $request, $response);
+        }
         $product = (new Product())->getSpecificProduct(intval($param['id']));
-        return $this->render('product', ['product' => $product]);
+        $comments = (new Comment())->getRecentComment($param['id']);
+        return $this->render('product', ['product' => $product, 'comments' => $comments, 'session' => $session]);
     }
 
     public function getBranch(Request $request) {
         $param = $request->getBody();
         return (new Branch())->getAvailableBranch(intval($param['id']));
     }
+
+    public function updateRating(Request $request) {
+        $body = $request->getBody();
+        $rating = (new Rating())->updateRating($body['product_id'], $body['user_id'], $body['rate']);
+        if ($rating === TRUE) {
+            (new Product())->updateProductRating($body['product_id'], $body['rate']);
+        }
+    }
+
+    public function createComment(Request $request) {
+        $body = $request->getBody();
+        $commentClass = new Comment();
+        $newComment = $commentClass->createComment($body['product_id'], intval($body['user_id']), intval($body['is_answer']), $body['content'], intval($body['answer_id']));
+        if ($newComment === true) {
+            $comments = $commentClass->getRecentComment($body['product_id']);
+            $comments_element = "";
+                foreach ($comments as $comment) {
+                    if (is_string($comment)) {
+                        $comments_element .= "
+                            <div id='$comment'></div>
+                        ";
+                        continue;
+                    }
+                    $date = date_create($comment['created_at'], timezone_open('Asia/Ho_Chi_Minh'));
+                    $date_format = date_format($date, 'H:i - d/m/Y');
+                    $comments_element .= "<div class='comment-element";
+                    if ($comment['is_answer'] === "2") {
+                        $comments_element .= " answer-comment";
+                    }
+                    $comments_element .= "'>
+                        <div class='comment-info'>
+                            <p class='font-weight-bold m-0'>" . $comment['fullname'] . "</p>
+                            <p class='font-italic text-muted time'>Sent at " . $date_format ."</p>
+                        </div>
+                        <div class='text-break content'>" . $comment['content'] . "</div>
+                ";
+                    $comment_id = $comment['answer_id'];
+                    if ($comment['is_answer'] === '1') $comment_id = $comment['comment_id'];
+                    $comments_element .= "
+                        <button onclick='loadAnswerInput($comment_id)'>
+                            Reply
+                        </button>
+                        </div>
+                    ";
+                }
+            echo $comments_element;
+        }
+    }
+
     // render view ...
     public function warranty(Request $request, Response $response) {
         $loginForm = new LoginForm();

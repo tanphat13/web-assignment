@@ -95,6 +95,64 @@ function clear(){
   Marker.length=0;
 }
 
+function loadAvailableBranch(product_id) {
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState === 4 && this.status === 200) {
+          document.cookie = "productId = " + product_id;
+          document.getElementById('price').innerText = document.getElementById('new_price_'+product_id).innerText;
+          document.getElementById('branch-container').innerHTML = this.responseText;
+      }
+  };
+  xhttp.open("GET", "/branch?id="+product_id, true);
+  xhttp.send();
+}
+function handleRating(myRadio, product_id, user_id) {
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState === 4 && this.status === 200) {
+          document.getElementById('rating').innerHTML = '<p>Thank you for your rating</p>';
+      }
+  };
+  xhttp.open("POST", "/rating", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("product_id="+product_id+"&user_id="+user_id+"&rate="+myRadio.value);
+}
+function loadAnswerInput(comment_id) {
+  document.getElementById('comment-' + comment_id).innerHTML = 
+  "<textarea id='input-comment" + comment_id + "'class='form-control input-comment' rows='3' placeholder='Input your answer'></textarea><button type='submit' value='Submit' class='btn btn-primary mb-2' onclick='submitComment(<?php echo $product['product']->product_id . ',' . $session->get('user') ?>, " + comment_id + ")'>Submit</button>"
+}
+function submitComment(product_id, user_id, answer_id = '') {
+  let xhttp = new XMLHttpRequest();
+  let is_answer = answer_id === '' ? 1 : 2;
+  let input = document.getElementById('input-comment' + answer_id);
+  let content = input.value;
+  input.value = '';
+  xhttp.onreadystatechange = function() {
+      if (this.readyState === 4 && this.status === 200) {
+          document.getElementById('comments').innerHTML = this.responseText;
+      }
+  }
+  xhttp.open("POST", "/comment", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("product_id="+product_id+"&user_id="+user_id+"&is_answer="+is_answer+"&content="+content+"&answer_id="+answer_id);
+}
+
+function addToCart() {
+  let cookies = document.cookie.split("; ");
+  let cookieObj = new Object();
+  cookies.forEach((cookie) => {
+     let propArray = cookie.split("=");
+     cookieObj[propArray[0]] = propArray[1];
+  });
+  if (!cookieObj.hasOwnProperty('cart')) {
+    document.cookie = "cart = " + cookieObj.productId;
+    return;
+  }
+  let newCartList = cookieObj.cart + "," + cookieObj.productId;
+  document.cookie = "cart = " + newCartList;
+}
+
 // function setOnClickStore(){
 //   var storeElements = document.querySelectorAll('.store-container');
 //   storeElements.forEach((store,index)=>{
