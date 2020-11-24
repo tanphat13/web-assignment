@@ -3,9 +3,13 @@
     width: 80%;
     border:1px solid red;
 }
-.container {
-    width: 100%;
-    margin: 0 5%;
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1600px;
+        margin: 0 8%;
+        
+    }     
 }
 @import "./styles/footer";
 @import "./styles/installment";

@@ -11,6 +11,13 @@
         width: 12vw;
         height: 100%;
         display: inline-block;
+        ul {
+            list-style: none;
+            padding-left: 1vw;
+        }
+        h2 {
+            font-size: 28px;
+        }
     }
     .product_matrix {
     
@@ -20,10 +27,10 @@
         .product_item {
             border: solid;
             display: inline-block;
-            margin: 5px;
+            margin: 0 5px 5px 5px ;
             img {
                 height: 250px;
-                width: 12vw;
+                width: 13vw;
             }
             &:hover {
                 border-color: red ;
