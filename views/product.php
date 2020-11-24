@@ -50,7 +50,7 @@
             $list_alternative = "<div class='alternative'>";
             foreach ($product['diff_spec'] as $alternativeModel) {
                 $list_alternative .= "
-                    <a href='product?id=$alternativeModel[product_id]' class='product'>
+                    <a href='product?id=$alternativeModel[product_id]' class='model'>
                         <p class='font-weight-bold'>$alternativeModel[product_ram]GB/$alternativeModel[product_rom]GB</p>
                         <p class='text-danger'>" . number_format($alternativeModel['product_price'], 0, '', '.') . "VND </p>
                     </a>
@@ -64,16 +64,16 @@
             $list_color = "<div class='btn-group'>";
             foreach ($product['diff_color'] as $diffColorModel) {
                 $list_color .= "
-                    <button type='button' class='btn grid-item' onclick='loadAvailableBranch($diffColorModel[product_id], $diffColorModel[product_price])'>
+                    <button type='button' class='btn grid-item' onclick='loadAvailableBranch($diffColorModel[product_id])'>
                         <h6>$diffColorModel[product_color]</h6>
-                        <p>" . number_format($diffColorModel['product_price'], 0, '', '.') . " VND</p>
+                        <p id='new_price_$diffColorModel[product_id]'>" . number_format($diffColorModel['product_price'], 0, '', '.') . " VND</p>
                     </button>
                 ";
             }
             $list_color .= "</div>";
             echo $list_color;
         ?>
-        <button class='purchase-btn'>
+        <button class='purchase-btn' onclick="addToCart()">
             <h6>Purchase Now</h6>
             <p>Shipping Or Receive At Nearest Store</p>
         </button>

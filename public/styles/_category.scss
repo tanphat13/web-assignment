@@ -1,5 +1,5 @@
 .categoryPage {
-    width: 95vw;
+    width: 90vw;
     // margin: 0;
     // border: 0;
     display: flex;
@@ -8,7 +8,7 @@
         border: solid;
         border-color: black;
         background-color: rgb(158, 215, 238);
-        width: 15vw;
+        width: 12vw;
         height: 100%;
         display: inline-block;
     }
@@ -16,15 +16,14 @@
     
         display: inline;
         right:0;
-        width: 80vw;
+        width: 80%;
         .product_item {
             border: solid;
             display: inline-block;
             margin: 5px;
-            
             img {
                 height: 250px;
-                width: 15vw;
+                width: 12vw;
             }
             &:hover {
                 border-color: red ;

@@ -95,12 +95,12 @@ function clear(){
   Marker.length=0;
 }
 
-function loadAvailableBranch(product_id, new_price) {
+function loadAvailableBranch(product_id) {
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
       if (this.readyState === 4 && this.status === 200) {
           document.cookie = "productId = " + product_id;
-          document.getElementById('price').innerText = number_format(new_price, 0, '', '.') + " VND";
+          document.getElementById('price').innerText = document.getElementById('new_price_'+product_id).innerText;
           document.getElementById('branch-container').innerHTML = this.responseText;
       }
   };
@@ -138,6 +138,20 @@ function submitComment(product_id, user_id, answer_id = '') {
   xhttp.send("product_id="+product_id+"&user_id="+user_id+"&is_answer="+is_answer+"&content="+content+"&answer_id="+answer_id);
 }
 
+function addToCart() {
+  let cookies = document.cookie.split("; ");
+  let cookieObj = new Object();
+  cookies.forEach((cookie) => {
+     let propArray = cookie.split("=");
+     cookieObj[propArray[0]] = propArray[1];
+  });
+  if (!cookieObj.hasOwnProperty('cart')) {
+    document.cookie = "cart = " + cookieObj.productId;
+    return;
+  }
+  let newCartList = cookieObj.cart + "," + cookieObj.productId;
+  document.cookie = "cart = " + newCartList;
+}
 
 // function setOnClickStore(){
 //   var storeElements = document.querySelectorAll('.store-container');

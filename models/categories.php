@@ -19,8 +19,9 @@ class Categories extends DbModel {
         }
 
         public function getBrandProduct($brand) {
-            $sql_command = $this->prepare("SELECT products.product_id, products.product_name, products.product_price, products.product_brand, MIN(images.image_id), images.link 
-                FROM products LEFT JOIN images ON products.product_id = images.product_id WHERE products.product_brand = '$brand' GROUP BY products.product_id ORDER BY products.product_price DESC");
+            $sql_command = $this->prepare("SELECT DISTINCT products.product_id, products.product_name, products.product_price, products.product_brand, MIN(images.image_id), images.link 
+                FROM products LEFT JOIN images ON products.product_id = images.product_id WHERE products.product_brand = '$brand' 
+                GROUP BY  products.product_name ORDER BY products.product_price DESC");
             $sql_command->execute();
             $productList = $sql_command->fetchAll();
             $products = array();
