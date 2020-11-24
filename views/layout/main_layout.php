@@ -135,45 +135,43 @@ use app\core\Application;
         <?php endif; ?>
         {{content}}
     </div>
-    <footer>
-        <div class="footer-container">
-            <div class="col1"> 
-                <ul>
-                <li><a href="/warranty">Warranty Policy</a></li>
-                <li><a href="/returnpolicy">Return Policy</a></li>
-                <li><a href="/installment">Installment Purchase</a></li>
-                </ul>
-            </div>
-            <!-- ------------------------------------------- -->
-            <div class="col1"> 
-                <ul>
-                <li><a href="#">Send Feedback, Complain</a></li>
-                <li><a href="#">Recruitment</a></li>
-                <li><a href="#">Company Introduction</a></li>
-                </ul>
+    </div>
+    <footer class="footer-container">
+        <div class="col1"> 
+            <ul>
+            <li><a href="/warranty">Warranty Policy</a></li>
+            <li><a href="/returnpolicy">Return Policy</a></li>
+            <li><a href="/installment">Installment Purchase</a></li>
+            </ul>
+        </div>
+        <!-- ------------------------------------------- -->
+        <div class="col1"> 
+            <ul>
+            <li><a href="#">Send Feedback, Complain</a></li>
+            <li><a href="#">Recruitment</a></li>
+            <li><a href="#">Company Introduction</a></li>
+            </ul>
 
-            </div>
-            <!-- ------------------------------------------- -->
-            <div class="col1"> 
-                <ul class="Contact_number">
-                    <li>Hotlines
-                    </li>
-                    <li>Purchase: (0123456789)</li>
-                    <li>Technical Help: (0123456789)</li>
-                    <li>Warranty: (0123456789)</li>
-                    <li>Complain: (0123456789)</li>
-                </ul>
-            </div>
-            <!-- ------------------------------------------- -->
-            <div class="col1"> 
-                <p>Location</p>
-                <div class="location-wrapper">
-                    <div class="map" id="map">
-                    </div>
+        </div>
+        <!-- ------------------------------------------- -->
+        <div class="col1"> 
+            <ul class="Contact_number">
+                <li>Hotlines
+                </li>
+                <li>Purchase: (0123456789)</li>
+                <li>Technical Help: (0123456789)</li>
+                <li>Warranty: (0123456789)</li>
+                <li>Complain: (0123456789)</li>
+            </ul>
+        </div>
+        <!-- ------------------------------------------- -->
+        <div class="col1"> 
+            <p>Location</p>
+            <div class="location-wrapper">
+                <div class="map" id="map">
                 </div>
-
             </div>
-           
+
         </div>
         
     </footer>

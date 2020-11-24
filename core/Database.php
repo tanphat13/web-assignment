@@ -9,6 +9,8 @@ class Database{
         $password = $config['password'] ?? '';
         $this->pdo = new \PDO($dsn,$user,$password);
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE,\PDO::ERRMODE_EXCEPTION);
+        $sql_command = $this->pdo->prepare("SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
+        $sql_command->execute();
     }
     public function applyMigrations(){
         $this->createMigrationTable();

@@ -66,17 +66,17 @@ class Categories extends DbModel {
     public function rules() : array{
         return [];
     }
-    public function attribute(): array
+    public static function attribute(): array
     {
         return [];
     }
-    public function primaryKey(): string{
+    public static function primaryKey(): string{
         return '';
     }
-    public function userRole(): string{
+    public static function userRole(): string{
         return '';
     }
-    public function tableName(): string
+    public static function tableName(): string
     {
         return 'products';
     }

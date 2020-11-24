@@ -29,7 +29,7 @@ class Application{
             $primaryValue = $this->session->get('user');
             if($primaryValue){ 
                 $primaryKey = $this->userClass::primaryKey();
-                $this->user= $this->userClass::findOne([$primaryKey => $primaryValue ]);
+                $this->user= $this->userClass::findOne($this->userClass::tableName(),[$primaryKey => $primaryValue ]);
             }else{
                 $this->user = null;
             }
