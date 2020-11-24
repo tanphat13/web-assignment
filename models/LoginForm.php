@@ -16,7 +16,7 @@ use app\core\DbModel;
             ];
         }
 
-        public function tableName(): string
+        public static function tableName(): string
         {
             return 'users';
         }
@@ -33,14 +33,14 @@ use app\core\DbModel;
             }
             return Application::$app->login($user);
         }
-        public function attribute(): array
+        public static function attribute(): array
         {
             return [];
         }
-        public function primaryKey(): string{
+        public static function primaryKey(): string{
             return '';
         }
-        public function userRole(): string{
+        public static function userRole(): string{
             return '';
         }
     }

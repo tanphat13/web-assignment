@@ -19,19 +19,19 @@
             ];
         }
 
-        public function tableName(): string {
+        public static function tableName(): string {
             return 'products';
         }
 
-        public function attribute(): array {
+        public static function attribute(): array {
             return ['product_name', 'product_price', 'product_brand', 'product_color', 'product_ram', 'product_rom', 'product_spec', 'warranty'];
         }
 
-        public function primaryKey(): string {
+        public static function primaryKey(): string {
             return 'product_id';
         }
 
-        public function userRole(): string {
+        public static function userRole(): string {
             return '';
         }
 

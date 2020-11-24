@@ -6,7 +6,8 @@
             $db = Application::$app->db;
             $sql_command = "ALTER TABLE users CHANGE created_by created_by INT NULL,
                 CHANGE phone phone VARCHAR(11) NOT NULL;
-            DROP TABLE ratings;
+                ALTER TABLE comments ADD content TEXT NULL AFTER answer_id;
+                DROP TABLE ratings;
                 CREATE TABLE ratings (
                     rating_id INT AUTO_INCREMENT PRIMARY KEY,
                     product_id INT NOT NULL,

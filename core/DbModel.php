@@ -5,10 +5,10 @@ use app\core\Application;
 use app\core\Model;
 
 abstract class DbModel extends Model{
-    abstract public function tableName():string;
-    abstract public function attribute():array;
-    abstract public function primaryKey():string;
-    abstract public function userRole():string;
+    abstract public static function tableName():string;
+    abstract public static function attribute():array;
+    abstract public static function primaryKey():string;
+    abstract public static function userRole():string;
         public function save(){
             $tableName = $this->tableName();
             $attributes = $this->attribute();
@@ -26,7 +26,7 @@ abstract class DbModel extends Model{
         return  Application::$app->db->pdo->prepare($sql_command);
     } 
 
-    public function findOne($tableName, $where){
+    public static function findOne($tableName, $where){
         $attributes =  array_keys(
            $where 
         );
@@ -42,7 +42,7 @@ abstract class DbModel extends Model{
 
         return $sql_command->fetchObject(static::class);
     }
-    public function findAll($tableName, $where){
+    public static function findAll($tableName, $where){
         $attributes =  array_keys(
            $where 
         );

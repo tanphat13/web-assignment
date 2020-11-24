@@ -14,16 +14,16 @@
                 'rate' => [self::RULE_REQUIRED]
             ];
         }
-        public function tableName(): string {
+        public static function tableName(): string {
             return 'ratings';
         }
-        public function attribute(): array {
+        public static function attribute(): array {
             return ['product_id', 'user_id', 'rate'];
         }
-        public function primaryKey(): string {
+        public static function primaryKey(): string {
             return 'rating_id';
         }
-        public function userRole(): string {
+        public static function userRole(): string {
             return 'user';
         }
         public function updateRating(int $product_id, int $user_id, float $rate) {

@@ -41,8 +41,10 @@ $app->router->get('/logout', [AuthController::class, 'logout']);
 $app->router->get('/profile', [AuthController::class, 'profile']);
 
 $app->router->get('/product', [SiteController::class, 'renderProduct']);
+$app->router->post('/product', [SiteController::class, 'renderProduct']);
 $app->router->get('/branch', [SiteController::class, 'getBranch']);
 $app->router->post('/rating', [SiteController::class, 'updateRating']);
+$app->router->post('/comment', [SiteController::class, 'createComment']);
 
 //Footer
 $app->router->get('/warranty', [SiteController::class, 'warranty']);

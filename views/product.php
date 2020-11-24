@@ -115,35 +115,74 @@
         <?php echo $product['product']->product_spec ?>
     </div>
     <div id="rating">
-        <input type="radio" id="star5" name="rating" value="5" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . '1'?>)"/>
+        <input type="radio" id="star5" name="rating" value="5" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . $session->get('user')?>)"/>
         <label class = "full" for="star5" title="Awesome - 5 stars"></label>
         
-        <input type="radio" id="star4half" name="rating" value="4.5" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . '1'?>)"/>
+        <input type="radio" id="star4half" name="rating" value="4.5" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . $session->get('user')?>)"/>
         <label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
         
-        <input type="radio" id="star4" name="rating" value="4" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . '1'?>)"/>
+        <input type="radio" id="star4" name="rating" value="4" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . $session->get('user')?>)"/>
         <label class = "full" for="star4" title="Pretty good - 4 stars"></label>
         
-        <input type="radio" id="star3half" name="rating" value="3.5" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . '1'?>)"/>
+        <input type="radio" id="star3half" name="rating" value="3.5" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . $session->get('user')?>)"/>
         <label class="half" for="star3half" title="Meh - 3.5 stars"></label>
         
-        <input type="radio" id="star3" name="rating" value="3" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . '1'?>)"/>
+        <input type="radio" id="star3" name="rating" value="3" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . $session->get('user')?>)"/>
         <label class = "full" for="star3" title="Meh - 3 stars"></label>
         
-        <input type="radio" id="star2half" name="rating" value="2.5" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . '1'?>)"/>
+        <input type="radio" id="star2half" name="rating" value="2.5" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . $session->get('user')?>)"/>
         <label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
         
-        <input type="radio" id="star2" name="rating" value="2" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . '1'?>)"/>
+        <input type="radio" id="star2" name="rating" value="2" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . $session->get('user')?>)"/>
         <label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
         
-        <input type="radio" id="star1half" name="rating" value="1.5" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . '1'?>)"/>
+        <input type="radio" id="star1half" name="rating" value="1.5" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . $session->get('user')?>)"/>
         <label class="half" for="star1half" title="Meh - 1.5 stars"></label>
         
-        <input type="radio" id="star1" name="rating" value="1" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . '1'?>)"/>
+        <input type="radio" id="star1" name="rating" value="1" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . $session->get('user')?>)"/>
         <label class = "full" for="star1" title="Sucks big time - 1 star"></label>
         
-        <input type="radio" id="starhalf" name="rating" value="0.5" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . '1'?>)"/>
+        <input type="radio" id="starhalf" name="rating" value="0.5" onchange="handleRating(this, <?php echo $product['product']->product_id . ',' . $session->get('user')?>)"/>
         <label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+    </div>
+    <div class="form-group">
+        <textarea id="input-comment" class="form-control input-comment" rows="3" placeholder="Ask a question"></textarea>
+        <button type="submit" value="Submit" class="btn btn-primary mb-2" onclick="submitComment(<?php echo $product['product']->product_id . ',' . $session->get('user') ?>)">Submit</button>
+    </div>
+    <div id="comments" class="comment-container">
+        <?php
+        $comments_element = "";
+            foreach ($comments as $comment) {
+                if (is_string($comment)) {
+                    $comments_element .= "
+                        <div id='$comment'></div>
+                    ";
+                    continue;
+                }
+                $date = date_create($comment['created_at'], timezone_open('Asia/Ho_Chi_Minh'));
+                $date_format = date_format($date, 'H:i - d/m/Y');
+                $comments_element .= "<div class='comment-element";
+                if ($comment['is_answer'] === "2") {
+                    $comments_element .= " answer-comment";
+                }
+                $comments_element .= "'>
+                    <div class='comment-info'>
+                        <p class='font-weight-bold m-0'>" . $comment['fullname'] . "</p>
+                        <p class='font-italic text-muted time'>Sent at " . $date_format ."</p>
+                    </div>
+                    <div class='text-break content'>" . $comment['content'] . "</div>
+               ";
+                $comment_id = $comment['answer_id'];
+                if ($comment['is_answer'] === '1') $comment_id = $comment['comment_id'];
+                $comments_element .= "
+                    <button onclick='loadAnswerInput($comment_id)'>
+                        Reply
+                    </button>
+                    </div>
+                ";
+            }
+            echo $comments_element;
+        ?>
     </div>
 </div>
 
@@ -162,7 +201,6 @@
         xhttp.send();
     }
     function handleRating(myRadio, product_id, user_id) {
-        console.log(product_id + ' ' + user_id);
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
@@ -172,5 +210,24 @@
         xhttp.open("POST", "/rating", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("product_id="+product_id+"&user_id="+user_id+"&rate="+myRadio.value);
+    }
+    function loadAnswerInput(comment_id) {
+        document.getElementById('comment-' + comment_id).innerHTML = 
+        "<textarea id='input-comment" + comment_id + "'class='form-control input-comment' rows='3' placeholder='Input your answer'></textarea><button type='submit' value='Submit' class='btn btn-primary mb-2' onclick='submitComment(<?php echo $product['product']->product_id . ',' . $session->get('user') ?>, " + comment_id + ")'>Submit</button>"
+    }
+    function submitComment(product_id, user_id, answer_id = '') {
+        let xhttp = new XMLHttpRequest();
+        let is_answer = answer_id === '' ? 1 : 2;
+        let input = document.getElementById('input-comment' + answer_id);
+        let content = input.value;
+        input.value = '';
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                document.getElementById('comments').innerHTML = this.responseText;
+            }
+        }
+        xhttp.open("POST", "/comment", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("product_id="+product_id+"&user_id="+user_id+"&is_answer="+is_answer+"&content="+content+"&answer_id="+answer_id);
     }
 </script>

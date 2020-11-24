@@ -174,11 +174,10 @@
 }
 .additional-info {
     height: max-content;
-    margin-bottom: 8vh;
     #rating{
-        border: none;
         padding: 0;
         height: 5vh;
+        border: none;
         float: left;
         input {
             display: none;
@@ -208,6 +207,54 @@
         label:hover~input:checked~label,
         input:checked~label:hover~label {
             color: #FFED85;
+        }
+    }
+    .form-group {
+        position: relative;
+        width: 100%;
+        height: 25vh;
+        .input-comment {
+            margin-top: 10vh;
+        }
+        .mb-2 {
+            position: absolute;
+            right: 0;
+            margin: 0;
+            margin-top: 1vh;
+            padding: 1vh 1vw;
+            width: 4rem;
+            height: 2rem;
+            border: none;
+            font-size: 70%;
+            text-align: center;
+        }
+    }
+    .comment-container {
+        margin-bottom: 5vh;
+        width: 100%;
+        .comment-element {
+            margin: 1vh 0;
+            .comment-info {
+                padding: 0 1vw;
+                display: flex;
+                height: 5vh;
+                justify-content: space-between;
+                align-items: center;
+                .time {
+                    margin: 0;
+                    font-size: 70%;
+                }
+            }
+            .content {
+                padding: 1em;
+                border-radius: 15px;
+            }
+        }
+        .answer-comment {
+            position: relative;
+            left: 2vw;
+            border-radius: 10px;
+            background-color: rgba(224, 224, 224, 0.658);
         }
     }
 }

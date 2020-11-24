@@ -219,13 +219,12 @@
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-  margin-bottom: 8vh;
 }
 
 .additional-info #rating {
-  border: none;
   padding: 0;
   height: 5vh;
+  border: none;
   float: left;
 }
 
@@ -262,4 +261,67 @@
 .additional-info #rating label:hover ~ input:checked ~ label,
 .additional-info #rating input:checked ~ label:hover ~ label {
   color: #FFED85;
+}
+
+.additional-info .form-group {
+  position: relative;
+  width: 100%;
+  height: 25vh;
+}
+
+.additional-info .form-group .input-comment {
+  margin-top: 10vh;
+}
+
+.additional-info .form-group .mb-2 {
+  position: absolute;
+  right: 0;
+  margin: 0;
+  margin-top: 1vh;
+  padding: 1vh 1vw;
+  width: 4rem;
+  height: 2rem;
+  border: none;
+  font-size: 70%;
+  text-align: center;
+}
+
+.additional-info .comment-container {
+  margin-bottom: 5vh;
+  width: 100%;
+}
+
+.additional-info .comment-container .comment-element {
+  margin: 1vh 0;
+}
+
+.additional-info .comment-container .comment-element .comment-info {
+  padding: 0 1vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 5vh;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.additional-info .comment-container .comment-element .comment-info .time {
+  margin: 0;
+  font-size: 70%;
+}
+
+.additional-info .comment-container .comment-element .content {
+  padding: 1em;
+  border-radius: 15px;
+}
+
+.additional-info .comment-container .answer-comment {
+  position: relative;
+  left: 2vw;
+  border-radius: 10px;
+  background-color: rgba(224, 224, 224, 0.658);
 }
