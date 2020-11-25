@@ -1,3 +1,4 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 .product {
   padding: 2vh 2vw;
   display: -webkit-box;
@@ -13,8 +14,8 @@
 
 .product #carouselIndicators {
   margin: 0 5%;
-  width: 60vh;
-  height: 60vh;
+  width: 40vh;
+  height: 40vh;
 }
 
 .product #carouselIndicators .carousel-indicators li {
@@ -42,14 +43,28 @@
   height: 100%;
 }
 
-.product #carouselIndicators .carousel-control-prev {
-  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0)));
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+.product #carouselIndicators .carousel-control-prev .carousel-control-prev-icon {
+  margin: 10%;
+  width: 2vw;
+  height: 2vw;
+  border-radius: 50%;
+  background-color: #ffc1074d;
 }
 
-.product #carouselIndicators .carousel-control-next {
-  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.1)));
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1));
+.product #carouselIndicators .carousel-control-prev .carousel-control-prev-icon:hover {
+  background-color: #ffc107bb;
+}
+
+.product #carouselIndicators .carousel-control-next .carousel-control-next-icon {
+  margin: 10%;
+  width: 2vw;
+  height: 2vw;
+  border-radius: 50%;
+  background-color: #ffc1074d;
+}
+
+.product #carouselIndicators .carousel-control-next .carousel-control-next-icon:hover {
+  background-color: #ffc107bb;
 }
 
 .product .product-info {
@@ -106,8 +121,8 @@
   margin-bottom: 5vh;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
   grid-gap: 1vw;
   -ms-flex-pack: distribute;
       justify-content: space-around;
@@ -198,5 +213,116 @@
   overflow-y: scroll;
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
+}
+
+.additional-info {
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
+
+.additional-info #rating {
+  padding: 0;
+  height: 5vh;
+  border: none;
+  float: left;
+}
+
+.additional-info #rating input {
+  display: none;
+}
+
+.additional-info #rating label:before {
+  margin: 5px;
+  font-size: 1.255em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.additional-info #rating .half:before {
+  content: "\f089";
+  position: absolute;
+}
+
+.additional-info #rating label {
+  color: #ddd;
+  float: right;
+}
+
+.additional-info #rating input:checked ~ label,
+.additional-info #rating:not(:checked) > label:hover,
+.additional-info #rating:not(:checked) > label:hover ~ label {
+  color: #FFD700;
+}
+
+.additional-info #rating input:checked + label:hover,
+.additional-info #rating input:checked ~ label:hover,
+.additional-info #rating label:hover ~ input:checked ~ label,
+.additional-info #rating input:checked ~ label:hover ~ label {
+  color: #FFED85;
+}
+
+.additional-info .form-group {
+  position: relative;
+  width: 100%;
+  height: 25vh;
+}
+
+.additional-info .form-group .input-comment {
+  margin-top: 10vh;
+}
+
+.additional-info .form-group .mb-2 {
+  position: absolute;
+  right: 0;
+  margin: 0;
+  margin-top: 1vh;
+  padding: 1vh 1vw;
+  width: 4rem;
+  height: 2rem;
+  border: none;
+  font-size: 70%;
+  text-align: center;
+}
+
+.additional-info .comment-container {
+  margin-bottom: 5vh;
+  width: 100%;
+}
+
+.additional-info .comment-container .comment-element {
+  margin: 1vh 0;
+}
+
+.additional-info .comment-container .comment-element .comment-info {
+  padding: 0 1vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 5vh;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.additional-info .comment-container .comment-element .comment-info .time {
+  margin: 0;
+  font-size: 70%;
+}
+
+.additional-info .comment-container .comment-element .content {
+  padding: 1em;
+  border-radius: 15px;
+}
+
+.additional-info .comment-container .answer-comment {
+  position: relative;
+  left: 2vw;
+  border-radius: 10px;
+  background-color: rgba(224, 224, 224, 0.658);
 }
 /*# sourceMappingURL=product.css.map */
