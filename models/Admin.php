@@ -16,21 +16,21 @@ use app\core\AdminModel;
         ];
     }
 
-    public function tableName() :string{
+    public static function tableName() :string {
         return 'users';
     }
 
-    public function attribute():array{
+    public static function attribute():array{
         return ['fullname','email','phone',];
     }
-    public function primaryKey() :string {
+    public static function primaryKey() :string {
         return 'id';
     }
-
-    public function displayName():string{
+    public function displayName(): string
+    {
         return $this->fullname;
     }
-    public function userRole():string{
+    public static function userRole():string{
         return 'admin';
     }
 
