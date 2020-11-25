@@ -110,6 +110,10 @@ function loadAvailableBranch(product_id) {
 }
 
 function handleRating(myRadio, product_id, user_id) {
+  if (user_id === undefined) {
+    document.getElementById('loginForm').classList.add('active');
+    return;
+  }
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
       if (this.readyState === 4 && this.status === 200) {
@@ -125,6 +129,10 @@ function loadAnswerInput(comment_id) {
   "<textarea id='input-comment" + comment_id + "'class='form-control input-comment' rows='3' placeholder='Input your answer'></textarea><button type='submit' value='Submit' class='btn btn-primary mb-2' onclick='submitComment(<?php echo $product['product']->product_id . ',' . $session->get('user') ?>, " + comment_id + ")'>Submit</button>"
 }
 function submitComment(product_id, user_id, answer_id = '') {
+  if (user_id === undefined) {
+    document.getElementById('loginForm').classList.add('active');
+    return;
+  }
   let xhttp = new XMLHttpRequest();
   let is_answer = answer_id === '' ? 1 : 2;
   let input = document.getElementById('input-comment' + answer_id);
@@ -141,6 +149,10 @@ function submitComment(product_id, user_id, answer_id = '') {
 }
 
 function addToCart() {
+  if (user_id === undefined) {
+    document.getElementById('loginForm').classList.add('active');
+    return;
+  }
   let cookies = document.cookie.split("; ");
   let cookieObj = new Object();
   cookies.forEach((cookie) => {

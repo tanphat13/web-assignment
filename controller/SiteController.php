@@ -54,7 +54,7 @@ class SiteController extends Controller{
         $param = $request->getBody();
         $listField = array_keys($param);
         if (in_array('email', $listField) && in_array('password', $listField)) {
-            self::login($path, $loginForm, $request, $response);
+            self::login($_SERVER['REQUEST_URI'], $loginForm, $request, $response);
         }
         $product = (new Product())->getSpecificProduct(intval($param['id']));
         $comments = (new Comment())->getRecentComment($param['id']);

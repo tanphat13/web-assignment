@@ -47,19 +47,19 @@
         <div class="group-form-group">
             <div class="row-input">
                 <label class="input-label" for="name" >Full Name: </label>
-                <input type="text" name="name" class="form-control" placeholder="Your full name" value="<?php echo $user->fullname; ?>" />
+                <input type="text" name="name" class="form-control" placeholder="Your full name" value="<?php if (isset($user->fullname)) echo $user->fullname; ?>" />
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="row-input">
                         <label class="input-label" for="email" >Email: </label>
-                        <input type="text" class="form-control" placeholder="Your email" value="<?php echo $user->email; ?>" />
+                        <input type="text" class="form-control" placeholder="Your email" value="<?php if (isset($user->email)) echo $user->email; ?>" />
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="row-input">
                         <label class="input-label" for="phone" >Phone Number: </label>
-                        <input type="text" class="form-control" placeholder="Your phone number" value="<?php echo $user->phone; ?>" />
+                        <input type="text" class="form-control" placeholder="Your phone number" value="<?php if (isset($user->phone)) echo $user->phone; ?>" />
                     </div>
                 </div>
             </div>
