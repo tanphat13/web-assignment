@@ -147,10 +147,13 @@ function addToCart() {
   });
   if (!cookieObj.hasOwnProperty('cart')) {
     document.cookie = "cart = " + cookieObj.productId;
+    window.location.href = window.location.origin+'/my-cart';
     return;
   }
   let newCartList = cookieObj.cart + "," + cookieObj.productId;
   document.cookie = "cart = " + newCartList;
+  window.location.href = window.location.origin+'/my-cart';
+  return;
 }
 
 // function setOnClickStore(){

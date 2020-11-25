@@ -103,7 +103,7 @@ use app\core\Application;
         <form action="" method="post">
             <h1 class="show-error">
                 <?php
-                if($model){
+                if(isset($model)){
                     if ($model->hasError('password')) {
                         echo $model->getFirstError('password') ?? '';
                     } else if ($model->hasError('email')) {

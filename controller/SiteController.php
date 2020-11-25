@@ -12,6 +12,7 @@ use app\models\Product;
 use app\models\Branch;
 use app\models\Comment;
 use app\models\Rating;
+use app\models\User;
 
 class SiteController extends Controller{
     //render HomePage
@@ -111,6 +112,20 @@ class SiteController extends Controller{
                 }
             echo $comments_element;
         }
+    }
+
+    // Review Cart
+    public function reviewCart(Request $request, Response $response) {
+        $loginForm = new LoginForm();
+        $session = Application::$app->session;
+        $path = $request->getPath();
+        $listField = array_keys($request->getBody());
+        if (in_array('email', $listField) && in_array('password', $listField)) {
+            self::login($path, $loginForm, $request, $response);
+        }
+        $listProducts = (new Product())->getProductInCart();
+        $user = (new User())->getUserInfo($session->get('user'));
+        return $this->render('cart', ["listProducts" => $listProducts, "user" => $user]);
     }
 
     // render view ...
