@@ -3,8 +3,6 @@ body {
 }
 
 .footer-container {
-  position: relative;
-  bottom: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -298,4 +296,3 @@ body {
   border: 1px solid red;
   margin: 5px 0px;
 }
-/*# sourceMappingURL=index.css.map */
