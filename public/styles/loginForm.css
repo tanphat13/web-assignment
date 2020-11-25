@@ -1,7 +1,7 @@
 .home-wrapper {
   position: relative;
   width: 100%;
-  height: auto;
+  height: 100vh;
 }
 
 .home-wrapper .login-wrapper {
@@ -26,3 +26,4 @@
   top: 0px;
   z-index: 1;
 }
+/*# sourceMappingURL=loginForm.css.map */

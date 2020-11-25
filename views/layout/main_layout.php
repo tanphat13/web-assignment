@@ -90,7 +90,7 @@ use app\core\Application;
     <div class="home-wrapper">
     <div class='login-wrapper <?php 
     
-    if($model){
+    if(isset($model)){
                                     if ($model->getFirstError('email') || $model->getFirstError('password')) {
                                         echo "active";
                                     } else {

@@ -9,55 +9,87 @@ use app\models\LoginForm;
 use app\models\User;
 use app\core\Response;
 use app\core\middleware\AuthMiddleware;
-
-// class AdminController extends Controller{
-//     // public function __construct(){
-//     //     $this->registerMiddleware(new AuthMiddleware(['admin']));
-//     // }
-//     public function admin (Request $req,Response $res){
-//         //$this->setLayout('AdminLayout');
-//         return $this->render('admin');
-//     }
-// }
+use app\core\Session;
+use app\models\Admin;
+use app\models\Staff;
 
 Class AdminController extends Controller {
-    //  public function __construct(){
-    //     $this->registerMiddleware(new AuthMiddleware(['admin']));
-    // }
+    public function __construct(){
+        $this->registerMiddleware(new AuthMiddleware(['createStaff']));
+    }
     public function admin (Request $req,Response $res){
-        // echo "accsess this function okay";
-        // exit;
+        
+        $session = new Session();
+        $adminModel = new Admin();
+        $user = $session->get('user');
+        $page = 0;
+        if(isset($_GET['page']) && isset($_GET["limit"])){
+            $page=intval($_GET['page']);
+            $limit = intval($_GET['limit']);
+        }else{
+            $page = 1;
+            $limit = 10;
+        }
+        if(!$user){
+            $res->redirect('/admin/login');
+        }
+        $fetchResult = $adminModel->getStaffList($page,$limit);
+        $totalPage = $fetchResult['totalPage'];
+        $staffList = $fetchResult['staffList'];  
+        $this->setLayout('adminLayout');
+        return $this->render('admin',['model'=>$adminModel,'staffList'=>$staffList,'totalPage'=>$totalPage,'page'=>$page]);
+       
+    }
+
+
+    public  function login(Request $req,Response $res){
         $loginForm = new LoginForm();
         $session = Application::$app->session;
         $param =
             ["model" => $loginForm, "session" => $session];
-        $path = $req->getPath();
-        echo var_dump($path);
-        $listField = array_keys($req->getBody());
-        //exit;
-        if (in_array('email', $listField) && in_array('password', $listField)) {
-            self::login($path, $loginForm, $req, $res);
+        if ($req->isPost()) {
+            $loginForm->loadData($req->getBody());
+            if ($loginForm->validate() && $loginForm->login()) {
+                $res->redirect('/admin?page=1&limit=10');
+                return;
+            }
         }
         $this->setLayout('AdminLayout');
-        return $this->render('admin',$param);
+        return $this->render('login', $param);
     }
-    public function test (){
-        // echo "<pre>";
-        // echo var_dump(getcwd());
-        // echo "</pre>";
-        //exit;
-        $this->setLayout('AdminLayout');
-        return $this->render("home");
+    public function  createStaff(Request $req,Response $res){
+        $staff = new Staff();
+        if($req->isPost()){
+                $staff->loadData($req->getBody());
+                if($staff->validate() && $staff->save()){
+                    Application::$app->session->setFlash("success", "Create new staff scucessfull");
+                    $res->redirect('/admin');
+                }
+        }
+        $this->setLayout('adminLayout');
+        return $this->render('create-staff', ['model' => $staff]);
+       
     }
-    public static function login($path, LoginForm $model, Request $request, Response  $response)
-    {
-        //$loginForm = new $model();
-        if ($request->isPost()) {
-            $model->loadData($request->getBody());
-
-            if ($model->validate() && $model->login()) {
-                $response->redirect($path);
-                return;
+    public function getSpecificStaff(){
+        $admin =  new Admin() ;
+        $staffId = $_GET['id'];
+        $staffJSON = json_encode($admin->getStaff($staffId));
+        echo $staffJSON;
+    }
+    public function  updateStaff(Request $req,Response $res){
+        $dataStr = array_keys($_REQUEST)[0];
+        $dataArr = json_decode($dataStr, true);
+        $staff = new Staff();
+        // echo $staff->loadData($dataArr);
+        if($req->isPost()){
+             $staff->loadData($dataArr);
+            if($staff->validate()){
+                if($staff->updateStaffInfo()){
+                    echo "Update successfull";
+                    return;
+                }else{
+                    echo "Update faild";
+                }
             }
         }
     }

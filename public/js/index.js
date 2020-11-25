@@ -102,11 +102,13 @@ function loadAvailableBranch(product_id) {
           document.cookie = "productId = " + product_id;
           document.getElementById('price').innerText = document.getElementById('new_price_'+product_id).innerText;
           document.getElementById('branch-container').innerHTML = this.responseText;
+          
       }
   };
   xhttp.open("GET", "/branch?id="+product_id, true);
   xhttp.send();
 }
+
 function handleRating(myRadio, product_id, user_id) {
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -164,3 +166,62 @@ function addToCart() {
 //     })
 //   })
 // }
+
+
+// This is function for admin page
+ function getStaffId(staffId) {
+    const updateForm = document.getElementById('staff-update-form');
+    updateForm.setAttribute("data-staff",`${staffId}`);
+    const nameInput = document.getElementById('fullname');
+    const emailInput = document.getElementById("email");
+    const phoneInput = document.getElementById("phone");
+    //updateForm.classList.toggle("active");
+     var xhttp = new XMLHttpRequest();
+     xhttp.onreadystatechange = function () {
+       if (xhttp.readyState == 4 && xhttp.status == 200) {
+          var response = JSON.parse(this.responseText);
+          nameInput.value = response.fullname;
+          emailInput.value = response.email;
+          phoneInput.value = response.phone;
+          console.log(updateForm);
+          updateForm.classList.add("active");
+       }
+     };
+     xhttp.open(
+       "GET",
+       `http://localhost:8080/admin/specific-staff?id=${staffId}`,
+       true
+     );
+     xhttp.send();
+     // alert(staffId);
+ }
+
+ function updateStaffInfo(){
+   const updateForm = document.getElementById("staff-update-form");
+   const staffId = updateForm.getAttribute("data-staff");
+   let object = {id:staffId};
+   const inputArr  = document.getElementsByTagName('input');
+    for(let i = 0; i<inputArr.length;i++){
+      if(updateForm.contains(inputArr[i])){
+        var key = inputArr[i].id;
+        var value = inputArr[i].value;
+        object[`${key}`]=value
+      }
+    }
+   var xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function () {
+     if (xhttp.readyState == 4 && xhttp.status == 200) {
+       console.log(xhttp.responseText);
+       let message = document.getElementById("update-message");
+       message.innerHTML = xhttp.responseText;
+       setTimeout(function (){
+        updateForm.classList.remove('active');
+       },3000 )
+     }
+   };
+   xhttp.open("POST", `http://localhost:8080/admin/update-staff-info`, true);
+  xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+   xhttp.send(
+     JSON.stringify(object)
+  );
+ }

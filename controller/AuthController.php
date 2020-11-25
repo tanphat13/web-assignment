@@ -59,10 +59,6 @@ class AuthController extends Controller{
     public function profile (){
         return $this->render('profile');
     }
-    public function admin()
-    {
-        return $this->render('admin');
-    }
 }   
 
 
