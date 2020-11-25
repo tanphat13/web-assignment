@@ -164,12 +164,14 @@ body {
   display: flex;
   margin: 0px;
   padding: 0px;
+  height: 100vh !important;
 }
 
 .admin-layout .container {
   margin: 0px;
   padding: 0px 24px;
   max-width: 100%;
+  height: 100vh;
 }
 
 .admin-layout .container .manage-staff-container {
@@ -187,6 +189,9 @@ body {
   padding-top: 16px;
   margin-bottom: 24px;
   border: 1px solid green;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .admin-layout .container .manage-staff-container .table-action .btn-create-staff {
@@ -219,6 +224,23 @@ body {
   width: 50px;
   border: 0.5px solid black;
   text-align: center;
+}
+
+.admin-layout .container .manage-staff-container .staff-update-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  border: 1px solid red;
+  z-index: 100;
+  background-color: white;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  visibility: hidden;
+}
+
+.admin-layout .container .manage-staff-container .active {
+  visibility: visible;
 }
 
 .admin-layout .slide-bar {
@@ -261,5 +283,19 @@ body {
   text-align: center;
   width: 100%;
   height: 40px;
+}
+
+.admin-layout .slide-bar .side-bar-function-list {
+  margin-top: 24px;
+  width: 100%;
+  border: 1px solid green;
+  height: calc(100% - 164px);
+}
+
+.admin-layout .slide-bar .side-bar-function-list .function-item {
+  height: 30px;
+  text-align: center;
+  border: 1px solid red;
+  margin: 5px 0px;
 }
 /*# sourceMappingURL=index.css.map */

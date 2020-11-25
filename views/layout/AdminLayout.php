@@ -35,7 +35,18 @@ use app\core\Application;
                 <?php endif ?>
 
             </div>
-
+            <div class='side-bar-function-list'>
+                <div class='function-item'>
+                    <a href="/admin">
+                        Manage staff
+                    </a>
+                </div>
+                <div class='function-item'>
+                    <a href="/admin/products">
+                        Manage product
+                    </a>
+                </div>
+            </div>
             <div class="slide-bar-action">
                 <?php if (Application::$app->isGuest()) : ?>
 

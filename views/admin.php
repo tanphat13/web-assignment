@@ -53,6 +53,9 @@
 
     <form method="post" id="staff-update-form" class="staff-update-form">
         <div class="form-group">
+            <p id="update-message"></p>
+        </div>
+        <div class="form-group">
             <label for="fullname">Name</label>
             <input type="text" name="fullname" class="form-control
         <?php
@@ -93,6 +96,3 @@
     </form>
 </div>
 
-<input id="test" name="phone" type="number" class="form-control <?php
-                                                                    echo $model->hasError('phone') ? ' is-invalid' : '';
-                                                                    ?>" aria-describedby="emailHelp">

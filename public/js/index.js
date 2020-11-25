@@ -102,11 +102,13 @@ function loadAvailableBranch(product_id) {
           document.cookie = "productId = " + product_id;
           document.getElementById('price').innerText = document.getElementById('new_price_'+product_id).innerText;
           document.getElementById('branch-container').innerHTML = this.responseText;
+          
       }
   };
   xhttp.open("GET", "/branch?id="+product_id, true);
   xhttp.send();
 }
+
 function handleRating(myRadio, product_id, user_id) {
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -178,6 +180,8 @@ function addToCart() {
           nameInput.value = response.fullname;
           emailInput.value = response.email;
           phoneInput.value = response.phone;
+          console.log(updateForm);
+          updateForm.classList.add("active");
        }
      };
      xhttp.open(
@@ -205,6 +209,11 @@ function addToCart() {
    xhttp.onreadystatechange = function () {
      if (xhttp.readyState == 4 && xhttp.status == 200) {
        console.log(xhttp.responseText);
+       let message = document.getElementById("update-message");
+       message.innerHTML = xhttp.responseText;
+       setTimeout(function (){
+        updateForm.classList.remove('active');
+       },3000 )
      }
    };
    xhttp.open("POST", `http://localhost:8080/admin/update-staff-info`, true);
