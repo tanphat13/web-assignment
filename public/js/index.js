@@ -148,26 +148,81 @@ function submitComment(product_id, user_id, answer_id = '') {
   xhttp.send("product_id="+product_id+"&user_id="+user_id+"&is_answer="+is_answer+"&content="+content+"&answer_id="+answer_id);
 }
 
-function addToCart() {
+function addToCart(user_id) {
   if (user_id === undefined) {
     document.getElementById('loginForm').classList.add('active');
     return;
   }
-  let cookies = document.cookie.split("; ");
-  let cookieObj = new Object();
-  cookies.forEach((cookie) => {
-     let propArray = cookie.split("=");
-     cookieObj[propArray[0]] = propArray[1];
-  });
-  if (!cookieObj.hasOwnProperty('cart')) {
-    document.cookie = "cart = " + cookieObj.productId;
-    window.location.href = window.location.origin+'/my-cart';
-    return;
-  }
-  let newCartList = cookieObj.cart + "," + cookieObj.productId;
-  document.cookie = "cart = " + newCartList;
   window.location.href = window.location.origin+'/my-cart';
   return;
+}
+
+function confirmRemoveProduct(product_id) {
+  let product_name = document.getElementById('product-'+product_id).innerText;
+  document.getElementById('message').innerHTML = "<p>Do you want to remove <em class='font-weight-bold'>" + product_name +  "</em> from your cart ?</p>";
+  document.getElementById('confirm_button').setAttribute('onclick', 'removeProduct('+product_id+')');
+  document.getElementById('box-confirm').classList.add('active');
+  return;
+}
+
+function closeBox() {
+  document.getElementById('box-confirm').classList.remove('active');
+  return;
+}
+
+function removeProduct(product_id) {
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+      let productPrice = document.getElementById('product-item-'+product_id).firstChild.nextElementSibling.nextElementSibling.lastElementChild.innerHTML;
+      productPrice = productPrice.split(" ")[1].split(".").join('');
+      document.getElementById('product-item-'+product_id).remove();
+      document.getElementById('number-in-cart').innerText = parseInt(document.getElementById('number-in-cart').innerText) - 1;
+      let totalPrice = document.getElementById('total-price').innerText;
+      totalPrice = parseInt(totalPrice.split(" ")[0].split(".").join(''));
+      console.log(totalPrice);
+      document.getElementById('total-price').innerText = (totalPrice - productPrice).toLocaleString('de-DE') + " VND";
+      document.getElementById('total-charge').innerText = (totalPrice - productPrice).toLocaleString('de-DE') + " VND";
+      document.getElementById('box-confirm').classList.remove('active');
+    }
+  }
+  xhttp.open("POST", "/remove-product", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("removing_id="+product_id);
+}
+
+function handleOrderMethod(method, user_id = 0) {
+  let request_path = '/address?user_id='+user_id;
+  if (method === 'store') {
+    request_path = '/all-branch';
+  }
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+      document.getElementById('address').innerHTML = this.responseText;
+    }
+  }
+  xhttp.open("GET", request_path, true);
+  xhttp.send();
+}
+
+function confirmCancelOrder(order_id) {
+  document.getElementById('box-confirm').classList.add('active');
+  document.getElementById('confirm_button').setAttribute('onclick', 'cancelOrder('+order_id+')');
+  return; 
+}
+
+function cancelOrder(order_id) {
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+      document.getElementById('box-confirm').classList.remove('active');
+      console.log(this.responseText);
+      location.reload();
+    }
+  }
+  xhttp.open("GET", "cancel-order?id="+order_id, true);
+  xhttp.send();
 }
 
 // function setOnClickStore(){

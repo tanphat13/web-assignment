@@ -68,8 +68,7 @@
             $sql_command->execute();
         }
 
-        public function getProductInCart() {
-            $listProductId = explode(',', $_COOKIE['cart']);
+        public function getProductInCart($listProductId) {
             $products = array();
             foreach ($listProductId as $product_id) {
                 $sql_command = self::prepare("SELECT products.product_id, products.product_name, products.product_price, products.product_color, products.product_ram, products.product_rom, MIN(images.image_id), images.link 

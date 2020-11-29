@@ -50,6 +50,12 @@ $app->router->post('/comment', [SiteController::class, 'createComment']);
 // Review Cart + purchase
 $app->router->get('/my-cart', [SiteController::class, 'reviewCart']);
 $app->router->post('/my-cart', [SiteController::class, 'reviewCart']);
+$app->router->post('/remove-product', [SiteController::class, 'removeProduct']);
+$app->router->get('/address', [SiteController::class, 'getUserAddress']);
+$app->router->get('/all-branch', [SiteController::class, 'getAllBranch']);
+$app->router->post('/ordering', [SiteController::class, 'createOrder']);
+$app->router->get('/order', [SiteController::class, 'reviewOrder']);
+$app->router->get('/cancel-order', [SiteController::class, 'cancelOrder']);
 
 //Footer
 $app->router->get('/warranty', [SiteController::class, 'warranty']);

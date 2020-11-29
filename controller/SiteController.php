@@ -13,6 +13,9 @@ use app\models\Branch;
 use app\models\Comment;
 use app\models\Rating;
 use app\models\User;
+use app\models\Order;
+use app\models\OrderProduct;
+use app\models\ProductItem;
 
 class SiteController extends Controller{
     //render HomePage
@@ -123,9 +126,75 @@ class SiteController extends Controller{
         if (in_array('email', $listField) && in_array('password', $listField)) {
             self::login($path, $loginForm, $request, $response);
         }
-        $listProducts = (new Product())->getProductInCart();
-        $user = (new User())->getUserInfo($session->get('user'));
+        $listProductId = explode(',', $session->get('cart'));
+        if (isset($_COOKIE['productId'])) {
+            array_push($listProductId, $_COOKIE['productId']);
+            array_multisort($listProductId);
+            $newListAsString = implode(',', $listProductId);
+            $session->set('cart', $newListAsString);
+            setcookie('productId', '', 0,'/');            
+        }
+        $listProducts = array();
+        if (array_search('0', $listProductId) !== false || array_search('', $listProductId) !== false) {
+            array_shift($listProductId);
+            $newListAsString = implode(',', $listProductId);
+            $session->set('cart', $newListAsString);
+        }
+        $listProducts = (new Product())->getProductInCart($listProductId);
+        $user = (new User())->getUserInfo($session->get('user'));    
         return $this->render('cart', ["listProducts" => $listProducts, "user" => $user]);
+    }
+
+    public function removeProduct(Request $request) {
+        $session = Application::$app->session;
+        $body = $request->getBody();
+        $removing_id = $body['removing_id'];
+        $current_list_id = explode(',', $session->get('cart'));
+        $index_of_removing = array_search($removing_id, $current_list_id);
+        $current_list_id[$index_of_removing] = 0;
+        array_multisort($current_list_id);
+        array_shift($current_list_id);
+        $session->set('cart', implode(',', $current_list_id));
+    }
+
+    public function getUserAddress(Request $request) {
+
+    }
+
+    public function getAllBranch(Request $request) {
+        return (new Branch())->getAllBranch();
+    }
+
+    public function createOrder(Request $request, Response $response) {
+        $session = Application::$app->session;
+        $body = $request->getBody();
+        $new_order = (new Order())->createNewOrder($body, $session->get('user'));
+        (new OrderProduct())->createProductInOrder(intval($new_order->latest_order_id), explode(',', $session->get('cart')));
+        $session->set('cart', '');
+        $response->redirect("/order?id=$new_order->latest_order_id");
+        return;
+    }
+
+    public function reviewOrder(Request $request) {
+        $session = Application::$app->session;
+        $param = $request->getBody();
+        $user = (new User())->getUserInfo($session->get('user'));
+        $order = (new Order())->getDetailedOrder($param['id']);
+        $product_in_order = (new OrderProduct())->getOrderProduct(intval($param['id']));
+        $listProductId = array();
+        foreach ($product_in_order as $product) {
+            array_push($listProductId, $product['product_id']);
+        }
+        $listProducts = (new Product())->getProductInCart($listProductId);
+        return $this->render('order', ["user" => $user, "order" => $order, "listProducts" => $listProducts]);
+    }
+
+    public function cancelOrder(Request $request) {
+        $param = $request->getBody();
+        (new Order())->cancelOrder($param['id']);
+        $list_items = (new OrderProduct())->removeProduct($param['id']);
+        (new ProductItem())->restockItem($list_items);
+        return $list_items;
     }
 
     // render view ...
@@ -181,10 +250,12 @@ class SiteController extends Controller{
     //function login for login form on main layout;
     public static function login($path,LoginForm $model,Request $request,Response  $response){
         //$loginForm = new $model();
+        $session = Application::$app->session;
         if ($request->isPost()) {
             $model->loadData($request->getBody());
             
             if ($model->validate() && $model->login()) {
+                $session->set('cart', '0');
                 $response->redirect($path);
                 return;
             }

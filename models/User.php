@@ -52,7 +52,7 @@ use app\core\UserModel;
     }
 
     public function getUserInfo(int $user_id) {
-        $sql_command = self::prepare("SELECT fullname, email, phone FROM users WHERE id = $user_id;");
+        $sql_command = self::prepare("SELECT id, fullname, email, phone FROM users WHERE id = $user_id;");
         $sql_command->execute();
         return $sql_command->fetchObject();
     }
