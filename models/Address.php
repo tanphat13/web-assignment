@@ -21,6 +21,7 @@ class Address extends DbModel {
       public static function userRole(): string {
             return '';
       }
+<<<<<<< HEAD
       public function addNewAddress(int $user_id, string $address){
             //$user =  User::findOne($this->tableName(),['user_id=>$this->user_id']);
             // if(!$user){
@@ -33,3 +34,10 @@ class Address extends DbModel {
 }
 
 
+=======
+
+      public function getUserAddress($user_id) {
+            return $this->findAll($this->tableName(), ['user_id' => $user_id]);
+      }
+}
+>>>>>>> e2e3b72162ac1f965b25ccbef8545b7dae6eadb9
