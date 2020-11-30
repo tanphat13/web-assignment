@@ -57,6 +57,9 @@ $app->router->post('/ordering', [SiteController::class, 'createOrder']);
 $app->router->get('/order', [SiteController::class, 'reviewOrder']);
 $app->router->get('/cancel-order', [SiteController::class, 'cancelOrder']);
 
+//add address function
+$app->router->post('/address', [SiteController::class, 'addAddress']);
+
 //Footer
 $app->router->get('/warranty', [SiteController::class, 'warranty']);
 $app->router->get('/returnpolicy', [SiteController::class, 'returnpolicy']);
