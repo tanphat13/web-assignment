@@ -20,4 +20,8 @@ class Address extends DbModel {
       public static function userRole(): string {
             return '';
       }
+
+      public function getUserAddress($user_id) {
+            return $this->findAll($this->tableName(), ['user_id' => $user_id]);
+      }
 }
