@@ -1,7 +1,11 @@
 .home-wrapper{
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: auto;
+
+    .container{
+        height: 100vh;
+    }
     .login-wrapper {
         position: absolute;
         top: 0;

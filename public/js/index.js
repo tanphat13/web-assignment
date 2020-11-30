@@ -180,7 +180,6 @@ function addToCart() {
           nameInput.value = response.fullname;
           emailInput.value = response.email;
           phoneInput.value = response.phone;
-          console.log(updateForm);
           updateForm.classList.add("active");
        }
      };
@@ -208,7 +207,6 @@ function addToCart() {
    var xhttp = new XMLHttpRequest();
    xhttp.onreadystatechange = function () {
      if (xhttp.readyState == 4 && xhttp.status == 200) {
-       console.log(xhttp.responseText);
        let message = document.getElementById("update-message");
        message.innerHTML = xhttp.responseText;
        setTimeout(function (){
@@ -221,4 +219,10 @@ function addToCart() {
    xhttp.send(
      JSON.stringify(object)
   );
+ }
+
+ function closeUpdateForm(){
+   const updateForm = document.getElementById("staff-update-form");
+   updateForm.classList.remove("active");
+  updateForm.setAttribute('data-staff','');
  }

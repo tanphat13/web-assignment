@@ -18,23 +18,26 @@ use app\core\Application;
 <body>
     <div class="admin-layout">
         <nav class="slide-bar">
-            <div class="slide-bar-brand">
-                <a href="/admin">Admin Page</a>
-            </div>
-            <div class="slide-bar-admin-info">
+            <div class="slide-bar-header">
+                <div class="slide-bar-brand">
+                    <a href="/admin">Admin Page</a>
+                </div>
+                <div class="slide-bar-admin-info">
 
-                <?php if (!Application::$app->isGuest()) : ?>
-                    <p class="slide-bar-admin-welcome">
-                        Wellcome
-                    </p>
-                    <p class="slide-baar-admin-name">
-                        <?php
-                        echo Application::$app->user->displayName();
-                        ?>
-                    </p>
-                <?php endif ?>
+                    <?php if (!Application::$app->isGuest()) : ?>
+                        <p class="slide-bar-admin-welcome">
+                            Wellcome
+                        </p>
+                        <p class="slide-baar-admin-name">
+                            <?php
+                            echo Application::$app->user->displayName();
+                            ?>
+                        </p>
+                    <?php endif ?>
 
+                </div>
             </div>
+
             <div class='side-bar-function-list'>
                 <div class='function-item'>
                     <a href="/admin">

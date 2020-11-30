@@ -65,7 +65,6 @@ $app->router->get('/admin/create-new-staff', [AdminController::class, 'createSta
 $app->router->post('/admin/create-new-staff', [AdminController::class, 'createStaff',['admin']]);
 $app->router->post('/admin/login', [AdminController::class, 'login']);
 $app->router->get('/admin/specific-staff',[AdminController::class, 'getSpecificStaff',['admin']]);
-
 $app->router->post('/admin/update-staff-info', [AdminController::class, 'updateStaff', ['admin']]);
 // $app->router->get('/admin', [\app\controller\AdminController::class, 'admin']);
 $app->run();
