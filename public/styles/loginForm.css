@@ -1,6 +1,10 @@
 .home-wrapper {
   position: relative;
   width: 100%;
+  height: auto;
+}
+
+.home-wrapper .container {
   height: 100vh;
 }
 

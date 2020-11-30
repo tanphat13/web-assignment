@@ -6,7 +6,7 @@
     </div>
 
     <div class="staff-table-wrapper">
-        <div class="staff-table-row">
+        <div class="staff-table-row table-head">
             <div class='col-sm-1 table-cell'>Id</div>
             <div class='col-md table-cell'>Name</div>
             <div class='col-md table-cell'>Phone number</div>
@@ -18,15 +18,13 @@
         echo $staffList;
         ?>
         <ul class="navigation-btn">
-            <li>
-                <?php if ($page > 1) : ?>
-                    <a href="?page=1&limit=10">
-                        First
-                    </a>
-                <?php endif ?>
+            <li class="nav-btn" <?php if ($page > 1) : ?> <a href="?page=1&limit=10">
+                First
+                </a>
+            <?php endif ?>
 
             </li>
-            <li>
+            <li class="nav-btn">
                 <?php if ($page > 1) : ?>
                     <a href=<?php echo "?page=" . ($page - 1) . "&limit=10" ?>>
                         Previous
@@ -34,14 +32,14 @@
                 <?php endif ?>
 
             </li>
-            <li>
+            <li class="nav-btn">
                 <?php if ($page < $totalPage) : ?>
                     <a href=<?php echo "?page=" . ($page + 1) . "&limit=10" ?>>
                         Next
                     </a>
                 <?php endif ?>
             </li>
-            <li>
+            <li class="nav-btn">
                 <?php if ($page < $totalPage) : ?>
                     <a href=<?php echo "?page=$totalPage&limit=10" ?>>
                         Last
@@ -52,11 +50,15 @@
     </div>
 
     <form method="post" id="staff-update-form" class="staff-update-form">
+
+        <div class="form-title">
+                    Update staff information form
+        </div>
         <div class="form-group">
             <p id="update-message"></p>
         </div>
         <div class="form-group">
-            <label for="fullname">Name</label>
+            <label for="fullname">Staff name:</label>
             <input type="text" name="fullname" class="form-control
         <?php
         echo $model->hasError('fullname') ? ' is-invalid' : '';
@@ -70,7 +72,7 @@
         </div>
 
         <div class="form-group">
-            <label for="email">Email address</label>
+            <label for="email">Email address:</label>
             <input id="email" type="email" name="email" class="form-control <?php
                                                                             echo $model->hasError('email') ? ' is-invalid' : '';
                                                                             ?>" id="email" aria-describedby="emailHelp">
@@ -81,7 +83,7 @@
             </div>
         </div>
         <div class="form-group ">
-            <label for="phone">Phone number</label>
+            <label for="phone">Phone number:</label>
             <input id="phone" name="phone" type="number" class="form-control <?php
                                                                                 echo $model->hasError('phone') ? ' is-invalid' : '';
                                                                                 ?>" aria-describedby="emailHelp">
@@ -92,7 +94,9 @@
             </div>
         </div>
 
-        <div class="btn btn-primary" onClick="updateStaffInfo()">Update</div>
+        <div class="btn btn-primary update-btn" onClick="updateStaffInfo()">Update</div>
+        <div id='update-form-close-btn' class = 'close-btn' onClick="closeUpdateForm()">
+            x
+        </div>
     </form>
 </div>
-

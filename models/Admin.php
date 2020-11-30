@@ -54,7 +54,7 @@ use app\core\AdminModel;
             '<div class="col-md table-cell">' . $staff['email'] . '</div>'.
             '<div class="col-sm-1 table-cell">' . $staff['gender'] . '</div>'.
             '<div class="col-sm-1 table-cell">' .
-                '<button id="update-staff-btn" onClick="getStaffId('.$staff["id"].')"> Upadte</button></div> 
+                '<button id="update-staff-btn" class="open-update-btn" onClick="getStaffId('.$staff["id"].')"> Upadte</button></div> 
              </div>';
         }
         
