@@ -46,7 +46,7 @@ $app->router->get('/branch', [SiteController::class, 'getBranch']);
 $app->router->post('/rating', [SiteController::class, 'updateRating']);
 $app->router->post('/comment', [SiteController::class, 'createComment']);
 //add address function
-$app->router->post('address', [SiteController::class, 'addAddress']);
+$app->router->post('/address', [SiteController::class, 'Address']);
 //Footer
 $app->router->get('/warranty', [SiteController::class, 'warranty']);
 $app->router->get('/returnpolicy', [SiteController::class, 'returnpolicy']);

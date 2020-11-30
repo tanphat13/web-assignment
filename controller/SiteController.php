@@ -61,7 +61,7 @@ class SiteController extends Controller{
     }
     // address
     public function addAddress(Request $request){
-        $add_Address = new add_Address();
+        $add_Address = new Address();
         $session = Application::$app->session;
     }
 
