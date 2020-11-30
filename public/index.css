@@ -6,7 +6,7 @@
 
 @media (min-width: 1200px) {
   .container {
-    width: 1600px;
+    max-width: 1600px;
     margin: 0 8%;
   }
 }
@@ -126,18 +126,24 @@ body {
 }
 
 .categoryPage .product_matrix .product_item {
-  border: solid;
+  height: 30vh;
+  width: 20%;
+  border: solid white;
   display: inline-block;
-  margin: 0 5px 5px 5px;
 }
 
 .categoryPage .product_matrix .product_item img {
-  height: 250px;
-  width: 13vw;
+  height: 100%;
+  width: 100%;
 }
 
 .categoryPage .product_matrix .product_item:hover {
   border-color: red;
+}
+
+.categoryPage .product_matrix .product_item a {
+  height: 100vh;
+  width: 100vw;
 }
 
 .footer-container .col1 .location-wrapper {
@@ -174,8 +180,58 @@ body {
 }
 
 .home-wrapper .main-screen {
-  position: absolute;
-  left: 0px;
-  top: 0px;
   z-index: 1;
 }
+
+.home_brand_matrix .home_brand_row {
+  height: 100%;
+  border-color: #8505da;
+  border: solid 3px;
+}
+
+.home_brand_matrix .home_brand_row .home_brand_header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.home_brand_matrix .home_brand_row .home_brand_header .home_brand {
+  padding-left: 5px;
+  margin: 0;
+}
+
+.home_brand_matrix .home_brand_row .home_brand_header .seeall {
+  font-size: 150%;
+  padding-right: 1%;
+}
+
+.home_brand_matrix .home_brand_row .home_product_row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.home_brand_matrix .home_brand_row .home_product_row .home_product_item {
+  height: 80%;
+  width: 15%;
+  border: solid white;
+}
+
+.home_brand_matrix .home_brand_row .home_product_row .home_product_item img {
+  height: 100%;
+  width: 100%;
+}
+
+.home_brand_matrix .home_brand_row .home_product_row .home_product_item:hover {
+  border-color: red;
+}
+/*# sourceMappingURL=index.css.map */
