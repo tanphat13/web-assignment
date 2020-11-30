@@ -59,6 +59,11 @@ class SiteController extends Controller{
         $comments = (new Comment())->getRecentComment($param['id']);
         return $this->render('product', ['product' => $product, 'comments' => $comments, 'session' => $session]);
     }
+    // address
+    public function addAddress(Request $request){
+        $add_Address = new add_Address();
+        $session = Application::$app->session;
+    }
 
     public function getBranch(Request $request) {
         $param = $request->getBody();
