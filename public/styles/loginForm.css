@@ -2,16 +2,17 @@
   position: relative;
   width: 100%;
   height: auto;
+<<<<<<< HEAD
 }
 
 .home-wrapper .container {
   height: 100vh;
+=======
+>>>>>>> e0cb30eaf20db030ed6f7cc37219856bee013498
 }
 
 .home-wrapper .login-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: fixed;
   z-index: 5;
   width: 100%;
   height: 100vh;
@@ -27,4 +28,3 @@
 .home-wrapper .main-screen {
   z-index: 1;
 }
-/*# sourceMappingURL=loginForm.css.map */

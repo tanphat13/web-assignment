@@ -40,13 +40,28 @@ $app->router->get('/logout', [AuthController::class, 'logout']);
 
 $app->router->get('/profile', [AuthController::class, 'profile']);
 
+// Specific product request
 $app->router->get('/product', [SiteController::class, 'renderProduct']);
 $app->router->post('/product', [SiteController::class, 'renderProduct']);
 $app->router->get('/branch', [SiteController::class, 'getBranch']);
 $app->router->post('/rating', [SiteController::class, 'updateRating']);
 $app->router->post('/comment', [SiteController::class, 'createComment']);
+<<<<<<< HEAD
 //add address function
 $app->router->post('/address', [SiteController::class, 'Address']);
+=======
+
+// Review Cart + purchase
+$app->router->get('/my-cart', [SiteController::class, 'reviewCart']);
+$app->router->post('/my-cart', [SiteController::class, 'reviewCart']);
+$app->router->post('/remove-product', [SiteController::class, 'removeProduct']);
+$app->router->get('/address', [SiteController::class, 'getUserAddress']);
+$app->router->get('/all-branch', [SiteController::class, 'getAllBranch']);
+$app->router->post('/ordering', [SiteController::class, 'createOrder']);
+$app->router->get('/order', [SiteController::class, 'reviewOrder']);
+$app->router->get('/cancel-order', [SiteController::class, 'cancelOrder']);
+
+>>>>>>> e0cb30eaf20db030ed6f7cc37219856bee013498
 //Footer
 $app->router->get('/warranty', [SiteController::class, 'warranty']);
 $app->router->get('/returnpolicy', [SiteController::class, 'returnpolicy']);

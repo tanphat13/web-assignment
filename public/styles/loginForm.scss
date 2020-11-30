@@ -7,9 +7,7 @@
         height: 100vh;
     }
     .login-wrapper {
-        position: absolute;
-        top: 0;
-        left: 0;
+        position: fixed;
         z-index: 5;
         width: 100%;
         height: 100vh;

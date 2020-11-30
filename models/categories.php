@@ -18,6 +18,7 @@ class Categories extends DbModel {
         return $brand;
     }
 
+<<<<<<< HEAD
     public function getBrandProduct($brand) {
         $sql_command = $this->prepare("SELECT DISTINCT products.product_id, products.product_name, products.product_price, products.product_brand, MIN(images.image_id), images.link 
             FROM products LEFT JOIN images ON products.product_id = images.product_id WHERE products.product_brand = '$brand' 
@@ -40,6 +41,20 @@ class Categories extends DbModel {
         $products = array();
         foreach ($productList as $key) {
             array_push($products, $key);
+=======
+        public function getBrandProduct($brand) {
+            $sql_command = $this->prepare("SELECT products.product_id, products.product_name, products.product_price, products.product_brand, MIN(images.image_id), images.link 
+                FROM products LEFT JOIN images ON products.product_id = images.product_id WHERE products.product_brand = '$brand' 
+                GROUP BY  products.product_name ORDER BY products.product_price DESC");
+            $sql_command->execute();
+            $productList = $sql_command->fetchAll();
+            $products = array();
+            foreach ($productList as $key) {
+                array_push($products, $key);
+            }
+            // echo var_dump($products);
+            return $products;
+>>>>>>> e0cb30eaf20db030ed6f7cc37219856bee013498
         }
         // echo var_dump($products);
         return $products;
