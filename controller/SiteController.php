@@ -12,6 +12,7 @@ use app\models\Address;
 use app\models\Product;
 use app\models\Branch;
 use app\models\Comment;
+use app\models\Image;
 use app\models\Rating;
 use app\models\User;
 use app\models\Order;
@@ -24,14 +25,16 @@ class SiteController extends Controller{
     public function home(Request $request,Response $response){
         $loginForm = new LoginForm();
         $session = Application::$app->session;
-        $param =
-        ["model" => $loginForm, "session" => $session];
-        $path = 'home';
+        $path = '/';
         $listField = array_keys($request->getBody());
         //exit;
         if(in_array('email',$listField) && in_array('password',$listField)){
             self::login($path, $loginForm, $request, $response);
         }
+        $homepage = (new Categories())->getBrandList();
+        $brandlist = (new Categories())->getCategoryList();
+        $events = (new Image())->getImageEvent();
+        $param = ["model" => $loginForm, "session" => $session, "product_home" => $homepage, "brands" => $brandlist, "events" => $events];
         return $this->render('home', $param);
     }
 
