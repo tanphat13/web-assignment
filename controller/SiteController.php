@@ -8,6 +8,7 @@ use app\core\Response;
 use app\models\LoginForm;
 use app\models\Categories;
 use app\core\Session;
+use app\models\Address;
 use app\models\Product;
 use app\models\Branch;
 use app\models\Comment;
@@ -158,11 +159,29 @@ class SiteController extends Controller{
     }
 
     public function getUserAddress(Request $request) {
-
+        $session = Application::$app->session;
+        $list_addresses = (new Address())->getUserAddress($session->get('user'));
+        $addressOption = '';
+        foreach ($list_addresses as $address) {
+            $index = array_search($address, $list_addresses);
+            $addressOption .= "<div class='form-check form-check-inline'>
+                <input class='form-check-input' type='radio' name='address' id='$index' value='$address[address]' />
+                <label class='form-check-label' for='$index'>$address[address]</label>
+            </div>";
+        }
+        return $addressOption;
     }
 
     public function getAllBranch(Request $request) {
-        return (new Branch())->getAllBranch();
+        $list_branches = (new Branch())->getAllBranch();
+        $branchOption = '';
+        foreach ($list_branches as $branch) {
+            $branchOption .= "<div class='form-check form-check-inline'>
+                <input class='form-check-input' type='radio' name='address' id='$branch[branch_id]' value='$branch[branch_address]' />
+                <label class='form-check-label' for='$branch[branch_id]'>$branch[branch_address] - Contact: $branch[branch_phone]</label>
+            </div>";
+        }
+        return $branchOption;
     }
 
     public function createOrder(Request $request, Response $response) {

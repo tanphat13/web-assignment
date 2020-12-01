@@ -45,15 +45,7 @@
         public function getAllBranch() {
             $sql_command = self::prepare("SELECT branch_id, branch_address, branch_phone FROM branches;");
             $sql_command->execute();
-            $list_branches = $sql_command->fetchAll();
-            $htmlString = '';
-            foreach ($list_branches as $branch) {
-                $htmlString .= "<div class='form-check form-check-inline'>
-                <input class='form-check-input' type='radio' name='address' id='$branch[branch_id]' value='$branch[branch_address]' />
-                <label class='form-check-label' for='$branch[branch_id]'>$branch[branch_address] - Contact: $branch[branch_phone]</label>
-            </div>";
-            }
-            echo $htmlString;
+            return $sql_command->fetchAll();
         }
     }
 ?>
