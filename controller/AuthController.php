@@ -22,9 +22,11 @@ class AuthController extends Controller{
 
     public function login(Request $request, Response $response){
         $loginForm =  new LoginForm();
+        $session = Application::$app->session;
         if($request->isPost()){
             $loginForm->loadData($request->getBody());
             if($loginForm->validate() && $loginForm->login()){
+                $session->set('cart', '');
                 $response->redirect('/');
                 return;
             }
@@ -58,10 +60,6 @@ class AuthController extends Controller{
     }
     public function profile (){
         return $this->render('profile');
-    }
-    public function admin()
-    {
-        return $this->render('admin');
     }
 }   
 

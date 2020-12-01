@@ -44,6 +44,7 @@ class Categories extends DbModel {
         // echo var_dump($products);
         return $products;
     }
+
     public function getBrandList() {
         $sql_command = $this->prepare("SELECT DISTINCT product_brand FROM products ORDER BY product_brand ASC");
         $sql_command->execute();

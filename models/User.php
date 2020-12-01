@@ -2,7 +2,7 @@
 namespace app\models;
 use app\core\UserModel;
 
-class User extends UserModel  {
+ class User extends UserModel  {
 
     const STATUS_INACTIVE = 0 ;
     const STATUS_ACTIVE = 1;
@@ -49,6 +49,12 @@ class User extends UserModel  {
 
     public static function userRole(): string {
         return 'role';
+    }
+
+    public function getUserInfo(int $user_id) {
+        $sql_command = self::prepare("SELECT id, fullname, email, phone FROM users WHERE id = $user_id;");
+        $sql_command->execute();
+        return $sql_command->fetchObject();
     }
 }
 

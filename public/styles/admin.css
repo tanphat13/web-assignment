@@ -1,0 +1,140 @@
+.admin-layout {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+  height: 100vh !important;
+}
+
+.admin-layout .container {
+  margin: 0px;
+  padding: 0px 24px;
+  max-width: 100%;
+  height: 100vh;
+}
+
+.admin-layout .container .manage-staff-container {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.admin-layout .container .manage-staff-container .table-action {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 80px;
+  padding-top: 16px;
+  margin-bottom: 24px;
+  border: 1px solid green;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.admin-layout .container .manage-staff-container .table-action .btn-create-staff {
+  position: absolute;
+  right: 16px;
+  width: auto;
+  padding: 4px 14px;
+  height: 30px;
+  line-height: 15px;
+  border: 1px solid blue;
+}
+
+.admin-layout .container .manage-staff-container .staff-table-wrapper {
+  width: 100%;
+  border: 1px solid red;
+  height: 80%;
+}
+
+.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 40px;
+  border: 1px solid blue;
+  text-align: center;
+}
+
+.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .table-cell {
+  width: 50px;
+  border: 0.5px solid black;
+  text-align: center;
+}
+
+.admin-layout .container .manage-staff-container .staff-update-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  border: 1px solid red;
+  z-index: 100;
+  background-color: white;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  visibility: hidden;
+}
+
+.admin-layout .container .manage-staff-container .active {
+  visibility: visible;
+}
+
+.admin-layout .slide-bar {
+  position: relative;
+  height: 100vh;
+  width: 15%;
+  border: 1px solid red;
+}
+
+.admin-layout .slide-bar .slide-bar-brand {
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  line-height: 22px;
+  text-align: center;
+  color: black;
+  font-weight: 600;
+  padding: 16px 0px;
+}
+
+.admin-layout .slide-bar .slide-bar-brand a {
+  text-decoration: none;
+  color: black;
+  line-height: 22px;
+}
+
+.admin-layout .slide-bar .slide-bar-admin-info {
+  text-align: center;
+}
+
+.admin-layout .slide-bar .slide-bar-admin-info .slide-bar-admin-welcome,
+.admin-layout .slide-bar .slide-bar-admin-info .slide-baar-admin-name {
+  margin: 0px;
+  height: 30px;
+}
+
+.admin-layout .slide-bar .slide-bar-action {
+  position: absolute;
+  bottom: 24px;
+  text-align: center;
+  width: 100%;
+  height: 40px;
+}
+
+.admin-layout .slide-bar .side-bar-function-list {
+  margin-top: 24px;
+  width: 100%;
+  border: 1px solid green;
+  height: calc(100% - 164px);
+}
+
+.admin-layout .slide-bar .side-bar-function-list .function-item {
+  height: 30px;
+  text-align: center;
+  border: 1px solid red;
+  margin: 5px 0px;
+}

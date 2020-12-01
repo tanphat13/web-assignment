@@ -10,7 +10,8 @@
         "styles/_category.scss",
         "styles/location.scss",
         "styles/loginForm.scss",
-        "styles/_home.scss"
+        "styles/_home.scss",
+        "styles/admin.scss"
     ],
     "names": [],
     "file": "index.css"
