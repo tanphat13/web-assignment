@@ -1,4 +1,4 @@
-
+$admin-main-color: #009879;
 .admin-layout {
     display: flex;
     margin:0px;
@@ -29,7 +29,12 @@
                     padding: 4px 14px;
                     height: 30px;
                     line-height: 15px;
-                    border: 1px solid blue;
+                    border: 1.5px solid $admin-main-color;
+                    a{
+                        text-decoration: none;
+                        color: $admin-main-color;
+                        font-weight: 600;
+                    }
                 }
             }
             .staff-table-wrapper {
@@ -235,6 +240,7 @@
                a {
                    color: #009879;
                    font-weight: 600;
+                   text-decoration: none;
                }
 
                transition: 0.3s;

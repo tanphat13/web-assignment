@@ -192,6 +192,36 @@ function addToCart() {
      // alert(staffId);
  }
 
+ // Search feature
+
+ function searchStaff(searchInput){
+  const  options = document.getElementById('search-option');
+  let optionValue = options.value;
+  const tableContent = document.getElementById('table-content');
+  // console.log(optionValue);
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (xhttp.readyState === 4 && xhttp.status === 200) {
+      tableContent.innerHTML = xhttp.responseText;
+    }
+  };
+  xhttp.open(
+    "GET",
+    `http://localhost:8080/admin/search?key=${searchInput}&options=${optionValue}`,
+    true
+  );
+  xhttp.send();
+ }
+
+
+
+
+
+
+
+
+
+
  function updateStaffInfo(){
    const updateForm = document.getElementById("staff-update-form");
    const staffId = updateForm.getAttribute("data-staff");
@@ -215,7 +245,7 @@ function addToCart() {
      }
    };
    xhttp.open("POST", `http://localhost:8080/admin/update-staff-info`, true);
-  xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+   xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
    xhttp.send(
      JSON.stringify(object)
   );

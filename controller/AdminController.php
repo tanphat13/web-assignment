@@ -93,6 +93,14 @@ Class AdminController extends Controller {
             }
         }
     }
+    public function search(){
+        $option = $_GET['options'];
+        $key = $_GET['key'];
+        $staffModel = new Staff();
+        $searchResult = $staffModel->searchStaff($option,$key);
+        echo $searchResult;
+       
+    }
 }
 
 

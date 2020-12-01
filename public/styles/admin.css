@@ -41,7 +41,13 @@
   padding: 4px 14px;
   height: 30px;
   line-height: 15px;
-  border: 1px solid blue;
+  border: 1.5px solid #009879;
+}
+
+.admin-layout .container .manage-staff-container .table-action .btn-create-staff a {
+  text-decoration: none;
+  color: #009879;
+  font-weight: 600;
 }
 
 .admin-layout .container .manage-staff-container .staff-table-wrapper {
@@ -281,6 +287,7 @@
 .admin-layout .slide-bar .side-bar-function-list .function-item a {
   color: #009879;
   font-weight: 600;
+  text-decoration: none;
 }
 
 .admin-layout .slide-bar .side-bar-function-list .function-item:hover {

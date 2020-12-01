@@ -1,5 +1,14 @@
 <div class="manage-staff-container">
     <div class="table-action">
+        <div class="table-action-search-bar">
+            <label for="search-option">Options</label>
+            <select name="search-option" id="search-option">
+                <option value="fullname">Fullname</option>
+                <option value="phone">phone</option>
+                <option value="email">email</option>
+            </select>
+            <input type='text' id="admimn-table-actions-search" class="search-input" placeholder="Search" onkeyup="searchStaff(this.value)">
+        </div>
         <div class="btn-create-staff">
             <a href="/admin/create-new-staff">Add new staff</a>
         </div>
@@ -14,9 +23,12 @@
             <div class='col-sm-1 table-cell'>Gender</div>
             <div class='col-sm-1 table-cell'>Actions</div>
         </div>
-        <?php
-        echo $staffList;
-        ?>
+        <div id='table-content' class="staff-table-content">
+            <?php
+            echo $staffList;
+            ?>
+        </div>
+
         <ul class="navigation-btn">
             <li class="nav-btn" <?php if ($page > 1) : ?> <a href="?page=1&limit=10">
                 First
@@ -52,7 +64,7 @@
     <form method="post" id="staff-update-form" class="staff-update-form">
 
         <div class="form-title">
-                    Update staff information form
+            Update staff information form
         </div>
         <div class="form-group">
             <p id="update-message"></p>
@@ -95,7 +107,7 @@
         </div>
 
         <div class="btn btn-primary update-btn" onClick="updateStaffInfo()">Update</div>
-        <div id='update-form-close-btn' class = 'close-btn' onClick="closeUpdateForm()">
+        <div id='update-form-close-btn' class='close-btn' onClick="closeUpdateForm()">
             x
         </div>
     </form>
