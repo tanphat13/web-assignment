@@ -29,9 +29,9 @@
         }
 
         public function getAvailableBranch(int $product_id) { 
-            $list_branches_id = self::findAll('products_items', ['product_id' => $product_id]);
+            $list_branches = self::findAll('products_items', ['product_id' => $product_id]);
             $branches = array();
-            foreach ($list_branches_id as $branch) {
+            foreach ($list_branches as $branch) {
                 $branch_id = intval($branch['branch_id']);
                 array_push($branches, self::findOne('branches', ['branch_id' => $branch_id]));
             }
@@ -40,6 +40,12 @@
                 $htmlString .= "<li>$availableBranch->branch_address - Contact: $availableBranch->branch_phone</li>";
             }
             echo $htmlString;
+        }
+
+        public function getAllBranch() {
+            $sql_command = self::prepare("SELECT branch_id, branch_address, branch_phone FROM branches;");
+            $sql_command->execute();
+            return $sql_command->fetchAll();
         }
     }
 ?>
