@@ -1,4 +1,20 @@
+<<<<<<< HEAD
 
+=======
+#map{
+    height: 400px;
+    width: 80%;
+    border:1px solid red;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1600px;
+        margin: 0 8%;
+        
+    }     
+}
+>>>>>>> 76224cb08b44f085f340fbc8cb781f3058c6a7a9
 @import "./styles/footer";
 @import "./styles/installment";
 @import "./styles/returnpolicy";
@@ -6,6 +22,46 @@
 @import "./styles/category";
 @import './styles/location';
 @import './styles/loginForm';
+<<<<<<< HEAD
 @import './styles/admin';
+<<<<<<< HEAD
 
+.admin-login-screen{
+    position: relative;
+    height: 100%;
+    .admin-login-form-title{
+        height: 40px;
+        margin-top:16px;
+        color: #009879;
+        text-align: center;
+    }
+    .admin-login-form{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        width: 400px;
+        height: 400px;
+        label{
+            color: #009879;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .login-btn{
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #009879;
+            border:none;
+        }
+    }
+}
 
+=======
+@import './styles/home';
+>>>>>>> 76224cb08b44f085f340fbc8cb781f3058c6a7a9
+=======
+@import './styles/product';
+@import './styles/cart';
+@import './styles/order';
+>>>>>>> e0cb30eaf20db030ed6f7cc37219856bee013498

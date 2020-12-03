@@ -2,7 +2,6 @@
     use app\core\Application;
 ?>
 
-<link rel="stylesheet" href="./styles/product.css" />
 <h3><?php echo $product['product']->product_name . "(" . $product['product']->product_ram . "GB/" . $product['product']->product_rom . "GB)" ?></h3>
 <div class="product">
     <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
@@ -73,7 +72,7 @@
             $list_color .= "</div>";
             echo $list_color;
         ?>
-        <button class='purchase-btn' onclick="addToCart()">
+        <button class='purchase-btn' onclick="addToCart(<?php echo $session->get('user') ?>)">
             <h6>Purchase Now</h6>
             <p>Shipping Or Receive At Nearest Store</p>
         </button>

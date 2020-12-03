@@ -8,28 +8,28 @@ class Address extends DbModel {
             return [
                   'user_id' => [self::RULE_REQUIRED],
                   'address' => [self::RULE_REQUIRED],
+
             ];
       }
       public static function tableName(): string {
             return 'addresses';
       }
       public static function attribute(): array {
-            return [];
+            return ['user_id', 'address'];
       }
       public static function primaryKey(): string {
-            return '';
+            return 'user_id';
       }
       public static function userRole(): string {
             return '';
       }
+      public function addNewAddress(int $user_id, string $address){
+            $this->user_id = $user_id;
+            $this->address = $address;
+            return $this->save();
+      }
 
       public function getUserAddress($user_id) {
             return $this->findAll($this->tableName(), ['user_id' => $user_id]);
-      }
-
-      public function addNewAddress($user_id, $address) {
-            $this->user_id = $user_id;
-            $this->address = $address;
-            $this->save();
       }
 }
