@@ -69,6 +69,10 @@
             </div>
         </div>
         <div class="cancel-btn">
-            <button type="button" class="btn btn-outline-danger btn-block" onclick="confirmCancelOrder(<?php echo $order->order_id; ?>)">Cancel Order</button>
+            <button type="button" onclick="confirmCancelOrder(<?php echo $order->order_id; ?>)" class="btn btn-outline-danger btn-block"
+            <?php
+                if ($order->order_status === 'CANCEL' || $order->order_status === 'DONE') echo 'disabled'
+            ?>
+            >Cancel Order</button>
         </div>
 </div>
