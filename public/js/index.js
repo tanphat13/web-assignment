@@ -95,6 +95,38 @@ function clear(){
   Marker.length=0;
 }
 
+function openUpdateForm() {
+  document.getElementById('box-form').classList.add('active');
+  return;
+}
+
+function closeUpdateBox() {
+  document.getElementById('box-form').classList.remove('active');
+  return;
+}
+
+function confirmRemoveAddress(index, user_id) {
+  let address = document.getElementById('address-'+index).firstElementChild.innerText;
+  document.getElementById('message').innerHTML = "<p>Do you want to remove this address (<em class='font-weight-bold'>" + address +  "</em>) ?</p>";
+  document.getElementById('confirm_button').setAttribute('onclick', 'deleteAddress('+index+', '+user_id+')');
+  document.getElementById('box-confirm').classList.add('active');
+  return;
+}
+
+function deleteAddress(index, user_id) {
+  let xhttp = new XMLHttpRequest();
+  let address = document.getElementById('address-'+index).firstElementChild.innerHTML;
+  xhttp.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+      document.getElementById('address-'+index).remove();
+      document.getElementById('box-confirm').classList.remove('active');
+    }
+  };
+  xhttp.open("POST", "/delete-address", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("user_id="+user_id+"&address="+address);
+}
+
 function loadAvailableBranch(product_id) {
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -192,7 +224,7 @@ function removeProduct(product_id) {
 }
 
 function handleOrderMethod(method, user_id = 0) {
-  let request_path = '/address?user_id='+user_id;
+  let request_path = '/my-address?user_id='+user_id;
   if (method === 'store') {
     request_path = '/all-branch';
   }
@@ -250,7 +282,6 @@ function cancelOrder(order_id) {
           nameInput.value = response.fullname;
           emailInput.value = response.email;
           phoneInput.value = response.phone;
-          console.log(updateForm);
           updateForm.classList.add("active");
        }
      };
@@ -278,7 +309,6 @@ function cancelOrder(order_id) {
    var xhttp = new XMLHttpRequest();
    xhttp.onreadystatechange = function () {
      if (xhttp.readyState == 4 && xhttp.status == 200) {
-       console.log(xhttp.responseText);
        let message = document.getElementById("update-message");
        message.innerHTML = xhttp.responseText;
        setTimeout(function (){
@@ -291,4 +321,10 @@ function cancelOrder(order_id) {
    xhttp.send(
      JSON.stringify(object)
   );
+ }
+
+ function closeUpdateForm(){
+   const updateForm = document.getElementById("staff-update-form");
+   updateForm.classList.remove("active");
+  updateForm.setAttribute('data-staff','');
  }

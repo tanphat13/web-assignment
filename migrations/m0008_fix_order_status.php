@@ -5,6 +5,7 @@
         public function up() {
             $db = Application::$app->db;
             $sql_command = "ALTER TABLE orders CHANGE order_status order_status SET('PENDING','DELIVERING','DONE','CANCEL') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL;
+                ALTER TABLE orders ADD order_method TINYINT NOT NULL AFTER order_note;
                 ALTER TABLE orders_products DROP INDEX serial_number;
                 ALTER TABLE orders_products DROP FOREIGN KEY product_identify;
                 ALTER TABLE orders_products DROP FOREIGN KEY order_identify;
@@ -19,6 +20,7 @@
         public function down() {
             $db = Application::$app->db;
             $sql_command = "ALTER TABLE orders CHANGE order_status order_status VARCHAR(10) NULL DEFAULT NULL;
+                ALTER TABLE orders DROP order_method;
                 ALTER TABLE orders_products ADD INDEX (serial_number);
                 ALTER TABLE orders_products CHANGE serial_number serial_number INT NOT NULL;
                 ALTER TABLE orders_products ADD PRIMARY KEY (product_id, order_id, serial_number);

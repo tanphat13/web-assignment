@@ -41,7 +41,6 @@ class Categories extends DbModel {
         foreach ($productList as $key) {
             array_push($products, $key);
         }
-        // echo var_dump($products);
         return $products;
     }
 

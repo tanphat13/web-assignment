@@ -8,10 +8,40 @@
     .container {
         max-width: 1600px;
         margin: 0 8%;
-        
+        width: 84%;
     }     
 }
 
+.admin-login-screen{
+    position: relative;
+    height: 100%;
+    .admin-login-form-title{
+        height: 40px;
+        margin-top:16px;
+        color: #009879;
+        text-align: center;
+    }
+    .admin-login-form{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        width: 400px;
+        height: 400px;
+        label{
+            color: #009879;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .login-btn{
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #009879;
+            border:none;
+        }
+    }
+}
 @import "./styles/footer";
 @import "./styles/installment";
 @import "./styles/returnpolicy";
@@ -19,8 +49,9 @@
 @import "./styles/category";
 @import './styles/location';
 @import './styles/loginForm';
-@import './styles/home';
 @import './styles/admin';
+@import './styles/home';
 @import './styles/product';
 @import './styles/cart';
 @import './styles/order';
+@import './styles/address';

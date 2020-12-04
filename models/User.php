@@ -56,6 +56,14 @@ use app\core\UserModel;
         $sql_command->execute();
         return $sql_command->fetchObject();
     }
+
+    public function updateUserInfo(int $user_id, array $info) {
+        $this->fullname = $info['name'];
+        $this->email = $info['email'];
+        $this->phone = $info['phone'];
+        $sql_command = self::prepare("UPDATE users SET fullname = '$this->fullname', email = '$this->email', phone = '$this->phone' WHERE id = $user_id;");
+        return $sql_command->execute();
+    }
 }
 
 ?>

@@ -17,11 +17,13 @@ Class AdminController extends Controller {
     public function __construct(){
         $this->registerMiddleware(new AuthMiddleware(['createStaff']));
     }
-    public function admin (Request $req,Response $res){
-        
+    public function admin (Request $req,Response $res){  
         $session = new Session();
         $adminModel = new Admin();
         $user = $session->get('user');
+        if (!$user) {
+            $res->redirect('/admin/login');
+        }
         $page = 0;
         if(isset($_GET['page']) && isset($_GET["limit"])){
             $page=intval($_GET['page']);
@@ -30,9 +32,7 @@ Class AdminController extends Controller {
             $page = 1;
             $limit = 10;
         }
-        if(!$user){
-            $res->redirect('/admin/login');
-        }
+       
         $fetchResult = $adminModel->getStaffList($page,$limit);
         $totalPage = $fetchResult['totalPage'];
         $staffList = $fetchResult['staffList'];  
