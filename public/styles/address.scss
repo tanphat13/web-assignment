@@ -1,0 +1,97 @@
+.box-form {
+    z-index: 1000;
+    width: 50vw;
+    height: 80vh;
+    top: 5vh;
+    left: 25vw;
+    background-color: white;
+    .form-header {
+        height: 10%;
+        padding: 1% 5%;
+    }
+}
+
+.manage-address {
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    .edit-btn {
+        position: absolute;
+        top: 0%;
+        right: 20%;
+        margin-top: 2px;
+        padding: 0;
+        width: 3vw;
+        height: 3vw;
+        border: none;
+        svg {
+            font-size: 0.85rem;
+        }
+    }
+    .current-address {
+        margin: 0;
+        padding: 2%;
+        width: 100%;
+        border-top: 1px solid #dedede;
+        h6 {
+            padding-left: 2%;
+        }
+        .personal-info {
+            margin: 0;
+            width: 100%;
+        }
+        .address-container {
+            margin-left: 0;
+            margin-right: 0;
+            padding: 3vh 0;
+            padding-left: 6%;
+            width: 100%;
+            border-top: 1px dashed #dedede;
+            .address-info {
+                width: 90%;
+                display: inline-flex;
+                justify-content: space-between;
+                font-size: 0.9rem;
+                
+                .btn {
+                    position: relative;
+                    width: 1.5em;
+                    height: 2em;
+                    font-size: 0.75rem;
+                    svg {
+                        position: absolute;
+                        top: 25%;
+                        left: 25%;
+                    }
+                }
+            }
+        }
+    }
+    .add-address {
+        position: relative;
+        margin: 0;
+        padding: 2%;
+        width: 100%;
+        height: fit-content;
+        border-top: 1px solid #dedede;
+        .input-address {
+            padding-left: 1%;
+            width: 95%;
+            display: inline-block;
+        }
+        .btn {
+            position: absolute;
+            top: 45%;
+            right: 0%;
+            padding: 0%;
+            width: 4vw;
+            height: 4vw;
+            display: inline-block;
+            font-size: 0.75rem;
+        }
+        .btn-outline-success {
+            border: none;
+        }
+    }
+}

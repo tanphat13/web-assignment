@@ -48,14 +48,16 @@ $app->router->post('/rating', [SiteController::class, 'updateRating']);
 $app->router->post('/comment', [SiteController::class, 'createComment']);
 
 //add address function
-$app->router->post('/address', [SiteController::class, 'Address']);
-
+$app->router->get('/address', [SiteController::class, 'manageUserAddress']);
+$app->router->post('/address', [SiteController::class, 'manageUserAddress']);
+$app->router->post('/add-address', [SiteController::class, 'addNewAddress']);
+$app->router->post('/delete-address', [SiteController::class, 'deleteAddress']);
 
 // Review Cart + purchase
 $app->router->get('/my-cart', [SiteController::class, 'reviewCart']);
 $app->router->post('/my-cart', [SiteController::class, 'reviewCart']);
 $app->router->post('/remove-product', [SiteController::class, 'removeProduct']);
-$app->router->get('/address', [SiteController::class, 'getUserAddress']);
+$app->router->get('/my-address', [SiteController::class, 'getUserAddress']);
 $app->router->get('/all-branch', [SiteController::class, 'getAllBranch']);
 $app->router->post('/ordering', [SiteController::class, 'createOrder']);
 $app->router->get('/order', [SiteController::class, 'reviewOrder']);
