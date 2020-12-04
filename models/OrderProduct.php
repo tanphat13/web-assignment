@@ -32,7 +32,7 @@
             $product_item = new ProductItem();
             foreach ($list_product as $product) {
                 $this->order_id = $order_id;
-                $this->product_id = $product;
+                $this->product_id = intval($product);
                 $item = $product_item->getItem($product);
                 $this->serial_number = intval($item->serial_number);
                 $this->save();

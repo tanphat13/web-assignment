@@ -64,21 +64,21 @@
         </div>
         <div class="form-group">
             <div class="personal-info">
-                <div class="row-input">
-                    <label class="input-label" for="name" >Full Name: </label>
-                    <input type="text" name="name" class="form-control" placeholder="Your full name" value="<?php if (isset($user->fullname)) echo $user->fullname; ?>" />
+                <div class="row pl-3">
+                    <label>Full Name: </label>
+                    <p class="pl-2"> <?php if (isset($user->fullname)) echo $user->fullname; ?> </p>
                 </div>
-                <div class="row">
+                <div class="row pl-3">
                     <div class="col-sm-6">
-                        <div class="row-input">
-                            <label class="input-label" for="email" >Email: </label>
-                            <input type="text" name='email' class="form-control" placeholder="Your email" value="<?php if (isset($user->email)) echo $user->email; ?>" />
+                        <div class="row">
+                            <label>Email: </label>
+                            <p class="pl-2"><?php if (isset($user->email)) echo $user->email; ?></p>
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <div class="row-input">
-                            <label class="input-label" for="phone" >Phone Number: </label>
-                            <input type="text" name='phone' class="form-control" placeholder="Your phone number" value="<?php if (isset($user->phone)) echo $user->phone; ?>" />
+                        <div class="row">
+                            <label>Phone Number: </label>
+                            <p class="pl-2"><?php if (isset($user->phone)) echo $user->phone; ?></p> 
                         </div>
                     </div>
                 </div>

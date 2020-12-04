@@ -181,7 +181,6 @@ body {
   border: 1px solid red;
   visibility: hidden;
   background-color: white;
-  border-radius: 5px;
 }
 .home-wrapper .active {
   visibility: visible;

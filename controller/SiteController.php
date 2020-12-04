@@ -11,6 +11,7 @@ use app\models\Categories;
 use app\models\Product;
 use app\models\Branch;
 use app\models\Comment;
+use app\models\Image;
 use app\models\Rating;
 use app\models\User;
 use app\models\Order;
@@ -25,16 +26,16 @@ class SiteController extends Controller{
     public function home(Request $request,Response $response){
         $loginForm = new LoginForm();
         $session = Application::$app->session;
-        $homepage = (new Categories())->getBrandList();
-        $brandlist = (new Categories())->getCategoryList();
-        $param =
-        ["model" => $loginForm, "session" => $session, "product_home" => $homepage, "brands" => $brandlist];
-        $path = 'home';
+        $path = '/';
         $listField = array_keys($request->getBody());
         //exit;
         if(in_array('email',$listField) && in_array('password',$listField)){
             self::login($path, $loginForm, $request, $response);
         }
+        $homepage = (new Categories())->getBrandList();
+        $brandlist = (new Categories())->getCategoryList();
+        $events = (new Image())->getImageEvent();
+        $param = ["model" => $loginForm, "session" => $session, "product_home" => $homepage, "brands" => $brandlist, "events" => $events];
         return $this->render('home', $param);
     }
 
@@ -192,11 +193,29 @@ class SiteController extends Controller{
     }
 
     public function getUserAddress(Request $request) {
-
+        $session = Application::$app->session;
+        $list_addresses = (new Address())->getUserAddress($session->get('user'));
+        $addressOption = '';
+        foreach ($list_addresses as $address) {
+            $index = array_search($address, $list_addresses);
+            $addressOption .= "<div class='form-check form-check-inline'>
+                <input class='form-check-input' type='radio' name='address' id='$index' value='$address[address]' />
+                <label class='form-check-label' for='$index'>$address[address]</label>
+            </div>";
+        }
+        return $addressOption;
     }
 
     public function getAllBranch(Request $request) {
-        return (new Branch())->getAllBranch();
+        $list_branches = (new Branch())->getAllBranch();
+        $branchOption = '';
+        foreach ($list_branches as $branch) {
+            $branchOption .= "<div class='form-check form-check-inline'>
+                <input class='form-check-input' type='radio' name='address' id='$branch[branch_id]' value='$branch[branch_address]' />
+                <label class='form-check-label' for='$branch[branch_id]'>$branch[branch_address] - Contact: $branch[branch_phone]</label>
+            </div>";
+        }
+        return $branchOption;
     }
 
     public function createOrder(Request $request, Response $response) {
