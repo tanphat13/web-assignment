@@ -68,6 +68,13 @@ class SiteController extends Controller{
         return $this->render('product', ['product' => $product, 'comments' => $comments, 'session' => $session]);
     }
 
+    // Personal Info
+    public function updateInfo(Request $request, Response $response) {
+        $session = Application::$app->session;
+        $body = $request->getBody();
+        if ((new User())->updateUserInfo($session->get('user'), $body)) $response->redirect('/profile');
+    }
+
     // address
     public function manageUserAddress(Request $request, Response $response) {
         $loginForm = new LoginForm();
@@ -85,13 +92,13 @@ class SiteController extends Controller{
         }
         $user = (new User())->getUserInfo($user_id);
         $user_address = (new Address())->getUserAddress($user_id);
-        return $this->render('address', ['user' => $user, 'address' => $user_address]);
+        return $this->render('profile', ['user' => $user, 'address' => $user_address]);
     }
 
     public function addNewAddress(Request $request, Response $response) {
         $session = Application::$app->session;
         $body = $request->getBody();
-        if ((new Address())->addNewAddress($session->get('user'), $body['new-address'])) $response->redirect("/address"); 
+        if ((new Address())->addNewAddress($session->get('user'), $body['new-address'])) $response->redirect("/profile"); 
     }
 
     public function deleteAddress(Request $request) {
