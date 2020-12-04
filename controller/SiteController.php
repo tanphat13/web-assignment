@@ -3,11 +3,11 @@ namespace app\controller;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\exception\NotFound;
 use app\core\Request;
 use app\core\Response;
 use app\models\LoginForm;
 use app\models\Categories;
-use app\core\Session;
 use app\models\Product;
 use app\models\Branch;
 use app\models\Comment;
@@ -16,6 +16,8 @@ use app\models\User;
 use app\models\Order;
 use app\models\OrderProduct;
 use app\models\ProductItem;
+use app\models\Address;
+use Exception;
 
 class SiteController extends Controller{
     //render HomePage
@@ -55,7 +57,6 @@ class SiteController extends Controller{
     public function renderProduct(Request $request, Response $response) {
         $loginForm = new LoginForm();
         $session = Application::$app->session;
-        $path = $request->getPath();
         $param = $request->getBody();
         $listField = array_keys($param);
         if (in_array('email', $listField) && in_array('password', $listField)) {
@@ -65,10 +66,36 @@ class SiteController extends Controller{
         $comments = (new Comment())->getRecentComment($param['id']);
         return $this->render('product', ['product' => $product, 'comments' => $comments, 'session' => $session]);
     }
+
     // address
-    public function addAddress(Request $request){
-        $add_Address = new Address();
+    public function manageUserAddress(Request $request, Response $response) {
+        $loginForm = new LoginForm();
         $session = Application::$app->session;
+        $param = $request->getBody();
+        $path = $request->getPath();
+        $listField = array_keys($param);
+        if (in_array('email', $listField) && in_array('password', $listField)) {
+            self::login($path, $loginForm, $request, $response);
+        }
+        $user_id = $session->get('user');
+        if ($user_id === FALSE) {
+            $exception = new Exception("User Not Found! Please Login First", 404);
+            return $this->render('__error', ['exception' => $exception]);
+        }
+        $user = (new User())->getUserInfo($user_id);
+        $user_address = (new Address())->getUserAddress($user_id);
+        return $this->render('address', ['user' => $user, 'address' => $user_address]);
+    }
+
+    public function addNewAddress(Request $request, Response $response) {
+        $session = Application::$app->session;
+        $body = $request->getBody();
+        if ((new Address())->addNewAddress($session->get('user'), $body['new-address'])) $response->redirect("/address"); 
+    }
+
+    public function deleteAddress(Request $request) {
+        $body = $request->getBody();
+        (new Address())->deleteAddress($body['user_id'], $body['address']);
     }
 
     public function getBranch(Request $request) {

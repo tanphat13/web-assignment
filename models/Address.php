@@ -32,4 +32,9 @@ class Address extends DbModel {
       public function getUserAddress($user_id) {
             return $this->findAll($this->tableName(), ['user_id' => $user_id]);
       }
+
+      public function deleteAddress($user_id, $address) {
+            $sql_command = self::prepare("DELETE FROM addresses WHERE user_id = $user_id AND address = '$address';");
+            $sql_command->execute();
+      }
 }
