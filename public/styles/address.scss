@@ -41,15 +41,18 @@
     border-radius: 10px;
     .edit-btn {
         position: absolute;
-        top: 0%;
+        top: 1%;
         right: 20%;
         margin-top: 2px;
         padding: 0;
-        width: 3vw;
-        height: 3vw;
+        width: 3vh;
+        height: 3vh;
         border: none;
         svg {
-            font-size: 0.85rem;
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            font-size: 0.7rem;
         }
     }
     .current-address {
