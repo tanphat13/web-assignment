@@ -4,7 +4,7 @@
     class m0008_fix_order_status {
         public function up() {
             $db = Application::$app->db;
-            $sql_command = "ALTER TABLE orders CHANGE order_status order_status SET('PENDING','DELIVERING','DONE','CANCEL') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL;
+            $sql_command = "ALTER TABLE orders CHANGE order_status order_status SET('PENDING','DELIVERING','DONE','CANCEL')  NULL DEFAULT NULL;
                 ALTER TABLE orders ADD order_method TINYINT NOT NULL AFTER order_note;
                 ALTER TABLE orders_products DROP INDEX serial_number;
                 ALTER TABLE orders_products DROP FOREIGN KEY product_identify;
@@ -13,7 +13,7 @@
                 ALTER TABLE orders_products ADD CONSTRAINT product_identify FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE NO ACTION ON UPDATE CASCADE;
                 ALTER TABLE orders_products ADD CONSTRAINT order_identify FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE NO ACTION ON UPDATE CASCADE;
                 ALTER TABLE orders_products CHANGE serial_number serial_number INT NULL;
-                ALTER TABLE products_items CHANGE item_status item_status SET('IN STOCK','SOLD') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL;
+                ALTER TABLE products_items CHANGE item_status item_status SET('IN STOCK','SOLD') NOT NULL;
             ";
             $db->pdo->exec($sql_command);
         }

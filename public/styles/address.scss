@@ -2,7 +2,7 @@
     z-index: 1000;
     width: 55vw;
     height: 40vh;
-    top: 5vh;
+    top: 20vh;
     left: 25vw;
     background-color: white;
     .form-header {
@@ -41,17 +41,17 @@
     border-radius: 10px;
     .edit-btn {
         position: absolute;
-        top: 1%;
+        top: 4%;
         right: 20%;
         margin-top: 2px;
         padding: 0;
-        width: 3vh;
-        height: 3vh;
+        width: 4vh;
+        height: 4vh;
         border: none;
         svg {
             position: absolute;
-            top: 20%;
-            left: 20%;
+            top: 30%;
+            left: 30%;
             font-size: 0.7rem;
         }
     }
