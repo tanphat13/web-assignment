@@ -1,7 +1,12 @@
 .home-wrapper {
   position: relative;
   width: 100%;
+<<<<<<< HEAD
   height: auto;
+=======
+  height: 100vh;
+  overflow-y: auto;
+>>>>>>> f2aad6e8f2fccd894bac6e584fc6ae83a26558d5
 }
 
 .home-wrapper .container {
