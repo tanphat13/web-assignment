@@ -1,0 +1,209 @@
+.box-confirm {
+  display: none;
+  position: fixed;
+  top: 40vh;
+  left: 35vw;
+  width: 30vw;
+  height: 20vh;
+  z-index: 1000;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  background-color: white;
+  font-size: 80%;
+}
+
+.box-confirm .message-header {
+  width: 100%;
+  height: 20%;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 5%;
+  border-bottom: 1px solid #dedede;
+}
+
+.box-confirm .message-header h6 {
+  margin-bottom: 0;
+}
+
+.box-confirm .message-header .close-btn {
+  position: relative;
+  width: 5%;
+  height: 100%;
+  background: none;
+  border: none;
+}
+
+.box-confirm .message-header .close-btn .my-x {
+  position: absolute;
+  top: 10%;
+  left: -20%;
+}
+
+.box-confirm .message-header .close-btn:hover {
+  color: #818181;
+}
+
+.box-confirm .message {
+  padding: 1vh 1vw;
+  width: 100%;
+  height: 40%;
+}
+
+.box-confirm .button {
+  position: absolute;
+  bottom: 5%;
+  right: 0%;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 30%;
+}
+
+.box-confirm .button .btn {
+  width: 40%;
+  height: 70%;
+  font-size: 90%;
+}
+
+.box-confirm .button .btn .realign {
+  position: relative;
+  left: -35%;
+}
+
+.active {
+  display: initial;
+}
+
+.form-order {
+  padding: 10vh 0;
+}
+
+.form-order .form-horizontal {
+  padding: 2vh 2vw 4vh;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.form-order .form-horizontal .order-head {
+  margin-bottom: 4vh;
+  padding-bottom: 2vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 1px solid #dedede;
+}
+
+.form-order .form-horizontal .info-product {
+  padding: 0 5%;
+  width: 100%;
+  border-bottom: 1px dashed #ccc;
+  font-size: 80%;
+}
+
+.form-order .form-horizontal .info-product .product-item {
+  position: relative;
+  margin-bottom: 4vh;
+  height: 20vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.form-order .form-horizontal .info-product .product-item .product-image {
+  height: 100%;
+}
+
+.form-order .form-horizontal .info-product .product-item .product-image .img {
+  height: 100%;
+}
+
+.form-order .form-horizontal .info-product .product-item .product-image .img img {
+  height: 100%;
+}
+
+.form-order .form-horizontal .info-product .product-item .product-info {
+  width: 70%;
+}
+
+.form-order .form-horizontal .info-product .product-item .product-info .product-spec .info {
+  margin: 0;
+}
+
+.form-order .form-horizontal .info-product .product-item .product-info .product-spec .name {
+  font-size: 1.5em;
+}
+
+.form-order .form-horizontal .info-product .product-item .product-info .price {
+  margin-top: 2vh;
+  font-size: 1.25em;
+}
+
+.form-order .form-horizontal .info-product .product-item .delete-btn {
+  position: absolute;
+  bottom: 0;
+  left: 30%;
+  background: none;
+  color: red;
+  border: none;
+}
+
+.form-order .form-horizontal .cart-summary {
+  margin-bottom: 4vh;
+  padding: 2vh 0;
+  border-bottom: 1px dashed #dedede;
+}
+
+.form-order .form-horizontal .cart-summary .cart-format {
+  margin-bottom: 2vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.form-order .form-horizontal .form-group {
+  margin-bottom: 4vh;
+}
+
+.form-order .form-horizontal .form-group .personal-info {
+  padding-bottom: 4vh;
+  border-bottom: 1px dashed #dedede;
+}
+
+.form-order .form-horizontal .form-group .order-method {
+  margin-bottom: 4vh;
+}
+
+.form-order .form-horizontal .form-group .order-method label {
+  margin: 0;
+}
+
+.form-order .form-horizontal .form-group .address-opt {
+  margin-bottom: 4vh;
+  padding-left: 2vw;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.form-order .form-horizontal .form-group .order-btn {
+  width: 100%;
+  background-color: #FFC107;
+  color: white;
+}
+/*# sourceMappingURL=cart.css.map */

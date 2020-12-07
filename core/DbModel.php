@@ -53,7 +53,6 @@ abstract class DbModel extends Model{
         foreach($where as $key => $item){
             $sql_command->bindValue(":$key",$item);
         }
-        
         $sql_command->execute();
 
         return $sql_command->fetchAll();

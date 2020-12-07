@@ -1,7 +1,6 @@
 .admin-login-screen {
   position: relative;
-  height: 100vh;
-  overflow: hidden;
+  height: 100%;
 }
 
 .admin-login-screen .admin-login-form-title {
