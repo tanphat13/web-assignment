@@ -8,16 +8,12 @@ use app\core\UserModel;
     public string $role = 'staff';
     public ?string $gender = '';
     public string $email ='';
-    public string $phone ='';
+    public int $phone ;
     public string $password = '123123123';
     public string $comfirmPassword='123123123';
     public function save(){
         $this->password = password_hash($this->password,PASSWORD_DEFAULT);
-        // echo "<pre>";
-        // echo "this is staff model \n";
-        // echo var_dump($this);
-        // echo "</pre>";
-        // exit;
+        
         return parent::save();
     }
 

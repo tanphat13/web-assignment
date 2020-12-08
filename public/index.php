@@ -84,6 +84,9 @@ $app->router->post('/admin/login', [AdminController::class, 'login']);
 $app->router->get('/admin/specific-staff',[AdminController::class, 'getSpecificStaff',['admin']]);
 $app->router->post('/admin/update-staff-info', [AdminController::class, 'updateStaff', ['admin']]);
 $app->router->get('/admin/search', [AdminController::class, 'search', ['admin']]);
+$app->router->get('/admin/manage-products', [AdminController::class, 'manageProduct', ['admin']]);
+$app->router->get('/admin/manage-products/update-product', [AdminController::class, 'getUpdateProduct', ['admin']]);
+$app->router->post('/admin/manage-products/update-specific-product', [AdminController::class, 'postUpdateProduct', ['admin']]);
 // $app->router->get('/admin', [\app\controller\AdminController::class, 'admin']);
 $app->run();
 ?>

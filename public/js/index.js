@@ -358,3 +358,30 @@ function cancelOrder(order_id) {
    updateForm.classList.remove("active");
   updateForm.setAttribute('data-staff','');
  }
+
+
+
+ function testEditCell(){
+   const properties = document.getElementsByClassName("table-cell-value");
+   let dataObject = {};
+
+   for(let i = 0 ; i< properties.length; i++){
+    let propKey = properties[i].getAttribute("data-content");
+    dataObject = { ...dataObject, [propKey]: properties[i].innerHTML };
+   }
+
+   var xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function () {
+     if (xhttp.readyState == 4 && xhttp.status == 200) {
+      //  
+      console.log(xhttp.responseText);
+     }
+   };
+   xhttp.open(
+     "POST",
+     `http://localhost:8080/admin/manage-products/update-specific-product`,
+     true
+   );
+   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+   xhttp.send(JSON.stringify(dataObject));
+}

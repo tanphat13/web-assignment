@@ -10,7 +10,7 @@ $admin-main-color: #009879;
         padding: 0px 24px;
         max-width: 100%;
         height: 100vh;
-        .manage-staff-container {
+        .manage-staff-container, .manage-products-container {
             height: 100vh;
             overflow-x: hidden;
             overflow-y: auto;
@@ -30,6 +30,7 @@ $admin-main-color: #009879;
                     height: 30px;
                     line-height: 15px;
                     border: 1.5px solid $admin-main-color;
+                    border-radius: 4px;
                     a{
                         text-decoration: none;
                         color: $admin-main-color;
@@ -78,16 +79,19 @@ $admin-main-color: #009879;
                     .table-cell {
                         padding:6px;
                         width: 50px;
-                        // border: 0.5px solid black;
-                        text-align: center;
-                        
-                            .open-update-btn {
+                        text-align: center;             
+                            .open-update-btn,
+                            .update-product-btn-link {
                                 border: none;
                                 background-color: #009879;
                                 color: #ffffff;
                                 height: 30px;
                                 border-radius: 5px;
                                 box-shadow: 1px 1px 10px #00b994;
+                                a {
+                                    text-decoration: none;
+                                     color: #ffffff;
+                                }
                             }
                        
                     }

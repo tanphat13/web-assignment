@@ -5,6 +5,15 @@
 
     class Product extends DbModel {
 
+        public int $product_id = 0;
+        public string $product_name = '';
+        public string $product_brand = '';
+        public int $product_price = 0;
+        public string $product_color = '';
+        public int $product_ram = 0;
+        public int $product_rom = 0;
+        public string $product_spec = '';
+        public int $warranty = 0; 
         public function rules(): array {
             return [
                 'product_id' => [self::RULE_REQUIRED, self::RULE_UNIQUE],
@@ -15,7 +24,7 @@
                 'product_ram' => [self::RULE_REQUIRED],
                 'product_rom' => [self::RULE_REQUIRED],
                 'product_spec' => [self::RULE_REQUIRED],
-                'product_warranty' => [self::RULE_REQUIRED],
+                'warranty' => [self::RULE_REQUIRED],
             ];
         }
 
@@ -77,6 +86,22 @@
                 array_push($products, $sql_command->fetchObject());
             }
             return $products;
+        }
+        public function updateProduct(){
+            $tableName = $this->tableName();
+            $attributes = $this->attribute();
+            $params = array_map(fn ($attr) => "$attr = :$attr", $attributes);
+            $sql_command = self::prepare("
+                UPDATE $tableName
+                SET " . implode(',', $params) . "
+                WHERE product_id = " . $this->product_id . "; 
+            ");
+            foreach ($attributes as $attribute) {
+                $sql_command->bindValue(":$attribute", $this->{$attribute});
+                echo var_dump($this->{$attribute});
+            }
+           
+            return $sql_command->execute();
         }
     }
 ?>

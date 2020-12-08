@@ -14,13 +14,13 @@
   height: 100vh;
 }
 
-.admin-layout .container .manage-staff-container {
+.admin-layout .container .manage-staff-container, .admin-layout .container .manage-products-container {
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
 }
 
-.admin-layout .container .manage-staff-container .table-action {
+.admin-layout .container .manage-staff-container .table-action, .admin-layout .container .manage-products-container .table-action {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -34,7 +34,7 @@
           justify-content: center;
 }
 
-.admin-layout .container .manage-staff-container .table-action .btn-create-staff {
+.admin-layout .container .manage-staff-container .table-action .btn-create-staff, .admin-layout .container .manage-products-container .table-action .btn-create-staff {
   position: absolute;
   right: 16px;
   width: auto;
@@ -42,15 +42,16 @@
   height: 30px;
   line-height: 15px;
   border: 1.5px solid #009879;
+  border-radius: 4px;
 }
 
-.admin-layout .container .manage-staff-container .table-action .btn-create-staff a {
+.admin-layout .container .manage-staff-container .table-action .btn-create-staff a, .admin-layout .container .manage-products-container .table-action .btn-create-staff a {
   text-decoration: none;
   color: #009879;
   font-weight: 600;
 }
 
-.admin-layout .container .manage-staff-container .staff-table-wrapper {
+.admin-layout .container .manage-staff-container .staff-table-wrapper, .admin-layout .container .manage-products-container .staff-table-wrapper {
   width: 100%;
   height: 80%;
   border-radius: 5px 5px 0 0;
@@ -59,35 +60,35 @@
           box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-.admin-layout .container .manage-staff-container .staff-table-wrapper .content-table div {
+.admin-layout .container .manage-staff-container .staff-table-wrapper .content-table div, .admin-layout .container .manage-products-container .staff-table-wrapper .content-table div {
   padding: 12px 15px;
 }
 
-.admin-layout .container .manage-staff-container .staff-table-wrapper .table-head {
+.admin-layout .container .manage-staff-container .staff-table-wrapper .table-head, .admin-layout .container .manage-products-container .staff-table-wrapper .table-head {
   background-color: #009879;
   color: #ffffff;
   text-align: left;
   font-weight: bold;
 }
 
-.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row:nth-of-type(even) {
+.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row:nth-of-type(even), .admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row:nth-of-type(even) {
   background-color: #f3f3f3;
   color: #009879;
   font-weight: bold;
 }
 
-.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row:last-of-type {
+.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row:last-of-type, .admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row:last-of-type {
   border-bottom: 2px solid #009879;
 }
 
-.admin-layout .container .manage-staff-container .staff-table-wrapper .table-head {
+.admin-layout .container .manage-staff-container .staff-table-wrapper .table-head, .admin-layout .container .manage-products-container .staff-table-wrapper .table-head {
   background-color: #009879;
   color: #ffffff;
   text-align: left;
   font-weight: bold;
 }
 
-.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row {
+.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row, .admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -97,13 +98,15 @@
   text-align: center;
 }
 
-.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .table-cell {
+.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .table-cell, .admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row .table-cell {
   padding: 6px;
   width: 50px;
   text-align: center;
 }
 
-.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .table-cell .open-update-btn {
+.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .table-cell .open-update-btn,
+.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .table-cell .update-product-btn-link, .admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row .table-cell .open-update-btn,
+.admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row .table-cell .update-product-btn-link {
   border: none;
   background-color: #009879;
   color: #ffffff;
@@ -113,7 +116,14 @@
           box-shadow: 1px 1px 10px #00b994;
 }
 
-.admin-layout .container .manage-staff-container .staff-table-wrapper .navigation-btn {
+.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .table-cell .open-update-btn a,
+.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .table-cell .update-product-btn-link a, .admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row .table-cell .open-update-btn a,
+.admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row .table-cell .update-product-btn-link a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.admin-layout .container .manage-staff-container .staff-table-wrapper .navigation-btn, .admin-layout .container .manage-products-container .staff-table-wrapper .navigation-btn {
   list-style: none;
   color: #009879;
   font-weight: bold;
@@ -127,13 +137,13 @@
   height: 30px;
 }
 
-.admin-layout .container .manage-staff-container .staff-table-wrapper .navigation-btn .nav-btn {
+.admin-layout .container .manage-staff-container .staff-table-wrapper .navigation-btn .nav-btn, .admin-layout .container .manage-products-container .staff-table-wrapper .navigation-btn .nav-btn {
   padding: 0 4px;
   margin: 0px 4px;
   width: auto;
 }
 
-.admin-layout .container .manage-staff-container .staff-update-form {
+.admin-layout .container .manage-staff-container .staff-update-form, .admin-layout .container .manage-products-container .staff-update-form {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -148,7 +158,7 @@
   border-radius: 14px;
 }
 
-.admin-layout .container .manage-staff-container .staff-update-form .close-btn {
+.admin-layout .container .manage-staff-container .staff-update-form .close-btn, .admin-layout .container .manage-products-container .staff-update-form .close-btn {
   position: absolute;
   right: 16px;
   top: 16px;
@@ -162,13 +172,13 @@
   cursor: pointer;
 }
 
-.admin-layout .container .manage-staff-container .staff-update-form label {
+.admin-layout .container .manage-staff-container .staff-update-form label, .admin-layout .container .manage-products-container .staff-update-form label {
   font-size: 18px;
   color: #009879;
   font-weight: 600;
 }
 
-.admin-layout .container .manage-staff-container .staff-update-form .update-btn {
+.admin-layout .container .manage-staff-container .staff-update-form .update-btn, .admin-layout .container .manage-products-container .staff-update-form .update-btn {
   position: relative;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -177,14 +187,14 @@
   border: none;
 }
 
-.admin-layout .container .manage-staff-container .staff-update-form .form-title {
+.admin-layout .container .manage-staff-container .staff-update-form .form-title, .admin-layout .container .manage-products-container .staff-update-form .form-title {
   text-align: center;
   font-size: 20px;
   color: #009879;
   font-weight: 600;
 }
 
-.admin-layout .container .manage-staff-container .active {
+.admin-layout .container .manage-staff-container .active, .admin-layout .container .manage-products-container .active {
   visibility: visible;
 }
 
