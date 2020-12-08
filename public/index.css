@@ -45,22 +45,12 @@ body {
   list-style: none;
 }
 
-.installment {
-  position: relative;
-  left: 20vw;
-}
-
 .installment h1 {
   text-align: center;
 }
 
 body {
   height: 80%;
-}
-
-.returnpolicy {
-  position: relative;
-  left: 20vw;
 }
 
 .returnpolicy h1 {
@@ -84,11 +74,6 @@ body {
 
 .returnpolicy .return_table td {
   border: solid 4px;
-}
-
-.warranty {
-  position: relative;
-  left: 20vw;
 }
 
 .warranty h1 {
@@ -1153,7 +1138,7 @@ body {
   z-index: 1000;
   width: 55vw;
   height: 40vh;
-  top: 5vh;
+  top: 20vh;
   left: 25vw;
   background-color: white;
 }
@@ -1201,17 +1186,20 @@ body {
 
 .manage-address .edit-btn {
   position: absolute;
-  top: 0%;
+  top: 4%;
   right: 20%;
   margin-top: 2px;
   padding: 0;
-  width: 3vw;
-  height: 3vw;
+  width: 4vh;
+  height: 4vh;
   border: none;
 }
 
 .manage-address .edit-btn svg {
-  font-size: 0.85rem;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  font-size: 0.7rem;
 }
 
 .manage-address .current-address {
@@ -1294,4 +1282,3 @@ body {
 .manage-address .add-address .btn-outline-success {
   border: none;
 }
-/*# sourceMappingURL=index.css.map */
