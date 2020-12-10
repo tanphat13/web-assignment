@@ -198,6 +198,77 @@
   visibility: visible;
 }
 
+.admin-layout .container .product-update-page-header {
+  height: 80px;
+  color: #009879;
+  font-size: 22px;
+  vertical-align: middle;
+  font-weight: 600;
+  line-height: 78px;
+  margin-bottom: 16px;
+}
+
+.admin-layout .container .product-update-table-container {
+  position: relative;
+  width: 100%;
+  width: 100%;
+  height: 80%;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  padding: 12px 15px;
+  overflow-y: auto;
+}
+
+.admin-layout .container .product-update-table-container .product-update-table-head {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.admin-layout .container .product-update-table-container .product-update-table-row {
+  height: auto;
+  min-height: 40px;
+  padding: 10px;
+}
+
+.admin-layout .container .product-update-table-container .product-update-table-row .table-cell-value {
+  border-left: 1px solid #dddddd;
+  overflow-wrap: break-word;
+  line-break: after-white-space;
+  max-width: 600px;
+}
+
+.admin-layout .container .product-update-table-container .product-update-table-row .table-cell-value:focus {
+  outline: 1px solid #009879;
+  border-radius: 4px;
+}
+
+.admin-layout .container .product-update-table-container .product-update-table-row:last-of-type {
+  margin-bottom: 16px;
+}
+
+.admin-layout .container .product-update-table-container .product-update-table-row:nth-of-type(even) {
+  background-color: #f3f3f3;
+  color: #009879;
+  font-weight: bold;
+}
+
+.admin-layout .container .product-update-table-container .product-save-update {
+  cursor: pointer;
+  position: absolute;
+  right: 16px;
+  height: 40px;
+  width: 80px;
+  border-radius: 5px;
+  border: none;
+  background-color: #009879;
+  color: white;
+  font-weight: 600;
+}
+
 .admin-layout .slide-bar {
   position: relative;
   height: 100vh;
@@ -307,3 +378,4 @@
 .admin-layout .slide-bar .side-bar-function-list .function-item:hover a {
   color: #ffffff;
 }
+/*# sourceMappingURL=admin.css.map */

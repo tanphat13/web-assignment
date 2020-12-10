@@ -1,27 +1,39 @@
+<div class="product-update-page-header">
+    Update products information
+</div>
 <div class="product-update-table-container">
+    <div class="row product-update-table-head">
+        <div class="col-md">
+            Properties
+        </div>
+        <div class="col-md">
+            Value
+        </div>
+        
+    </div>
     <?php
-        // echo "<pre>";
-        // echo var_dump($product_item);
-        // echo "</pre>";
-        $regex = "/^(?=.*errors)|(?=.*created)|(?=.*deleted)|(?=.*updated)/";
-        foreach($product_item as $key =>$value){
-            if(preg_match($regex,$key)===0){
-                echo
-                '<div class="product-update-table-row">
-                    <div class="table-cell-label">'.
-                        $key .
-                    '</div>
-                    <div class="table-cell-value" data-content="'.$key.'" id="table-cell-product-name" contenteditable data>'. 
-                        $value.
+    // echo "<pre>";
+    // echo var_dump($product_item);
+    // echo "</pre>";
+    $regex = "/^(?=.*errors)|(?=.*created)|(?=.*deleted)|(?=.*updated)/";
+    foreach ($product_item as $key => $value) {
+        if (preg_match($regex, $key) === 0) {
+            echo
+                '<div class=" row product-update-table-row">
+                    <div class="col-md table-cell-label">' .
+                    $key .
+            '</div>
+                    <div class="col-md table-cell-value" data-content="' . $key . '" id="table-cell-product-name" contenteditable="true" data>' .
+                    $value .
                     '</div>
                 </div>';
-            }
         }
+    }
     ?>
 
- 
 
-    <button type="submit" onclick="testEditCell()">
+
+    <button class="product-save-update" type="submit" onclick="testEditCell()">
         Save
     </button>
 
