@@ -9,7 +9,7 @@
             <input type='text' id="admimn-table-actions-search" class="search-input" placeholder="Search" onkeyup="searchStaff(this.value)">
         </div>
         <div class="btn-create-staff">
-            <a href="/admin/create-new-staff">Add new products</a>
+            <a href="/admin/add-new-product">Add new products</a>
         </div>
     </div>
 

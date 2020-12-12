@@ -150,6 +150,23 @@ Class AdminController extends Controller {
                 }
         }
     }
+    public function addNewProduct(Request $req ,Response $res){
+        $product = new Product();
+        if ($req->isPost()) {
+            // echo"<pre>";
+            // echo var_dump($req->getBody());
+            // echo "</pre>";
+            // exit;
+            $product->loadData($req->getBody());
+            if ($product->validate() && $product->save()) {
+                Application::$app->session->setFlash("success", "Add new product successfull");
+                $res->redirect('/admin/manage-products');
+            }
+        }
+            
+        $this->setLayout('adminLayout');
+        return $this->render('admin-add-product',['model'=>$product]);
+    }
 }
 
 

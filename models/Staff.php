@@ -12,15 +12,14 @@ use app\core\UserModel;
     public string $password = '123123123';
     public string $comfirmPassword='123123123';
     public function save(){
-        $this->password = password_hash($this->password,PASSWORD_DEFAULT);
-        
+        $this->password = password_hash($this->password,PASSWORD_DEFAULT);      
         return parent::save();
     }
 
     public function rules():array{
         return [
             'fullname' =>[self::RULE_REQUIRED],
-            'email' => [self::RULE_REQUIRED],
+            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL, [self::RULE_UNIQUE, 'class' => self::class, 'attribute' => 'email']],
             'phone' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 9], [self::RULE_MAX, 'max' => 11]],
         ];
     }

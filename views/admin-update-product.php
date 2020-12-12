@@ -33,7 +33,7 @@
 
 
 
-    <button class="product-save-update" type="submit" onclick="testEditCell()">
+    <button class="product-save-update" type="submit" onclick="EditCell()">
         Save
     </button>
 

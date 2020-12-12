@@ -241,6 +241,14 @@
   max-width: 600px;
 }
 
+.admin-layout .container .product-update-table-container .product-update-table-row .table-cell-value textarea {
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  line-break: after-white-space;
+  min-height: 120px;
+}
+
 .admin-layout .container .product-update-table-container .product-update-table-row .table-cell-value:focus {
   outline: 1px solid #009879;
   border-radius: 4px;
@@ -261,7 +269,7 @@
   position: absolute;
   right: 16px;
   height: 40px;
-  width: 80px;
+  width: auto;
   border-radius: 5px;
   border: none;
   background-color: #009879;

@@ -16,7 +16,7 @@
         public int $warranty = 0; 
         public function rules(): array {
             return [
-                'product_id' => [self::RULE_REQUIRED, self::RULE_UNIQUE],
+                // 'product_id' => [self::RULE_REQUIRED, self::RULE_UNIQUE],
                 'product_name' => [self::RULE_REQUIRED],
                 'product_brand' => [self::RULE_REQUIRED],
                 'product_price' => [self::RULE_REQUIRED],
@@ -44,6 +44,13 @@
             return '';
         }
 
+        public function save(){
+            // echo "<pre>";
+            // echo var_dump($this);
+            // echo "</pre>";
+            // exit;
+            return parent::save();
+        }
         public function getSpecificProduct(int $id) {
             $product = self::findOne($this->tableName(), ['product_id' => $id]);
             if (!$product) {

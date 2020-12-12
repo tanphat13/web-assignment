@@ -361,7 +361,7 @@ function cancelOrder(order_id) {
 
 
 
- function testEditCell(){
+ function EditCell(){
    const properties = document.getElementsByClassName("table-cell-value");
    let dataObject = {};
 

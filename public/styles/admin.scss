@@ -205,7 +205,13 @@ $admin-main-color: #009879;
                     overflow-wrap: break-word;
                     line-break: after-white-space;
                     max-width: 600px;
-
+                    textarea {
+                        word-wrap: break-word;
+                        word-break: break-all;
+                         overflow-wrap: break-word;
+                         line-break: after-white-space;
+                        min-height: 120px;
+                    }
                     &:focus {
                         outline: 1px solid $admin-main-color;
                         border-radius: 4px;
@@ -228,7 +234,7 @@ $admin-main-color: #009879;
                 position: absolute;
                 right: 16px;
                 height: 40px;
-                width: 80px;
+                width: auto;
                 border-radius: 5px;
                 border: none;
                 background-color: #009879;
