@@ -52,7 +52,10 @@ class Admin extends AdminModel  {
             '<div class="col-md table-cell">' . $staff['email'] . '</div>'.
             '<div class="col-sm-1 table-cell">' . $staff['gender'] . '</div>'.
             '<div class="col-sm-1 table-cell">' .
-                '<button id="update-staff-btn" class="open-update-btn" onClick="getStaffId('.$staff["id"].')"> Upadte</button></div> 
+                '<button id="update-staff-btn" class="open-update-btn" onClick="getStaffId('.$staff["id"]. ')"> Upadte</button></div> 
+                <div onclick="openConfirmDelete(\'users\', ' . $staff['id']["product_id"] . ')" id="update-product-btn" class="open-update-btn update-product-btn-link">
+                 <p>DELETE</p>
+            </div>
              </div>';
         }
         
@@ -70,20 +73,22 @@ class Admin extends AdminModel  {
         $sql_command->execute();
         $listProduct = '';
         $arrProduct = $sql_command->fetchAll();
-        // echo "<pre>";
-        // echo var_dump($arrProduct);
-        // echo "</pre>";
-        // exit;
+        $model = "product";
         foreach($arrProduct as $productItem){
             $listProduct .=
             '<div class="staff-table-row">' .
             '<div class="col-sm-1 table-cell">' . $productItem['product_id'] . '</div>' .
             '<div class="col-md table-cell">' . $productItem['product_brand'] . '</div>' .
             '<div class="col-md table-cell">' . $productItem['product_name'] . '</div>' .
-            '<div class="col-sm-1 table-cell">' .
-            '<div id="update-product-btn" class="open-update-btn update-product-btn-link">
-                <a href="/admin/manage-products/update-product?product_id='.$productItem["product_id"].'" > Upadte </a>
-            </div></div> 
+            '<div class="col-md table-cell">' .
+            '
+                 <div id="update-product-btn" class="open-update-btn update-product-btn-link">
+                <a href="/admin/manage-products/update-product?product_id=' . $productItem["product_id"] . '" > Upadte </a>
+                </div>
+            <div onclick="openConfirmDelete(\'product\', '. $productItem["product_id"] . ')" id="update-product-btn" class="open-update-btn update-product-btn-link">
+                 <p>DELETE</p>
+            </div>
+            </div> 
             </div>';
         }
         return ['productList' => $listProduct, 'totalPage' => $totalPage];

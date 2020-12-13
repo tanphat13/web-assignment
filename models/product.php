@@ -2,8 +2,9 @@
     namespace app\models;
     use app\core\Application;
     use app\core\DbModel;
+use PDO;
 
-    class Product extends DbModel {
+class Product extends DbModel {
 
         public int $product_id = 0;
         public string $product_name = '';
@@ -45,11 +46,11 @@
         }
 
         public function save(){
-            // echo "<pre>";
-            // echo var_dump($this);
-            // echo "</pre>";
-            // exit;
             return parent::save();
+        }
+        public function delete($key){
+            // echo var_dump($key);
+            return parent::delete($key);
         }
         public function getSpecificProduct(int $id) {
             $product = self::findOne($this->tableName(), ['product_id' => $id]);

@@ -57,4 +57,18 @@
             </li>
         </ul>
     </div>
+    <div id='delete-confirm'>
+        <h3>
+            Warning
+        </h3>
+        <div>
+                Do you want to delete this product
+        </div>
+        <div onclick="deleteModel()">
+                Delete
+        </div>
+        <div>
+                cancle
+        </div>
+    </div>
 </div>

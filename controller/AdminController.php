@@ -167,6 +167,27 @@ Class AdminController extends Controller {
         $this->setLayout('adminLayout');
         return $this->render('admin-add-product',['model'=>$product]);
     }
+    public function deleteModel(Request $req,Response $res){
+        $model = $_GET['delete'];
+        $key = $_GET['key'];
+        if(isset($_GET['delete']) && $model ==='product'){
+            $product =new Product();
+            if($product->delete($key)){
+                echo "Delete successfull";
+            }else{
+                echo "Something wrong please try it later";
+            }
+
+        }
+        if (isset($_GET['delete']) && $model === 'users') {
+            $staff = new Staff();
+            if ($staff->delete($key)) {
+                echo "Delete successfull";
+            } else {
+                echo "Something wrong please try it later";
+            }
+        }
+    }
 }
 
 

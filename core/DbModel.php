@@ -22,6 +22,15 @@ abstract class DbModel extends Model{
             }
             return $sql_command->execute();
         }
+        public function delete($key)
+        {
+            $tableName = $this->tableName();
+            $primaryKey = $this->primaryKey();
+            $sql_command = self::prepare("
+                    DELETE FROM $tableName WHERE $primaryKey=$key ;
+                ");
+            return $sql_command->execute();
+        }
     public static function prepare ($sql_command){
         return  Application::$app->db->pdo->prepare($sql_command);
     } 
