@@ -4,7 +4,10 @@ body {
 }
 
 .footer-container {
-    
+    color : white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    background-color: rgb(45, 45, 45) !important;
     position: relative;
     bottom:0;
     display: flex;
@@ -13,6 +16,9 @@ body {
     border-color: black;
     background-color: azure;
     padding:0px 16px;
+    a{
+        color: white;
+    }
     .col1 {
         display: inline-block;
         width: 24vw;
@@ -25,6 +31,9 @@ body {
         // }
         li {
             list-style: none;
+            :hover{
+                color: rgb(243, 212, 36);
+            }
         }
     }
 }

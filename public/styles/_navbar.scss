@@ -1,0 +1,33 @@
+//navbar
+.navbar.navbar-expand-lg.navbar-light.bg-light{
+    background-color: rgb(243, 212, 36) !important;
+    margin-right: 0px;
+    border-left-style: solid;
+    border-left-color: black;
+    border-top-style: solid;
+    border-top-color: black;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    .navbar-brand{
+        color:  rgb(243, 212, 36);
+        background-color: rgb(45,45,45);
+        padding: 15px;
+    }  
+
+    .collapse.navbar-collapse{
+        
+        .navbar-nav.mr-auto{
+            :hover{
+                background-color: rgb(240, 227, 227);
+            }
+
+        }
+    }
+}
+
+
+
+////////

@@ -1,24 +1,57 @@
+.home-wrapper{
+    background-color: rgb(177, 173, 173);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    
+.container{
+    padding:0;
+    margin-left: 100px;
+    margin-right: 50px;
+    background-color:  rgb(218, 211, 211);
+    width: 100%;
+   // margin: 0;
 .categoryPage {
-    width: 90vw;
-    // margin: 0;
+    //width: 90vw;
+    //margin-left: 24px;
     // border: 0;
-    display: flex;
+    display: flex ;
     .categoryList {
-        margin: 0%;
-        border: solid;
-        border-color: black;
-        background-color: rgb(158, 215, 238);
-        width: 12vw;
+        li{
+            a{
+                color: white;
+                &:hover{
+                    color: rgb(192, 180, 14);
+                }
+            }
+        }
+        h2{
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        color: white;
+        //border: solid;
+        //border-color: white;
+        background-color:  rgb(126, 122, 122);
+        //width: auto;
         height: 100%;
-        display: inline-block;
+        //display: inline-block;
     }
     .product_matrix {
-    
         display: inline;
         right:0;
         width: 80%;
+        
         .product_item {
-            border: solid;
+            a{
+                color: black;
+                &:hover{
+                    color: rgb(165, 155, 10);
+                }
+            }
+            //border: solid;
+            //border-color: white;
+            //border: solid;
             display: inline-block;
             margin: 5px;
             img {
@@ -26,12 +59,12 @@
                 width: 12vw;
             }
             &:hover {
-                border-color: red ;
+                border-color: rgb(243, 212, 36) ;
             }
         }
     }
 
-}
+}}}
 
 
 
