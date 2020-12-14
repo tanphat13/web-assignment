@@ -1,0 +1,26 @@
+.form-order {
+    .form-horizontal {
+        .user-info {
+            margin-bottom: 4vh;
+            padding-bottom: 2vh;
+            width: 100%;
+            border-bottom: 1px solid #dedede;
+        }
+        .order-info {
+            margin-bottom: 4vh;
+            padding-bottom: 2vh;
+            width: 100%;
+            border-bottom: 1px solid #dedede;
+        }
+        .info-product {
+            margin-bottom: 4vh;
+            padding-bottom: 2vh;
+            width: 100%;
+            border-bottom: 1px solid #dedede;
+            .product-item {
+                border-bottom: 1px dashed #dedede;
+                padding-bottom: 2vh;
+            }
+        }
+    }
+}

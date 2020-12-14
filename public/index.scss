@@ -3,10 +3,15 @@
     width: 80%;
     border:1px solid red;
 }
-.container {
-    width: 100%;
-    margin: 0 5%;
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1600px;
+        margin: 0 8%;
+        width: 84%;
+    }     
 }
+
 @import "./styles/footer";
 @import "./styles/installment";
 @import "./styles/returnpolicy";
@@ -15,3 +20,10 @@
 @import './styles/location';
 @import './styles/loginForm';
 @import './styles/navbar';
+@import './styles/admin';
+@import './styles/admin-login';
+@import './styles/home';
+@import './styles/product';
+@import './styles/cart';
+@import './styles/order';
+@import './styles/address';

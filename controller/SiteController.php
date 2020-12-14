@@ -3,15 +3,22 @@ namespace app\controller;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\exception\NotFound;
 use app\core\Request;
 use app\core\Response;
 use app\models\LoginForm;
 use app\models\Categories;
-use app\core\Session;
 use app\models\Product;
 use app\models\Branch;
 use app\models\Comment;
+use app\models\Image;
 use app\models\Rating;
+use app\models\User;
+use app\models\Order;
+use app\models\OrderProduct;
+use app\models\ProductItem;
+use app\models\Address;
+use Exception;
 
 class SiteController extends Controller{
     //render HomePage
@@ -19,14 +26,16 @@ class SiteController extends Controller{
     public function home(Request $request,Response $response){
         $loginForm = new LoginForm();
         $session = Application::$app->session;
-        $param =
-        ["model" => $loginForm, "session" => $session];
-        $path = 'home';
+        $path = '/';
         $listField = array_keys($request->getBody());
         //exit;
         if(in_array('email',$listField) && in_array('password',$listField)){
             self::login($path, $loginForm, $request, $response);
         }
+        $homepage = (new Categories())->getBrandList();
+        $brandlist = (new Categories())->getCategoryList();
+        $events = (new Image())->getImageEvent();
+        $param = ["model" => $loginForm, "session" => $session, "product_home" => $homepage, "brands" => $brandlist, "events" => $events];
         return $this->render('home', $param);
     }
 
@@ -49,15 +58,52 @@ class SiteController extends Controller{
     public function renderProduct(Request $request, Response $response) {
         $loginForm = new LoginForm();
         $session = Application::$app->session;
-        $path = $request->getPath();
         $param = $request->getBody();
         $listField = array_keys($param);
         if (in_array('email', $listField) && in_array('password', $listField)) {
-            self::login($path, $loginForm, $request, $response);
+            self::login($_SERVER['REQUEST_URI'], $loginForm, $request, $response);
         }
         $product = (new Product())->getSpecificProduct(intval($param['id']));
         $comments = (new Comment())->getRecentComment($param['id']);
         return $this->render('product', ['product' => $product, 'comments' => $comments, 'session' => $session]);
+    }
+
+    // Personal Info
+    public function updateInfo(Request $request, Response $response) {
+        $session = Application::$app->session;
+        $body = $request->getBody();
+        if ((new User())->updateUserInfo($session->get('user'), $body)) $response->redirect('/profile');
+    }
+
+    // address
+    public function manageUserAddress(Request $request, Response $response) {
+        $loginForm = new LoginForm();
+        $session = Application::$app->session;
+        $param = $request->getBody();
+        $path = $request->getPath();
+        $listField = array_keys($param);
+        if (in_array('email', $listField) && in_array('password', $listField)) {
+            self::login($path, $loginForm, $request, $response);
+        }
+        $user_id = $session->get('user');
+        if ($user_id === FALSE) {
+            $exception = new Exception("User Not Found! Please Login First", 404);
+            return $this->render('__error', ['exception' => $exception]);
+        }
+        $user = (new User())->getUserInfo($user_id);
+        $user_address = (new Address())->getUserAddress($user_id);
+        return $this->render('profile', ['user' => $user, 'address' => $user_address]);
+    }
+
+    public function addNewAddress(Request $request, Response $response) {
+        $session = Application::$app->session;
+        $body = $request->getBody();
+        if ((new Address())->addNewAddress($session->get('user'), $body['new-address'])) $response->redirect("/profile"); 
+    }
+
+    public function deleteAddress(Request $request) {
+        $body = $request->getBody();
+        (new Address())->deleteAddress($body['user_id'], $body['address']);
     }
 
     public function getBranch(Request $request) {
@@ -113,6 +159,104 @@ class SiteController extends Controller{
         }
     }
 
+    // Review Cart
+    public function reviewCart(Request $request, Response $response) {
+        $loginForm = new LoginForm();
+        $session = Application::$app->session;
+        $path = $request->getPath();
+        $listField = array_keys($request->getBody());
+        if (in_array('email', $listField) && in_array('password', $listField)) {
+            self::login($path, $loginForm, $request, $response);
+        }
+        $listProductId = explode(',', $session->get('cart'));
+        if (isset($_COOKIE['productId'])) {
+            array_push($listProductId, $_COOKIE['productId']);
+            array_multisort($listProductId);
+            $newListAsString = implode(',', $listProductId);
+            $session->set('cart', $newListAsString);
+            setcookie('productId', '', 0,'/');            
+        }
+        $listProducts = array();
+        if (array_search('0', $listProductId) !== false || array_search('', $listProductId) !== false) {
+            array_shift($listProductId);
+            $newListAsString = implode(',', $listProductId);
+            $session->set('cart', $newListAsString);
+        }
+        $listProducts = (new Product())->getProductInCart($listProductId);
+        $user = (new User())->getUserInfo($session->get('user'));    
+        return $this->render('cart', ["listProducts" => $listProducts, "user" => $user]);
+    }
+
+    public function removeProduct(Request $request) {
+        $session = Application::$app->session;
+        $body = $request->getBody();
+        $removing_id = $body['removing_id'];
+        $current_list_id = explode(',', $session->get('cart'));
+        $index_of_removing = array_search($removing_id, $current_list_id);
+        $current_list_id[$index_of_removing] = 0;
+        array_multisort($current_list_id);
+        array_shift($current_list_id);
+        $session->set('cart', implode(',', $current_list_id));
+    }
+
+    public function getUserAddress(Request $request) {
+        $session = Application::$app->session;
+        $list_addresses = (new Address())->getUserAddress($session->get('user'));
+        $addressOption = '';
+        foreach ($list_addresses as $address) {
+            $index = array_search($address, $list_addresses);
+            $addressOption .= "<div class='form-check form-check-inline'>
+                <input class='form-check-input' type='radio' name='address' id='$index' value='$address[address]' />
+                <label class='form-check-label' for='$index'>$address[address]</label>
+            </div>";
+        }
+        return $addressOption;
+    }
+
+    public function getAllBranch(Request $request) {
+        $list_branches = (new Branch())->getAllBranch();
+        $branchOption = '';
+        foreach ($list_branches as $branch) {
+            $branchOption .= "<div class='form-check form-check-inline'>
+                <input class='form-check-input' type='radio' name='address' id='$branch[branch_id]' value='$branch[branch_address]' />
+                <label class='form-check-label' for='$branch[branch_id]'>$branch[branch_address] - Contact: $branch[branch_phone]</label>
+            </div>";
+        }
+        return $branchOption;
+    }
+
+    public function createOrder(Request $request, Response $response) {
+        $session = Application::$app->session;
+        $body = $request->getBody();
+        $new_order = (new Order())->createNewOrder($body, $session->get('user'));
+        (new OrderProduct())->createProductInOrder(intval($new_order->latest_order_id), explode(',', $session->get('cart')));
+        $session->set('cart', '');
+        $response->redirect("/order?id=$new_order->latest_order_id");
+        return;
+    }
+
+    public function reviewOrder(Request $request) {
+        $session = Application::$app->session;
+        $param = $request->getBody();
+        $user = (new User())->getUserInfo($session->get('user'));
+        $order = (new Order())->getDetailedOrder($param['id']);
+        $product_in_order = (new OrderProduct())->getOrderProduct(intval($param['id']));
+        $listProductId = array();
+        foreach ($product_in_order as $product) {
+            array_push($listProductId, $product['product_id']);
+        }
+        $listProducts = (new Product())->getProductInCart($listProductId);
+        return $this->render('order', ["user" => $user, "order" => $order, "listProducts" => $listProducts]);
+    }
+
+    public function cancelOrder(Request $request) {
+        $param = $request->getBody();
+        (new Order())->cancelOrder($param['id']);
+        $list_items = (new OrderProduct())->removeProduct($param['id']);
+        (new ProductItem())->restockItem($list_items);
+        return $list_items;
+    }
+
     // render view ...
     public function warranty(Request $request, Response $response) {
         $loginForm = new LoginForm();
@@ -166,10 +310,12 @@ class SiteController extends Controller{
     //function login for login form on main layout;
     public static function login($path,LoginForm $model,Request $request,Response  $response){
         //$loginForm = new $model();
+        $session = Application::$app->session;
         if ($request->isPost()) {
             $model->loadData($request->getBody());
             
             if ($model->validate() && $model->login()) {
+                $session->set('cart', '0');
                 $response->redirect($path);
                 return;
             }
