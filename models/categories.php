@@ -19,7 +19,7 @@ class Categories extends DbModel {
     }
 
     public function getBrandProduct($brand, $pageno) {
-        $no_of_records_per_page = 2;
+        $no_of_records_per_page = 10;
         $offset = ($pageno-1) * $no_of_records_per_page;
         $total_page_sql = $this->prepare("SELECT COUNT(products.product_name) FROM products LEFT JOIN images ON products.product_id = images.product_id WHERE products.product_brand = '$brand' 
         GROUP BY  products.product_name ORDER BY products.product_price DESC");
