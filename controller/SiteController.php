@@ -235,6 +235,18 @@ class SiteController extends Controller{
         return;
     }
 
+    public function reviewAllOrder(Request $request, Response $response) {
+        $loginForm = new LoginForm();
+        $session = Application::$app->session;
+        $listField = array_keys($request->getBody());
+        $path = $request->getPath();
+        if (in_array('email', $listField) && in_array('password', $listField)) {
+            self::login($path, $loginForm, $request, $response);
+        }
+        $all_order = (new Order())->getAllOrder($session->get('user'));
+        return $this->render('my-order', ['orders' => $all_order]);
+    }
+
     public function reviewOrder(Request $request) {
         $session = Application::$app->session;
         $param = $request->getBody();

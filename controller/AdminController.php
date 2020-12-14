@@ -62,7 +62,7 @@ Class AdminController extends Controller {
         if($req->isPost()){
                 $staff->loadData($req->getBody());
                 if($staff->validate() && $staff->save()){
-                    Application::$app->session->setFlash("success", "Create new staff scucessfull");
+                    Application::$app->session->setFlash("success", "Create new staff successful");
                     $res->redirect('/admin');
                 }
         }
@@ -85,10 +85,10 @@ Class AdminController extends Controller {
              $staff->loadData($dataArr);
             if($staff->validate()){
                 if($staff->updateStaffInfo()){
-                    echo "Update successfull";
+                    echo "Update successful";
                     return;
                 }else{
-                    echo "Update faild";
+                    echo "Update fail";
                 }
             }
         }
