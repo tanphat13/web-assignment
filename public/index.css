@@ -195,6 +195,81 @@ body {
   overflow-y: auto;
 }
 
+.admin-layout .container .manage-staff-container .delete-confirm-wrapper, .admin-layout .container .manage-products-container .delete-confirm-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 400px;
+  height: 200px;
+  background-color: #fff;
+  border-radius: 5px;
+  outline: solid #00987a86;
+  visibility: hidden;
+}
+
+.admin-layout .container .manage-staff-container .delete-confirm-wrapper .delete-confirm-message, .admin-layout .container .manage-products-container .delete-confirm-wrapper .delete-confirm-message {
+  height: 30px;
+  margin-bottom: 24px;
+}
+
+.admin-layout .container .manage-staff-container .delete-confirm-wrapper .delete-confirm-warning, .admin-layout .container .manage-products-container .delete-confirm-wrapper .delete-confirm-warning {
+  color: #e9bb02;
+  margin-bottom: 8px;
+}
+
+.admin-layout .container .manage-staff-container .delete-confirm-wrapper .delete-confirm-btn-group, .admin-layout .container .manage-products-container .delete-confirm-wrapper .delete-confirm-btn-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+  height: 40px;
+}
+
+.admin-layout .container .manage-staff-container .delete-confirm-wrapper .delete-confirm-btn-group .delete-btn,
+.admin-layout .container .manage-staff-container .delete-confirm-wrapper .delete-confirm-btn-group .cancle-btn, .admin-layout .container .manage-products-container .delete-confirm-wrapper .delete-confirm-btn-group .delete-btn,
+.admin-layout .container .manage-products-container .delete-confirm-wrapper .delete-confirm-btn-group .cancle-btn {
+  height: 100%;
+  width: 100px;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.admin-layout .container .manage-staff-container .delete-confirm-wrapper .delete-confirm-btn-group .cancle-btn, .admin-layout .container .manage-products-container .delete-confirm-wrapper .delete-confirm-btn-group .cancle-btn {
+  background-color: #009879;
+  color: #fff;
+  -webkit-box-shadow: 0 0 5px #008a6e;
+          box-shadow: 0 0 5px #008a6e;
+}
+
+.admin-layout .container .manage-staff-container .delete-confirm-wrapper .delete-confirm-btn-group .delete-btn, .admin-layout .container .manage-products-container .delete-confirm-wrapper .delete-confirm-btn-group .delete-btn {
+  background-color: #ffcc00;
+  color: #1a1a1a;
+  -webkit-box-shadow: 0 0 5px #f3c301;
+          box-shadow: 0 0 5px #f3c301;
+}
+
 .admin-layout .container .manage-staff-container .table-action, .admin-layout .container .manage-products-container .table-action {
   position: relative;
   display: -webkit-box;
@@ -224,6 +299,23 @@ body {
   text-decoration: none;
   color: #009879;
   font-weight: 600;
+}
+
+.admin-layout .container .manage-staff-container .table-action .table-action-search-bar, .admin-layout .container .manage-products-container .table-action .table-action-search-bar {
+  min-width: 500px;
+}
+
+.admin-layout .container .manage-staff-container .table-action .table-action-search-bar select, .admin-layout .container .manage-staff-container .table-action .table-action-search-bar input, .admin-layout .container .manage-products-container .table-action .table-action-search-bar select, .admin-layout .container .manage-products-container .table-action .table-action-search-bar input {
+  height: 30px;
+  border: 1px solid #009879;
+  color: #009879;
+  border-radius: 8px;
+  outline: none;
+}
+
+.admin-layout .container .manage-staff-container .table-action .table-action-search-bar select:focus, .admin-layout .container .manage-staff-container .table-action .table-action-search-bar input:focus, .admin-layout .container .manage-products-container .table-action .table-action-search-bar select:focus, .admin-layout .container .manage-products-container .table-action .table-action-search-bar input:focus {
+  outline: none;
+  border: 2px solid #009879;
 }
 
 .admin-layout .container .manage-staff-container .staff-table-wrapper, .admin-layout .container .manage-products-container .staff-table-wrapper {
@@ -279,9 +371,21 @@ body {
   text-align: center;
 }
 
-.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .table-cell .open-update-btn,
-.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .table-cell .update-product-btn-link, .admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row .table-cell .open-update-btn,
-.admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row .table-cell .update-product-btn-link {
+.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .actions-btn-group, .admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row .actions-btn-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .actions-btn-group .open-update-btn,
+.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .actions-btn-group .update-product-btn-link, .admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row .actions-btn-group .open-update-btn,
+.admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row .actions-btn-group .update-product-btn-link {
   border: none;
   background-color: #009879;
   color: #ffffff;
@@ -289,13 +393,34 @@ body {
   border-radius: 5px;
   -webkit-box-shadow: 1px 1px 10px #00b994;
           box-shadow: 1px 1px 10px #00b994;
+  width: 70px;
+  font-weight: 400;
+  margin: 0px 8px;
 }
 
-.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .table-cell .open-update-btn a,
-.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .table-cell .update-product-btn-link a, .admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row .table-cell .open-update-btn a,
-.admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row .table-cell .update-product-btn-link a {
+.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .actions-btn-group .open-update-btn a,
+.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .actions-btn-group .update-product-btn-link a, .admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row .actions-btn-group .open-update-btn a,
+.admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row .actions-btn-group .update-product-btn-link a {
   text-decoration: none;
   color: #ffffff;
+}
+
+.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .actions-btn-group .action-delete-btn, .admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row .actions-btn-group .action-delete-btn {
+  border: none;
+  background-color: #ffcc00;
+  color: #2b2b2b;
+  height: 30px;
+  border-radius: 5px;
+  -webkit-box-shadow: 1px 1px 10px #ffcc00;
+          box-shadow: 1px 1px 10px #ffcc00;
+  padding: 2px 5px;
+  width: 70px;
+  font-weight: 400;
+  margin: 0px 8px;
+}
+
+.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .actions-btn-group .action-delete-btn p, .admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row .actions-btn-group .action-delete-btn p {
+  margin: 0px;
 }
 
 .admin-layout .container .manage-staff-container .staff-table-wrapper .navigation-btn, .admin-layout .container .manage-products-container .staff-table-wrapper .navigation-btn {

@@ -18,7 +18,7 @@
             <div class='col-sm-1 table-cell'>Id</div>
             <div class='col-md table-cell'>Brand</div>
             <div class='col-md table-cell'>Product Name</div>
-            <div class='col-sm-1 table-cell'>Actions</div>
+            <div class='col-md table-cell'>Actions</div>
         </div>
         <div id='table-content' class="staff-table-content">
             <?php
@@ -57,18 +57,21 @@
             </li>
         </ul>
     </div>
-    <div id='delete-confirm'>
-        <h3>
+    <div id='delete-confirm' class="delete-confirm-wrapper">
+        <h3 class="delete-confirm-warning">
             Warning
         </h3>
-        <div>
-                Do you want to delete this product
+        <div class="delete-confirm-message">
+            Do you want to delete this product
         </div>
-        <div onclick="deleteModel()">
+        <div class="delete-confirm-btn-group">
+            <div class="delete-btn" onclick="deleteModel()">
                 Delete
+            </div>
+            <div onclick="closeConfirmDelete()" class="cancle-btn">
+                Cancle
+            </div>
         </div>
-        <div>
-                cancle
-        </div>
+
     </div>
 </div>

@@ -391,6 +391,12 @@ function openConfirmDelete(model,key){
   confirmBox.setAttribute("data-key", key);
   confirmBox.classList.add("active");
 }
+function closeConfirmDelete(){
+   const confirmBox = document.getElementById("delete-confirm");
+   confirmBox.setAttribute("data-model", '');
+   confirmBox.setAttribute("data-key", '');
+   confirmBox.classList.remove("active");
+}
 function deleteModel(){
   const confirmBox = document.getElementById("delete-confirm");
   let model = confirmBox.getAttribute("data-model");

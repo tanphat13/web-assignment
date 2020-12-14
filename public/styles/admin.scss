@@ -14,6 +14,62 @@ $admin-main-color: #009879;
             height: 100vh;
             overflow-x: hidden;
             overflow-y: auto;
+            .delete-confirm-wrapper {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                width: 400px;
+                height: 200px;
+                background-color: #fff;
+                border-radius: 5px;
+                outline: solid #00987a86;
+                visibility: hidden;
+                .delete-confirm-message {
+                    height: 30px;
+                    margin-bottom: 24px;
+                }
+
+                .delete-confirm-warning {
+                    color: #e9bb02;
+                    margin-bottom: 8px;
+                }
+
+                .delete-confirm-btn-group {
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    width: 80%;
+                    height: 40px;
+
+                    .delete-btn,
+                    .cancle-btn {
+                        height: 100%;
+                        width: 100px;
+                        text-align: center;
+                        font-weight: 600;
+                        border-radius: 8px;
+                        padding: 5px;
+                    }
+
+                    .cancle-btn {
+                        background-color: #009879;
+                        color: #fff;
+                        box-shadow: 0 0 5px #008a6e;
+                    }
+
+                    .delete-btn {
+                        background-color: #ffcc00;
+                        color: rgb(26, 26, 26);
+                        box-shadow: 0 0 5px #f3c301;
+                    }
+                }
+            }
+
             .table-action {
                 position: relative;
                 display: flex;
@@ -36,6 +92,21 @@ $admin-main-color: #009879;
                         color: $admin-main-color;
                         font-weight: 600;
                     }
+                }
+                .table-action-search-bar{
+                    min-width: 500px;
+                    select,input{
+                        height: 30px;
+                        border:1px solid $admin-main-color;
+                        color:$admin-main-color;
+                        border-radius: 8px;
+                        outline: none;
+                        &:focus{
+                            outline: none;
+                            border:2px solid $admin-main-color;
+                        }
+                    }
+                  
                 }
             }
             .staff-table-wrapper {
@@ -80,21 +151,44 @@ $admin-main-color: #009879;
                         padding:6px;
                         width: 50px;
                         text-align: center;             
-                            .open-update-btn,
-                            .update-product-btn-link {
-                                border: none;
-                                background-color: #009879;
-                                color: #ffffff;
-                                height: 30px;
-                                border-radius: 5px;
-                                box-shadow: 1px 1px 10px #00b994;
-                                a {
-                                    text-decoration: none;
-                                     color: #ffffff;
-                                }
-                            }
-                       
                     }
+                    .actions-btn-group {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        .open-update-btn,
+                        .update-product-btn-link {
+                            border: none;
+                            background-color: #009879;
+                            color: #ffffff;
+                            height: 30px;
+                            border-radius: 5px;
+                            box-shadow: 1px 1px 10px #00b994;
+                            width: 70px;
+                            font-weight: 400;
+                            margin: 0px 8px;
+                            a {
+                                text-decoration: none;
+                                color: #ffffff;
+                            }
+                        }
+                        .action-delete-btn {
+                            border: none;
+                            background-color: #ffcc00;
+                            color: rgb(43, 43, 43);
+                            height: 30px;
+                            border-radius: 5px;
+                            box-shadow: 1px 1px 10px #ffcc00;
+                            padding: 2px 5px;
+                            width: 70px;
+                            font-weight: 400;
+                            margin: 0px 8px;
+                            p {
+                                margin: 0px;
+                            }
+                        }
+                    }
+
                 }
                 .navigation-btn {
                     list-style: none;
