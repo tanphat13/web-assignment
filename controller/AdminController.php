@@ -152,18 +152,29 @@ Class AdminController extends Controller {
     }
     public function addNewProduct(Request $req ,Response $res){
         $product = new Product();
+        
         if ($req->isPost()) {
-            // echo"<pre>";
-            // echo var_dump($req->getBody());
-            // echo "</pre>";
-            // exit;
+            if (!isset($_FILES)) {
+                return;
+            }
             $product->loadData($req->getBody());
             if ($product->validate() && $product->save()) {
-                Application::$app->session->setFlash("success", "Add new product successfull");
-                $res->redirect('/admin/manage-products');
+                $newProductId = $product->getLastInsertId();
+                $targetDir = dirname(__DIR__) . "/public/assets/";
+                $targetFile = $targetDir . basename($_FILES['fileupload']['name']);
+                move_uploaded_file($_FILES['fileupload']['tmp_name'], $targetFile);
+                $newProductImages = "/assets/".basename($_FILES['fileupload']['name']); 
+                if($product->saveImage($newProductImages,$newProductId)){
+                    Application::$app->session->setFlash("success", "Add new product successfull");
+                    $res->redirect('/admin/manage-products');
+                }else{
+                    Application::$app->session->setFlash("fail", "Create new product fail");
+                    $res->redirect('/admin/manage-products');
+                }
+                
             }
         }
-            
+        
         $this->setLayout('adminLayout');
         return $this->render('admin-add-product',['model'=>$product]);
     }
@@ -187,6 +198,26 @@ Class AdminController extends Controller {
                 echo "Something wrong please try it later";
             }
         }
+    }
+    public function testingUploadFile(Request $req, Response $res){
+        
+        echo var_dump(dirname(__DIR__));
+        echo"<pre>";
+        echo var_dump($_FILES);
+        echo "</pre>";
+        $targetDir = dirname(__DIR__) . "/public/assets/";
+        $targetFile = $targetDir . basename($_FILES['fileupload']['name']);
+        echo var_dump($targetFile);
+        if(move_uploaded_file($_FILES['fileupload']['tmp_name'],$targetFile)){
+            echo "<pre>";
+            echo "upload success";
+            echo "</pre>";
+        }else{
+            echo "File not saved";
+        }
+        
+        $this->setLayout('adminLayout');
+        return $this->render('upload');
     }
 }
 

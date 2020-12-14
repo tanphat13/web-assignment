@@ -52,6 +52,14 @@ class Product extends DbModel {
             // echo var_dump($key);
             return parent::delete($key);
         }
+        public function saveImage($link,$productId){
+           $sql_command = self::prepare("
+            INSERT INTO images 
+            (product_id , link) 
+            VALUES ('".$productId."','".$link."');
+           ");
+           return $sql_command->execute();
+        }
         public function getSpecificProduct(int $id) {
             $product = self::findOne($this->tableName(), ['product_id' => $id]);
             if (!$product) {

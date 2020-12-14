@@ -33,6 +33,10 @@ abstract class DbModel extends Model{
         }
     public static function prepare ($sql_command){
         return  Application::$app->db->pdo->prepare($sql_command);
+    }
+    public static function getLastInsertId()
+    {
+        return  Application::$app->db->pdo->lastInsertId();
     } 
 
     public static function findOne($tableName, $where){

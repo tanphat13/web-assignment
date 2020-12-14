@@ -337,6 +337,49 @@ $admin-main-color: #009879;
 
             }
         }
+        .create-staff-wrapper {
+            position: relative;
+            left: 50%;
+            top: 30%;
+            transform: translate(-50%, -30%);
+            padding: 16px 0px;
+            width: 500px;
+            height: 350px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            padding: 8px;
+
+            h1 {
+                color: $admin-main-color;
+                margin-bottom: 24px;
+            }
+
+            input[type=radio] {
+                color: $admin-main-color;
+            }
+
+            .form-group {
+                margin-bottom: 16px;
+
+                label {
+                    font-size: 18px;
+                    color: $admin-main-color;
+                }
+            }
+
+            .create-btn {
+                position: relative;
+                left: 50%;
+                transform: translate(-50%);
+                height: 30px;
+                width: 80px;
+                padding: 0px 5px;
+                background-color: $admin-main-color;
+                color: #fff;
+                border: none;
+            }
+        }
 
     }
 
