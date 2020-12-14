@@ -331,7 +331,7 @@ class SiteController extends Controller{
             $paramlist =  ['low_bound' => $param['low_bound'], 'high_bound' => $param['high_bound']  ];
         } else {
             $curBrand = (!isset($param['brand']) ? $categoryList[0] : $param['brand']);
-            $productList = (new Categories())->getBrandProduct($curBrand, $param['pageno']);
+            $productList = (new Categories())->getBrandProduct($curBrand, array_key_exists('pageno', $param)? $param['pageno'] : 1);
             $paramlist = ['brand' => $curBrand];
         }
         $paramlist = array_merge($paramlist,  ['category' => $categoryList, 'product' => $productList['products'], 'total_page' => $productList['total_page']]);
