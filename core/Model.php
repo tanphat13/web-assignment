@@ -9,15 +9,16 @@ abstract class Model{
     public const RULE_UNIQUE = 'unique';
     public array $errors = [];
     public function loadData($data){
+
         foreach($data as $key => $value){
             if(property_exists($this,$key)){
                 $this->{$key} = $value;
             }
         }
+        return $data;
     }
     abstract public function rules(): array;
     public function validate(){
-        
         foreach($this->rules() as $attribute => $rules){
             $value = $this->{$attribute};
             foreach ($rules as $rule){
@@ -43,7 +44,7 @@ abstract class Model{
                     $this->addError($attribute, self::RULE_MATCH, $rule);
                 }
                 if($ruleName === self::RULE_UNIQUE){
-                    $className =$rule['class'];
+                    $className =$rule['class'] ?? $this;
                     $uniqueAttr = $rule['attribute'] ?? $attribute;
                     $tableName =  $className::tableName();
                     $sql_command = Application::$app->db->prepare("

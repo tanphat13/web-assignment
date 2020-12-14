@@ -1,7 +1,7 @@
 <?php
     use app\core\Application;
 
-    class m006_rating_comments {
+    class m0006_rating_comments {
         public function up() {
             $db = Application::$app->db;
             $sql_command = "ALTER TABLE products ADD rating FLOAT NULL;

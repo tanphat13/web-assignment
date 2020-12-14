@@ -23,7 +23,7 @@ $app  = new Application(dirname(__DIR__),$config);
 $app->router->get('/',[SiteController::class,'home']);
 $app->router->post('/', [SiteController::class, 'home']);
 
-$app->router->get('/contact', [SiteController::class,"renderContact",['admin', 'user']]);
+$app->router->get('/contact', [SiteController::class,"Contact",['admin', 'user']]);
 
 $app->router->post('/contact', [SiteController::class, 'handleContactSubmit']);
 
@@ -40,11 +40,29 @@ $app->router->get('/logout', [AuthController::class, 'logout']);
 
 $app->router->get('/profile', [AuthController::class, 'profile']);
 
+// Specific product request
 $app->router->get('/product', [SiteController::class, 'renderProduct']);
 $app->router->post('/product', [SiteController::class, 'renderProduct']);
 $app->router->get('/branch', [SiteController::class, 'getBranch']);
 $app->router->post('/rating', [SiteController::class, 'updateRating']);
 $app->router->post('/comment', [SiteController::class, 'createComment']);
+
+//add address function
+$app->router->get('/profile', [SiteController::class, 'manageUserAddress']);
+$app->router->post('/profile', [SiteController::class, 'manageUserAddress']);
+$app->router->post('/add-address', [SiteController::class, 'addNewAddress']);
+$app->router->post('/delete-address', [SiteController::class, 'deleteAddress']);
+$app->router->post('/update-info', [SiteController::class, 'updateInfo']);
+
+// Review Cart + purchase
+$app->router->get('/my-cart', [SiteController::class, 'reviewCart']);
+$app->router->post('/my-cart', [SiteController::class, 'reviewCart']);
+$app->router->post('/remove-product', [SiteController::class, 'removeProduct']);
+$app->router->get('/my-address', [SiteController::class, 'getUserAddress']);
+$app->router->get('/all-branch', [SiteController::class, 'getAllBranch']);
+$app->router->post('/ordering', [SiteController::class, 'createOrder']);
+$app->router->get('/order', [SiteController::class, 'reviewOrder']);
+$app->router->get('/cancel-order', [SiteController::class, 'cancelOrder']);
 
 //Footer
 $app->router->get('/warranty', [SiteController::class, 'warranty']);
@@ -58,8 +76,19 @@ $app->router->post('/installment', [SiteController::class, 'installment']);
 // For admin routers
 //$app->router->get('/admin', [AdminController::class, 'admin']);
 // $app->router->get('/admin/login/user', [AdminController::class, 'test']);
- $app->router->get('/admin/login', [AdminController::class, 'test']);
-// $app->router->get('/admin', [AdminController::class, 'admin']);
-$app->router->get('/admin', [\app\controller\AdminController::class, 'admin']);
+$app->router->get('/admin', [AdminController::class, 'admin',['admin']]);
+$app->router->get('/admin/login', [AdminController::class, 'login']);
+$app->router->get('/admin/create-new-staff', [AdminController::class, 'createStaff', ['admin']]);
+$app->router->post('/admin/create-new-staff', [AdminController::class, 'createStaff',['admin']]);
+$app->router->post('/admin/login', [AdminController::class, 'login']);
+$app->router->get('/admin/specific-staff',[AdminController::class, 'getSpecificStaff',['admin']]);
+$app->router->post('/admin/update-staff-info', [AdminController::class, 'updateStaff', ['admin']]);
+$app->router->get('/admin/search', [AdminController::class, 'search', ['admin']]);
+$app->router->get('/admin/manage-products', [AdminController::class, 'manageProduct', ['admin']]);
+$app->router->get('/admin/manage-products/update-product', [AdminController::class, 'getUpdateProduct', ['admin']]);
+$app->router->post('/admin/manage-products/update-specific-product', [AdminController::class, 'postUpdateProduct', ['admin']]);
+$app->router->get('/admin/add-new-product', [AdminController::class, 'addNewProduct', ['admin']]);
+$app->router->post('/admin/add-new-product', [AdminController::class, 'addNewProduct', ['admin']]);
+// $app->router->get('/admin', [\app\controller\AdminController::class, 'admin']);
 $app->run();
 ?>

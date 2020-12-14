@@ -30,17 +30,17 @@ use app\core\Application;
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/category">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="/category">Products</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Dropdown
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="/address">Add Address</a>
                         <a class="dropdown-item" href="#">Another action</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Something else here</a>
@@ -90,7 +90,7 @@ use app\core\Application;
     <div class="home-wrapper">
     <div class='login-wrapper <?php 
     
-    if($model){
+    if(isset($model)){
                                     if ($model->getFirstError('email') || $model->getFirstError('password')) {
                                         echo "active";
                                     } else {
@@ -103,7 +103,7 @@ use app\core\Application;
         <form action="" method="post">
             <h1 class="show-error">
                 <?php
-                if($model){
+                if(isset($model)){
                     if ($model->hasError('password')) {
                         echo $model->getFirstError('password') ?? '';
                     } else if ($model->hasError('email')) {
