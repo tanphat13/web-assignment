@@ -45,7 +45,7 @@ use app\core\Application;
                     </a>
                 </div>
                 <div class='function-item'>
-                    <a href="/admin/products">
+                    <a href="/admin/manage-products">
                         Manage product
                     </a>
                 </div>
