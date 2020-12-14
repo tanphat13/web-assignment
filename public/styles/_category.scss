@@ -24,6 +24,17 @@
         display: inline;
         right:0;
         width: 80%;
+        .paging {
+            align-content: flex;
+            li {
+                display: inline;
+                text-align: right;
+                font-size: xx-large;
+                position: relative;
+                right: 0;
+            }
+        
+        }
         .product_item {
             height: 30vh;
             width: 20%;
