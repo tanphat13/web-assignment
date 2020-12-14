@@ -394,6 +394,8 @@ function openConfirmDelete(model,key){
 }
 function closeConfirmDelete(){
    const confirmBox = document.getElementById("delete-confirm");
+   const message = document.getElementById("confirm-delete-message");
+   message.innerHTML = "Do you want to delete";
    confirmBox.setAttribute("data-model", '');
    confirmBox.setAttribute("data-key", '');
    confirmBox.classList.remove("active");
@@ -410,7 +412,7 @@ function deleteModel(){
       message.innerHTML = xhttp.responseText;
        setTimeout(function () {
          confirmBox.classList.remove("active");
-         window.href("/admin/manage-products");
+         locatiton.href =  window.location.href;
        }, 2000);
     }
   };
