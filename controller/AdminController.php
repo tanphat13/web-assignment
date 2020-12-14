@@ -11,6 +11,7 @@ use app\core\Response;
 use app\core\middleware\AuthMiddleware;
 use app\core\Session;
 use app\models\Admin;
+use app\models\Product;
 use app\models\Staff;
 
 Class AdminController extends Controller {
@@ -32,13 +33,36 @@ Class AdminController extends Controller {
             $page = 1;
             $limit = 10;
         }
-       
+
         $fetchResult = $adminModel->getStaffList($page,$limit);
         $totalPage = $fetchResult['totalPage'];
         $staffList = $fetchResult['staffList'];  
         $this->setLayout('adminLayout');
         return $this->render('admin',['model'=>$adminModel,'staffList'=>$staffList,'totalPage'=>$totalPage,'page'=>$page]);
        
+    }
+    public function manageProduct(Request $req, Response $res)
+    {
+        $session = new Session();
+        $adminModel = new Admin();
+        $user = $session->get('user');
+        $page = 0;
+        if (!$user) {
+            $res->redirect('/admin/login');
+        }
+        
+        if (isset($_GET['page']) && isset($_GET["limit"])) {
+            $page = intval($_GET['page']);
+            $limit = intval($_GET['limit']);
+        } else {
+            $page = 1;
+            $limit = 10;
+        }
+        $fetchResult =$adminModel->getProductList($page,$limit);  
+        $totalPage = $fetchResult['totalPage'];
+        $productList = $fetchResult['productList'];
+        $this->setLayout('adminLayout');
+        return $this->render('admin-product', ['model' => $adminModel, 'productList' => $productList, 'totalPage' => $totalPage, 'page' => $page]);
     }
 
 
@@ -92,6 +116,56 @@ Class AdminController extends Controller {
                 }
             }
         }
+    }
+    public function search(){
+        $option = $_GET['options'];
+        $key = $_GET['key'];
+        $staffModel = new Staff();
+        $searchResult = $staffModel->searchStaff($option,$key);
+        echo $searchResult;
+       
+    }
+    public function getUpdateProduct(){
+        $adminModel = new Admin();
+        $productId = $_GET['product_id'];
+        $queried_product = $adminModel->getSpecificProduct($productId);
+        $product_array = get_object_vars($queried_product);
+        $this->setLayout('adminLayout');
+        return $this->render('admin-update-product', ['model' => $adminModel, 'product_item'=>$product_array]);
+    }
+    public function postUpdateProduct(Request $req, Response $res){
+         // echo array_keys($_REQUEST)[0];
+         $dataArray = json_decode(array_keys($_REQUEST)[0],true);
+         $product = new Product();
+         //echo var_dump($dataArray); 
+         $product->loadData($dataArray);
+         //echo var_dump($product);
+        if ($req->isPost()) {
+            $product->loadData($dataArray);
+                if ($product->updateProduct()) {
+                    echo "Update successfull";
+                    return;
+                } else {
+                    echo "Update faild";
+                }
+        }
+    }
+    public function addNewProduct(Request $req ,Response $res){
+        $product = new Product();
+        if ($req->isPost()) {
+            // echo"<pre>";
+            // echo var_dump($req->getBody());
+            // echo "</pre>";
+            // exit;
+            $product->loadData($req->getBody());
+            if ($product->validate() && $product->save()) {
+                Application::$app->session->setFlash("success", "Add new product successfull");
+                $res->redirect('/admin/manage-products');
+            }
+        }
+            
+        $this->setLayout('adminLayout');
+        return $this->render('admin-add-product',['model'=>$product]);
     }
 }
 

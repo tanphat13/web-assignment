@@ -294,6 +294,36 @@ function cancelOrder(order_id) {
      // alert(staffId);
  }
 
+ // Search feature
+
+ function searchStaff(searchInput){
+  const  options = document.getElementById('search-option');
+  let optionValue = options.value;
+  const tableContent = document.getElementById('table-content');
+  // console.log(optionValue);
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (xhttp.readyState === 4 && xhttp.status === 200) {
+      tableContent.innerHTML = xhttp.responseText;
+    }
+  };
+  xhttp.open(
+    "GET",
+    `http://localhost:8080/admin/search?key=${searchInput}&options=${optionValue}`,
+    true
+  );
+  xhttp.send();
+ }
+
+
+
+
+
+
+
+
+
+
  function updateStaffInfo(){
    const updateForm = document.getElementById("staff-update-form");
    const staffId = updateForm.getAttribute("data-staff");
@@ -317,7 +347,7 @@ function cancelOrder(order_id) {
      }
    };
    xhttp.open("POST", `http://localhost:8080/admin/update-staff-info`, true);
-  xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+   xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
    xhttp.send(
      JSON.stringify(object)
   );
@@ -328,3 +358,30 @@ function cancelOrder(order_id) {
    updateForm.classList.remove("active");
   updateForm.setAttribute('data-staff','');
  }
+
+
+
+ function EditCell(){
+   const properties = document.getElementsByClassName("table-cell-value");
+   let dataObject = {};
+
+   for(let i = 0 ; i< properties.length; i++){
+    let propKey = properties[i].getAttribute("data-content");
+    dataObject = { ...dataObject, [propKey]: properties[i].innerHTML };
+   }
+
+   var xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function () {
+     if (xhttp.readyState == 4 && xhttp.status == 200) {
+      //  
+      console.log(xhttp.responseText);
+     }
+   };
+   xhttp.open(
+     "POST",
+     `http://localhost:8080/admin/manage-products/update-specific-product`,
+     true
+   );
+   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+   xhttp.send(JSON.stringify(dataObject));
+}

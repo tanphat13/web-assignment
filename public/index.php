@@ -90,6 +90,12 @@ $app->router->post('/admin/create-new-staff', [AdminController::class, 'createSt
 $app->router->post('/admin/login', [AdminController::class, 'login']);
 $app->router->get('/admin/specific-staff',[AdminController::class, 'getSpecificStaff',['admin']]);
 $app->router->post('/admin/update-staff-info', [AdminController::class, 'updateStaff', ['admin']]);
+$app->router->get('/admin/search', [AdminController::class, 'search', ['admin']]);
+$app->router->get('/admin/manage-products', [AdminController::class, 'manageProduct', ['admin']]);
+$app->router->get('/admin/manage-products/update-product', [AdminController::class, 'getUpdateProduct', ['admin']]);
+$app->router->post('/admin/manage-products/update-specific-product', [AdminController::class, 'postUpdateProduct', ['admin']]);
+$app->router->get('/admin/add-new-product', [AdminController::class, 'addNewProduct', ['admin']]);
+$app->router->post('/admin/add-new-product', [AdminController::class, 'addNewProduct', ['admin']]);
 // $app->router->get('/admin', [\app\controller\AdminController::class, 'admin']);
 
 // For Staff router

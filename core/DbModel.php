@@ -30,14 +30,19 @@ abstract class DbModel extends Model{
         $attributes =  array_keys(
            $where 
         );
+        // echo "<pre>";
+        // echo var_dump($where);
+        // echo "</pre>";
+        // exit;
         $sql_params = implode("AND ", array_map(fn($attr)=> "$attr = :$attr",$attributes));
 
         $sql_command = self::prepare("SELECT * FROM $tableName WHERE $sql_params");
         foreach($where as $key => $item){
+            // exit;
             $sql_command->bindValue(":$key",$item);
            // echo var_dump( $item);
         }
-        
+      
         $sql_command->execute();
 
         return $sql_command->fetchObject(static::class);
