@@ -82,14 +82,6 @@ body {
   list-style: none;
 }
 
-<<<<<<< HEAD
-=======
-.installment {
-  position: relative;
-  left: 20vw;
-}
-
->>>>>>> f2aad6e8f2fccd894bac6e584fc6ae83a26558d5
 .installment h1 {
   text-align: center;
 }
@@ -98,14 +90,6 @@ body {
   height: 80%;
 }
 
-<<<<<<< HEAD
-=======
-.returnpolicy {
-  position: relative;
-  left: 20vw;
-}
-
->>>>>>> f2aad6e8f2fccd894bac6e584fc6ae83a26558d5
 .returnpolicy h1 {
   text-align: center;
 }
@@ -129,14 +113,6 @@ body {
   border: solid 4px;
 }
 
-<<<<<<< HEAD
-=======
-.warranty {
-  position: relative;
-  left: 20vw;
-}
-
->>>>>>> f2aad6e8f2fccd894bac6e584fc6ae83a26558d5
 .warranty h1 {
   text-align: center;
 }
@@ -171,6 +147,19 @@ body {
   display: inline;
   right: 0;
   width: 80%;
+}
+
+.categoryPage .product_matrix .paging {
+  -ms-flex-line-pack: flex;
+      align-content: flex;
+}
+
+.categoryPage .product_matrix .paging li {
+  display: inline;
+  text-align: right;
+  font-size: xx-large;
+  position: relative;
+  right: 0;
 }
 
 .categoryPage .product_matrix .product_item {
