@@ -390,6 +390,7 @@ function openConfirmDelete(model,key){
   confirmBox.setAttribute('data-model',model);
   confirmBox.setAttribute("data-key", key);
   confirmBox.classList.add("active");
+  console.log()
 }
 function closeConfirmDelete(){
    const confirmBox = document.getElementById("delete-confirm");
@@ -405,7 +406,12 @@ function deleteModel(){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
-      console.log(xhttp.responseText);
+      const message = document.getElementById("confirm-delete-message");
+      message.innerHTML = xhttp.responseText;
+       setTimeout(function () {
+         confirmBox.classList.remove("active");
+         window.href("/admin/manage-products");
+       }, 2000);
     }
   };
   xhttp.open(

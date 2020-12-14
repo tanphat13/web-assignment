@@ -61,7 +61,7 @@
         <h3 class="delete-confirm-warning">
             Warning
         </h3>
-        <div class="delete-confirm-message">
+        <div id="confirm-delete-message" class="delete-confirm-message">
             Do you want to delete this product
         </div>
         <div class="delete-confirm-btn-group">
