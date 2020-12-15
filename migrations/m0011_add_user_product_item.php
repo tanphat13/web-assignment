@@ -5,15 +5,16 @@
         public function up() {
             $db = Application::$app->db;
 
-            $sql_command = "INSERT INTO users (id,email,fullname,phone,status,password,role,branch_id, gender) 
-            VALUES (1, 'ngonguyenthuan2302@gmail.com', 'Ngo Nguyen Thuan','0123638265',1, '$2y$10$hgz0.zAnVAO08tPANIsAb.I9hh2p187my/.EkOHQLD7u8C6SqrK0q', 'user', '','Male' ),
-            (2, 'staff1@gmail.com', 'Hoang Long','0366318261',1, '$2y$10$PY/V9GUdiYgPiGNcA19O2eghkuw03fhuonzI/a2WZrIj4vUyo7DSm', 'staff',1, 'Male' ),            
-            (3, 'admin@mobile.com', 'admin','0988888888',1, '$2y$10$VPm6/L3T5w4o6E31CBexU.VlGSgZO2p2SkaJRGPUKNiOQAZLkUCFW', 'admin',1, 'Male' );
-
+            $sql_command = "
             INSERT INTO branches (branch_id, branch_address, branch_phone) 
             VALUES (1, '288 Duong 3 thang 2', '0937058859'),
             (2, '4B Cong Hoa', '0937058859'),
             (3, '5 Nguyen Kiem, Go Vap', '0937058859');
+            INSERT INTO users (id,email,fullname,phone,status,password,role,branch_id, gender) 
+            VALUES (1, 'ngonguyenthuan2302@gmail.com', 'Ngo Nguyen Thuan','0123638265',1, '$2y$10$hgz0.zAnVAO08tPANIsAb.I9hh2p187my/.EkOHQLD7u8C6SqrK0q', 'user', '','Male' ),
+            (2, 'staff1@gmail.com', 'Hoang Long','0366318261',1, '$2y$10$PY/V9GUdiYgPiGNcA19O2eghkuw03fhuonzI/a2WZrIj4vUyo7DSm', 'staff',1, 'Male' ),            
+            (3, 'admin@mobile.com', 'admin','0988888888',1, '$2y$10$VPm6/L3T5w4o6E31CBexU.VlGSgZO2p2SkaJRGPUKNiOQAZLkUCFW', 'admin',1, 'Male' );
+
 
             INSERT INTO products_items (product_id, serial_number, branch_id, item_status)
             VALUES (1, 00001, 1, 'IN STOCK'),
