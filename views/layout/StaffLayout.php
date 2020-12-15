@@ -40,12 +40,12 @@ use app\core\Application;
 
             <div class='side-bar-function-list'>
                 <div class='function-item'>
-                    <a href="/staff/order">
+                    <a href="/staff/manage-order?page=1&limit=10">
                         Manage order
                     </a>
                 </div>
                 <div class='function-item'>
-                    <a href="/admin/products">
+                    <a href="/staff/new-order">
                         Create new order
                     </a>
                 </div>

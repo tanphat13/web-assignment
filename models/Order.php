@@ -80,18 +80,26 @@ class Order extends DbModel {
             foreach ($orders as $order_item) {
                 $order_list .= "
                     <div class='staff-table-row'>
-                        <div class='col-sm-1 table-cell'>$order_item[order_id]</div>
+                        <div class='col-sm table-cell'>$order_item[order_id]</div>
                         <div class='col-md table-cell'>" .date_format(date_create($order_item['created_at']), 'd/m/Y'). "</div>
                         <div class='col-md table-cell'>" .($order_item['delivery_date'] === NULL ? 'N/A' : date_format(date_create($order_item['delivery_date']), 'd/m/Y')). "</div>
                         <div class='col-md table-cell'>$order_item[order_status]</div>
                         <div class='col-md table-cell'>" .($order_item['order_method'] === 1 ? 'SHIP' : 'AT STORE'). "</div>
                         <div class='col-sm-1 table-cell'>
-                            <a id='view-detail-btn' class='open-update-btn' href='#'>View</a>
+                            <a id='view-detail-btn' class='open-update-btn' href='/staff/order?id=$order_item[order_id]'>View</a>
                         </div>
                     </div>
                 ";
             }
             return ['order_list' => $order_list, 'total_page' => $total_page];
+        }
+
+        public function updateOrder($order_id, $status, $delivery_date) {
+            $sql = "UPDATE orders SET order_status = '$status'";
+            if ($delivery_date !== '') $sql .= ", delivery_date = '$delivery_date'";
+            $sql .= "WHERE order_id = $order_id";
+            $sql_command = self::prepare($sql);
+            $sql_command->execute();
         }
     }
 ?>

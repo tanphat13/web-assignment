@@ -239,6 +239,7 @@ body {
   height: 30px;
   border-radius: 5px;
   box-shadow: 1px 1px 10px #00b994;
+  font-weight: normal;
 }
 .admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .table-cell .open-update-btn a,
 .admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .table-cell .update-product-btn-link a, .admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row .table-cell .open-update-btn a,
@@ -850,8 +851,6 @@ body {
 .form-order .form-horizontal .order-head {
   margin-bottom: 4vh;
   padding-bottom: 2vh;
-  display: flex;
-  justify-content: space-between;
   border-bottom: 1px solid #dedede;
 }
 .form-order .form-horizontal .info-product {
@@ -900,7 +899,7 @@ body {
 .form-order .form-horizontal .cart-summary {
   margin-bottom: 4vh;
   padding: 2vh 0;
-  border-bottom: 1px dashed #dedede;
+  border-bottom: 1px solid #dedede;
 }
 .form-order .form-horizontal .cart-summary .cart-format {
   margin-bottom: 2vh;
@@ -1102,6 +1101,12 @@ body {
 }
 .manage-address .add-address .btn-outline-success {
   border: none;
+}
+
+.staff-order {
+  padding: 0;
+  font-size: 80%;
+  height: 100vh;
 }
 
 /*# sourceMappingURL=index.css.map */

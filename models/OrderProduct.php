@@ -2,8 +2,9 @@
     namespace app\models;
     use app\core\DbModel;
     use app\models\ProductItem;
+use PDO;
 
-    class OrderProduct extends DbModel {
+class OrderProduct extends DbModel {
 
         public int $order_id;
         public int $product_id;
@@ -40,9 +41,9 @@
         }
 
         public function getOrderProduct($order_id) {
-            $sql_command = self::prepare("SELECT product_id FROM orders_products WHERE order_id = $order_id");
+            $sql_command = self::prepare("SELECT product_id, serial_number FROM orders_products WHERE order_id = $order_id");
             $sql_command->execute();
-            return $sql_command->fetchAll();
+            return $sql_command->fetchAll(PDO::FETCH_ASSOC);
         }
 
         public function removeProduct($order_id) {

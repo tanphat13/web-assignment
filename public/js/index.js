@@ -249,12 +249,26 @@ function cancelOrder(order_id) {
   xhttp.onreadystatechange = function() {
     if (this.readyState === 4 && this.status === 200) {
       document.getElementById('box-confirm').classList.remove('active');
-      console.log(this.responseText);
       location.reload();
     }
   }
   xhttp.open("GET", "cancel-order?id="+order_id, true);
   xhttp.send();
+}
+
+function updateOrder(order_id) {
+  let status = document.getElementById('status').value;
+  let delivery_date = document.getElementById('delivery-date').value;
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+      // console.log(this.responseText);
+      location.reload();
+    }
+  }
+  xhttp.open("POST", "update-order", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("order_id="+order_id+"&status="+status+"&delivery_date="+delivery_date);
 }
 
 // function setOnClickStore(){

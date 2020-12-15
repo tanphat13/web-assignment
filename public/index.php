@@ -101,6 +101,9 @@ $app->router->post('/admin/add-new-product', [AdminController::class, 'addNewPro
 // For Staff router
 $app->router->get('/staff/login', [StaffController::class, 'login']);
 $app->router->post('/staff/login', [StaffController::class, 'login']);
-$app->router->get('/staff/manage-order', [StaffController::class, 'manageOrder']);
+$app->router->get('/staff/manage-order', [StaffController::class, 'manageOrder', ['staff']]);
+$app->router->get('/staff/order', [StaffController::class, 'reviewOrder', ['staff']]);
+$app->router->post('/staff/update-order', [StaffController::class, 'updateOrder', ['staff']]);
+$app->router->get('/staff/new-order', [StaffController::class, 'renderOrder', ['staff']]);
 $app->run();
 ?>

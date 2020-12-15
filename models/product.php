@@ -2,8 +2,9 @@
     namespace app\models;
     use app\core\Application;
     use app\core\DbModel;
+use PDO;
 
-    class Product extends DbModel {
+class Product extends DbModel {
 
         public int $product_id = 0;
         public string $product_name = '';
@@ -86,14 +87,15 @@
 
         public function getProductInCart($listProductId) {
             $products = array();
-            foreach ($listProductId as $product_id) {
+            foreach ($listProductId as $product) {
                 $sql_command = self::prepare("SELECT products.product_id, products.product_name, products.product_price, products.product_color, products.product_ram, products.product_rom, MIN(images.image_id), images.link 
-                FROM products LEFT JOIN images ON products.product_id = images.product_id WHERE products.product_id = $product_id GROUP BY products.product_name;");
+                FROM products LEFT JOIN images ON products.product_id = images.product_id WHERE products.product_id = $product[product_id] GROUP BY products.product_name;");
                 $sql_command->execute();
-                array_push($products, $sql_command->fetchObject());
+                array_push($products, ['product_info' => $sql_command->fetchObject(), 'product_sn' => $product['serial_number']]);
             }
             return $products;
         }
+
         public function updateProduct(){
             $tableName = $this->tableName();
             $attributes = $this->attribute();
@@ -109,6 +111,13 @@
             }
            
             return $sql_command->execute();
+        }
+
+        public function getAllProduct() {
+            $sql_command = self::prepare("SELECT products.product_id, products.product_name, products.product_price, products.product_color, products.product_ram, products.product_rom, products.rating, MIN(images.image_id), images.link 
+            FROM products LEFT JOIN images ON products.product_id = images.product_id GROUP BY products.product_name ORDER BY products.rating");
+            $sql_command->execute();
+            return $sql_command->fetchAll(PDO::FETCH_ASSOC);
         }
     }
 ?>

@@ -2,7 +2,7 @@
 
     <div class="staff-table-wrapper">
         <div class="staff-table-row table-head">
-            <div class='col-sm-1 table-cell'>Order Id</div>
+            <div class='col-sm table-cell'>Order Id</div>
             <div class='col-md table-cell'>Order Date</div>
             <div class='col-md table-cell'>Delivery Date</div>
             <div class='col-md table-cell'>Order Status</div>

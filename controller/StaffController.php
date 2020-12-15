@@ -7,7 +7,7 @@
     use app\models\LoginForm;
     use app\core\middleware\AuthMiddleware;
     use app\core\Response;
-    use app\model\User;
+    use app\models\User;
     use app\models\Order;
     use app\models\OrderProduct;
     use app\models\Product;
@@ -26,7 +26,7 @@
             if ($request->isPost()) {
                 $loginForm->loadData($request->getBody());
                 if ($loginForm->validate() && $loginForm->login()) {
-                    $response->redirect('/staff/manage-order?page=1&limit=2');
+                    $response->redirect('/staff/manage-order?page=1&limit=10');
                     return;
                 }
             }
@@ -52,6 +52,31 @@
             $order_list = $result['order_list'];
             $this->setLayout('staffLayout');
             return $this->render('manage-order',['order_list'=>$order_list,'totalPage'=>$totalPage,'page'=>$page]);
+        }
+
+        public function reviewOrder(Request $request) {
+            $param = $request->getBody();
+            $order = (new Order())->getDetailedOrder($param['id']);
+            $user = (new User())->getUserInfo($order->user_id);
+            $product_in_order = (new OrderProduct())->getOrderProduct(intval($param['id']));
+            $listProductId = array();
+            foreach ($product_in_order as $product) {
+                array_push($listProductId, $product);
+            }
+            $listProducts = (new Product())->getProductInCart($listProductId);
+            $this->setLayout('staffLayout');
+            return $this->render('review-order', ["user" => $user, "order" => $order, "listProducts" => $listProducts]);
+        }
+
+        public function updateOrder(Request $request) {
+            $body = $request->getBody();
+            (new Order())->updateOrder($body['order_id'], $body['status'], $body['delivery_date']);
+        }
+
+        public function renderOrder() {
+            $products_list = (new Product())->getAllProduct();
+            $this->setLayout('staffLayout');
+            return $this->render('order-form', ['products_list' => $products_list]);
         }
     }
 ?>
