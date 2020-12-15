@@ -168,6 +168,7 @@ class SiteController extends Controller{
         if (in_array('email', $listField) && in_array('password', $listField)) {
             self::login($path, $loginForm, $request, $response);
         }
+        if ($session->get('cart') === '') $session->set('cart', []);
         $listProductId = $session->get('cart');
         if (isset($_COOKIE['productId'])) {
             array_push($listProductId, intval($_COOKIE['productId']));
@@ -175,6 +176,19 @@ class SiteController extends Controller{
             $session->set('cart', $listProductId);
             setcookie('productId', '', 0,'/');            
         }
+        $listProductInfo = array();
+        foreach ($listProductId as $product_id) {
+            array_push($listProductInfo, ['product_id' => $product_id, 'serial_number' => '']);
+        }
+        $listProducts = (new Product())->getProductInCart($listProductInfo);
+        $user = (new User())->getUserInfo($session->get('user'));
+        return $this->render('cart', ["listProducts" => $listProducts, "user" => $user]);
+    }
+
+    public function reviewMyCart(Request $request, Response $response) {
+        $session = Application::$app->session;
+        if ($session->get('cart') === '') $session->set('cart', []);
+        $listProductId = $session->get('cart');
         $listProductInfo = array();
         foreach ($listProductId as $product_id) {
             array_push($listProductInfo, ['product_id' => $product_id, 'serial_number' => '']);
@@ -193,7 +207,7 @@ class SiteController extends Controller{
         $current_list_id[$index_of_removing] = 0;
         array_multisort($current_list_id);
         array_shift($current_list_id);
-        $session->set('cart', implode(',', $current_list_id));
+        $session->set('cart', $current_list_id);
     }
 
     public function getUserAddress(Request $request) {
@@ -226,7 +240,7 @@ class SiteController extends Controller{
         $session = Application::$app->session;
         $body = $request->getBody();
         $new_order = (new Order())->createNewOrder($body, $session->get('user'));
-        (new OrderProduct())->createProductInOrder(intval($new_order->latest_order_id), explode(',', $session->get('cart')));
+        (new OrderProduct())->createProductInOrder(intval($new_order->latest_order_id), $session->get('cart'));
         $session->set('cart', []);
         $response->redirect("/order?id=$new_order->latest_order_id");
         return;
