@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,YAAY,CAAC;EACT,OAAO,EAAE,CAAC;EACV,SAAS,EAAE,GAAG;EACd,MAAM,EAAE,KAAK;CAChB",
+    "sources": [
+        "staff.scss"
+    ],
+    "names": [],
+    "file": "staff.css"
+}

@@ -5,6 +5,7 @@ use app\core\Application;
 use app\controller\AdminController;
 use app\controller\SiteController;
 use app\controller\AuthController;
+use app\controller\StaffController;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -54,13 +55,19 @@ $app->router->post('/add-address', [SiteController::class, 'addNewAddress']);
 $app->router->post('/delete-address', [SiteController::class, 'deleteAddress']);
 $app->router->post('/update-info', [SiteController::class, 'updateInfo']);
 
-// Review Cart + purchase
+// Review Cart
 $app->router->get('/my-cart', [SiteController::class, 'reviewCart']);
 $app->router->post('/my-cart', [SiteController::class, 'reviewCart']);
 $app->router->post('/remove-product', [SiteController::class, 'removeProduct']);
 $app->router->get('/my-address', [SiteController::class, 'getUserAddress']);
 $app->router->get('/all-branch', [SiteController::class, 'getAllBranch']);
 $app->router->post('/ordering', [SiteController::class, 'createOrder']);
+
+// Review My Order
+$app->router->get('/my-order', [SiteController::class, 'reviewAllOrder']);
+$app->router->post('/my-order', [SiteController::class], 'reviewAllOrder');
+
+// Review Specific Order
 $app->router->get('/order', [SiteController::class, 'reviewOrder']);
 $app->router->get('/cancel-order', [SiteController::class, 'cancelOrder']);
 
@@ -89,6 +96,17 @@ $app->router->get('/admin/manage-products/update-product', [AdminController::cla
 $app->router->post('/admin/manage-products/update-specific-product', [AdminController::class, 'postUpdateProduct', ['admin']]);
 $app->router->get('/admin/add-new-product', [AdminController::class, 'addNewProduct', ['admin']]);
 $app->router->post('/admin/add-new-product', [AdminController::class, 'addNewProduct', ['admin']]);
+$app->router->get('/admin/delete', [AdminController::class, 'deleteModel', ['admin']]);
+$app->router->get('/admin/testing-upload', [AdminController::class, 'testingUploadFile', ['admin']]);
+$app->router->post('/admin/testing-upload', [AdminController::class, 'testingUploadFile', ['admin']]);
 // $app->router->get('/admin', [\app\controller\AdminController::class, 'admin']);
+
+// For Staff router
+$app->router->get('/staff/login', [StaffController::class, 'login']);
+$app->router->post('/staff/login', [StaffController::class, 'login']);
+$app->router->get('/staff/manage-order', [StaffController::class, 'manageOrder', ['staff']]);
+$app->router->get('/staff/order', [StaffController::class, 'reviewOrder', ['staff']]);
+$app->router->post('/staff/update-order', [StaffController::class, 'updateOrder', ['staff']]);
+$app->router->get('/staff/new-order', [StaffController::class, 'renderOrder', ['staff']]);
 $app->run();
 ?>
