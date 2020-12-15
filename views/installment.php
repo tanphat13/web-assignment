@@ -1,3 +1,8 @@
+<?php
+
+$PageTitle="Installment". ' | ' . "smartphone.com";
+include_once('layout/header.php');
+?>
 <html>
     <div class="installment">
         <h1>Installment Purchase Policy</h1>

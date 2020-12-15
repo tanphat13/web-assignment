@@ -1,3 +1,10 @@
+<?php
+
+$PageTitle="My order". ' | ' . "smartphone.com";
+
+include_once('layout/header.php');
+?>
+
 <div class="container">
     <div class="container order">
         <div class="h4">Order In Process</div>

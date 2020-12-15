@@ -1,3 +1,10 @@
+<?php
+
+$PageTitle="Order form". ' | ' . "smartphone.com";
+
+include_once('layout/header.php');
+?>
+
 <div class="manage-staff-container">
 
     <a href="review-cart" class="btn btn-success next-btn">Next</a>
