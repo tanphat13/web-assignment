@@ -1,7 +1,7 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 #map {
-  height: 400px;
-  width: 80%;
+  height: 200px;
+  width: 100%;
   border: 1px solid red;
 }
 
@@ -130,17 +130,6 @@ body {
 .categoryPage .product_matrix .product_item a {
   height: 100vh;
   width: 100vw;
-}
-
-.footer-container .col1 .location-wrapper {
-  width: 100%;
-  height: 100%;
-  min-height: 400px;
-}
-
-.footer-container .col1 .location-wrapper .map {
-  height: 400px;
-  width: 100%;
 }
 
 .home-wrapper {
@@ -1761,31 +1750,5 @@ body {
 .desc {
   margin: 20px 50px 50px 50px;
   font-size: 12px;
-}
-
-.footer-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  border-top: solid;
-  border-color: black;
-  background-color: azure;
-  padding: 0px 16px;
-}
-
-.footer-container .col1 {
-  display: inline-block;
-  width: 24vw;
-  height: 100%;
-  top: 0;
-  padding-left: 20px;
-  min-height: 200px;
-}
-
-.footer-container .col1 li {
-  list-style: none;
 }
 /*# sourceMappingURL=index.css.map */

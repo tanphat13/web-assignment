@@ -1,9 +1,8 @@
 #map{
-    height: 400px;
-    width: 80%;
+    height: 200px;
+    width: 100%;
     border:1px solid red;
 }
-
 
 @import "./styles/footer";
 @import "./styles/installment";
@@ -23,24 +22,3 @@
 @import './styles/_error';
 
 
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    border-top: solid;
-    border-color: black;
-    background-color: azure;
-    padding: 0px 16px;
-
-    .col1 {
-        display: inline-block;
-        width: 24vw;
-        height: 100%;
-        top: 0;
-        padding-left: 20px;
-        min-height: 200px;
-
-        li {
-            list-style: none;
-        }
-    }
-}
