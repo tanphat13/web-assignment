@@ -92,7 +92,7 @@ use app\core\Application;
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form> -->
-           
+
             <?php if (Application::$app->isGuest()) : ?>
                 <ul class='navbar-nav ml-auto'>
                     <li class="nav-item" id="loginBtn">
@@ -136,64 +136,70 @@ use app\core\Application;
         </div>
     </nav>
     <div class="home-wrapper">
-    <div class='login-wrapper <?php 
-    
-    if(isset($model)){
-                                    if ($model->getFirstError('email') || $model->getFirstError('password')) {
-                                        echo "active";
+        <div class='login-wrapper <?php
+
+                                    if (isset($model)) {
+                                        if ($model->getFirstError('email') || $model->getFirstError('password')) {
+                                            echo "active";
+                                        } else {
+                                            echo '';
+                                        }
                                     } else {
-                                        echo '';
+                                        echo "";
                                     }
-    }else{
-        echo "";
-    }
-        ?>' id="loginForm">
-        <form action="" method="post">
-            <h1 class="show-error">
-                <?php
-                if(isset($model)){
-                    if ($model->hasError('password')) {
-                        echo $model->getFirstError('password') ?? '';
-                    } else if ($model->hasError('email')) {
-                        echo $model->getFirstError('email') ?? '';
+                                    ?>' id="loginForm">
+            <form action="" method="post">
+                <div class="login-title">Login</div>
+                <h1 class="show-error">
+                    <?php
+                    if (isset($model)) {
+                        if ($model->hasError('password')) {
+                            echo $model->getFirstError('password') ?? '';
+                        } else if ($model->hasError('email')) {
+                            echo $model->getFirstError('email') ?? '';
+                        }
                     }
-                }
-                ?>
-            </h1>
-            <div class="form-group">
-                <label for="email">Email address:</label>
-                <input type="email" name="email" class="form-control
+                    ?>
+                </h1>
+                <div class="form-group row">
+                    <label for="email" class="col-sm-4 col-form-label">Email address:</label>
+                    <div class="col-sm-8">
+                        <input type="email" name="email" class="form-control
         " id="email" aria-describedby="emailHelp">
-            </div>
-            <div class="form-group ">
-                <label for="password">Password:</label>
-                <input type="password" name="password" class="form-control
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="password" class="col-sm-4 col-form-label">Password:</label>
+                    <div class="col-sm-8">
+                        <input type="password" name="password" class="form-control
        " id="password" aria-describedby="emailHelp">
+                    </div>
 
-            </div>
-            <button onclick="test" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
 
-    <div class="container">
-        <?php if (Application::$app->session->getFlash("success")) : ?>
-            <div class="alert alert-success">
-                <?php echo Application::$app->session->getFlash("success") ?>
-            </div>
-        <?php endif; ?>
-        {{content}}
-    </div>
+                </div>
+                <button onclick="test" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+        <div class="container">
+            <?php if (Application::$app->session->getFlash("success")) : ?>
+                <div class="alert alert-success">
+                    <?php echo Application::$app->session->getFlash("success") ?>
+                </div>
+            <?php endif; ?>
+            {{content}}
+        </div>
     </div>
     <footer class="footer-container">
-        <div class="col1"> 
+        <div class="col1">
             <ul>
-            <li><a href="/warranty">Warranty Policy</a></li>
-            <li><a href="/returnpolicy">Return Policy</a></li>
-            <li><a href="/installment">Installment Purchase</a></li>
+                <li><a href="/warranty">Warranty Policy</a></li>
+                <li><a href="/returnpolicy">Return Policy</a></li>
+                <li><a href="/installment">Installment Purchase</a></li>
             </ul>
         </div>
         <!-- ------------------------------------------- -->
-        <div class="col1"> 
+        <div class="col1">
             <ul>
             <li>Location</li>
             <li>288 Đường 3 tháng 2</li>
@@ -203,7 +209,7 @@ use app\core\Application;
 
         </div>
         <!-- ------------------------------------------- -->
-        <div class="col1"> 
+        <div class="col1">
             <ul class="Contact_number">
                 <li>Hotlines</li>
                 <li>Purchase: (0123456789)</li>
@@ -213,7 +219,7 @@ use app\core\Application;
             </ul>
         </div>
         <!-- ------------------------------------------- -->
-        <div class="col1"> 
+        <div class="col1">
             <p>Location</p>
             <div class="location-wrapper">
                 <div class="map" id="map">
@@ -221,7 +227,7 @@ use app\core\Application;
             </div>
 
         </div>
-        
+
     </footer>
     <!-- Optional JavaScript; choose one of the two! -->
 

@@ -101,13 +101,13 @@
             ALTER TABLE products_items ADD CONSTRAINT product_item FOREIGN KEY (product_id) REFERENCES products`(product_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
             ALTER TABLE images ADD CONSTRAINT product_image FOREIGN KEY (product_id) REFERENCES products`(product_id`) ON DELETE CASCADE ON UPDATE CASCADE;
             DELIMITER $$
-                CREATE DEFINER=`root`@`localhost` PROCEDURE get_order_in_process`(IN in_user` INT)
+                CREATE DEFINER=`root`@`localhost` PROCEDURE get_order_in_process (IN `in_user` INT)
                 BEGIN
                     SELECT o1.order_id, o1.delivery_date, o1.order_status, o1.order_method, o1.created_at, o1.order_note, o2.total_price FROM ((SELECT * FROM orders o WHERE o.user_id = in_user AND (o.order_status = 'PENDING' OR o.order_status = 'DELIVERING') ORDER BY o.created_at) o1 JOIN (SELECT op.order_id, SUM(p.product_price) as total_price FROM orders_products op JOIN products p ON op.product_id = p.product_id GROUP BY op.order_id) o2 ON o1.order_id = o2.order_id);
                 END$$
             DELIMITER ;
                 DELIMITER $$
-                CREATE DEFINER=`root`@`localhost` PROCEDURE get_done_order`(IN in_user` INT)
+                CREATE DEFINER=`root`@`localhost` PROCEDURE get_done_order(IN `in_user` INT)
                 BEGIN
                     SELECT o1.order_id, o1.delivery_date, o1.order_status, o1.order_method, o1.created_at, o1.order_note, o2.total_price FROM ((SELECT * FROM orders o WHERE o.user_id = in_user AND (o.order_status = 'CANCEL' OR o.order_status = 'DONE') ORDER BY o.created_at) o1 JOIN (SELECT op.order_id, SUM(p.product_price) as total_price FROM orders_products op JOIN products p ON op.product_id = p.product_id GROUP BY op.order_id) o2 ON o1.order_id = o2.order_id);
                 END$$
