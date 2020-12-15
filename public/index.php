@@ -108,5 +108,8 @@ $app->router->get('/staff/manage-order', [StaffController::class, 'manageOrder',
 $app->router->get('/staff/order', [StaffController::class, 'reviewOrder', ['staff']]);
 $app->router->post('/staff/update-order', [StaffController::class, 'updateOrder', ['staff']]);
 $app->router->get('/staff/new-order', [StaffController::class, 'renderOrder', ['staff']]);
+$app->router->get('/staff/livesearch', [StaffController::class, 'searchProducts', ['staff']]);
+$app->router->post('/staff/add-product', [StaffController::class, 'addProduct', ['staff']]);
+$app->router->get('/staff/review-cart', [StaffController::class, 'reviewCart', ['staff']]);
 $app->run();
 ?>

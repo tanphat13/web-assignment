@@ -143,7 +143,7 @@ body {
 }
 .home-wrapper .login-wrapper {
   position: fixed;
-  z-index: 5;
+  z-index: 100;
   width: 100%;
   height: 100vh;
   border: 1px solid red;
@@ -1252,6 +1252,68 @@ body {
   padding: 0;
   font-size: 80%;
   height: 100vh;
+}
+
+.manage-staff-container .next-btn {
+  position: fixed;
+  top: 1vh;
+  right: 5vw;
+  z-index: 20;
+  background-color: #009879;
+}
+.manage-staff-container .next-btn:hover {
+  color: #009879;
+  background-color: white;
+}
+.manage-staff-container .quantity-notification {
+  margin: 1% 35%;
+  width: fit-content;
+  font-size: 120%;
+}
+.manage-staff-container .search-bar {
+  width: 100%;
+}
+.manage-staff-container .search-bar input {
+  margin: 0 10%;
+  width: 80%;
+}
+.manage-staff-container .product-item {
+  position: relative;
+  margin-bottom: 4vh;
+  width: 100%;
+  height: 20vh;
+  display: inline-flex;
+  justify-content: space-between;
+}
+.manage-staff-container .product-item .product-image {
+  height: 100%;
+}
+.manage-staff-container .product-item .product-image .img {
+  height: 100%;
+}
+.manage-staff-container .product-item .product-image .img img {
+  height: 100%;
+}
+.manage-staff-container .product-item .product-info {
+  width: 70%;
+}
+.manage-staff-container .product-item .product-info .product-spec .info {
+  margin: 0;
+}
+.manage-staff-container .product-item .product-info .product-spec .name {
+  font-size: 1.5em;
+}
+.manage-staff-container .product-item .product-info .price {
+  margin-top: 2vh;
+  font-size: 1.25em;
+}
+.manage-staff-container .product-item .delete-btn {
+  position: absolute;
+  top: 40%;
+  right: 5%;
+  background: none;
+  color: #009879;
+  border: none;
 }
 
 /*# sourceMappingURL=index.css.map */
