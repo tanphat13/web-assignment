@@ -1590,4 +1590,74 @@ body {
   font-size: 80%;
   height: 100vh;
 }
+
+.page_404 {
+  padding: 40px 0;
+  background: #fff;
+  font-family: 'Arvo', serif;
+}
+
+.page_404 img {
+  width: 100%;
+}
+
+.four_zero_four_bg {
+  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  height: 400px;
+  background-position: center;
+}
+
+.four_zero_four_bg h1 {
+  font-size: 80px;
+}
+
+.four_zero_four_bg h3 {
+  font-size: 80px;
+}
+
+.link_404 {
+  color: #fff !important;
+  padding: 10px 20px;
+  background: #39ac31;
+  margin: 20px 0;
+  display: inline-block;
+}
+
+.contant_box_404 {
+  margin-top: -50px;
+}
+
+.error {
+  font-family: "Press Start 2p";
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 50px;
+  border: solid 15px;
+  border-radius: 20px;
+  -webkit-box-shadow: 10px 10px 30px;
+          box-shadow: 10px 10px 30px;
+}
+
+.head {
+  margin: 50px;
+  font-size: 12px;
+}
+
+.mens {
+  margin: 20px 50px 50px 50px;
+  font-size: 90px;
+}
+
+.desc {
+  margin: 20px 50px 50px 50px;
+  font-size: 12px;
+}
 /*# sourceMappingURL=index.css.map */

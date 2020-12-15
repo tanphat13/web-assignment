@@ -33,11 +33,6 @@ class Router{
         $path = $this->request->getPath();
         $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
-        // echo "<pre>";
-        // echo var_dump($path);
-        // echo var_dump($method);
-        // echo "</pre>";
-        // exit;
         $userRole = $this->session->get('authorization');
         $roleList = $callback[2] ?? [];
         if(in_array($userRole,$roleList)|| !$roleList){
