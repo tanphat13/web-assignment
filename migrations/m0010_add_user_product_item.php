@@ -1,20 +1,19 @@
 <?php
     use app\core\Application;
 
-    class m0011_add_user_product_item {
+    class m0010_add_user_product_item {
         public function up() {
             $db = Application::$app->db;
 
-            $sql_command = "
+            $sql_command = "INSERT INTO users (id,email,fullname,phone,status,password,role,branch_id, gender) 
+            VALUES (1, 'ngonguyenthuan2302@gmail.com', 'Ngo Nguyen Thuan','0123638265',1, '$2y$10$hgz0.zAnVAO08tPANIsAb.I9hh2p187my/.EkOHQLD7u8C6SqrK0q', 'user', '','Male' ),
+            (2, 'staff1@gmail.com', 'Hoang Long','0366318261',1, '$2y$10$PY/V9GUdiYgPiGNcA19O2eghkuw03fhuonzI/a2WZrIj4vUyo7DSm', 'staff',1, 'Male' ),            
+            (3, 'admin@mobile.com', 'admin','0988888888',1, '$2y$10$VPm6/L3T5w4o6E31CBexU.VlGSgZO2p2SkaJRGPUKNiOQAZLkUCFW', 'admin',1, 'Male' );
+
             INSERT INTO branches (branch_id, branch_address, branch_phone) 
             VALUES (1, '288 Duong 3 thang 2', '0937058859'),
             (2, '4B Cong Hoa', '0937058859'),
             (3, '5 Nguyen Kiem, Go Vap', '0937058859');
-            INSERT INTO users (id,email,fullname,phone,status,password,role,branch_id, gender) 
-            VALUES (1, 'ngonguyenthuan2302@gmail.com', 'Ngo Nguyen Thuan','0123638265',1, '$2y$10$hgz0.zAnVAO08tPANIsAb.I9hh2p187my/.EkOHQLD7u8C6SqrK0q', 'user', NULL,'Male' ),
-            (2, 'staff1@gmail.com', 'Hoang Long','0366318261',1, '$2y$10$PY/V9GUdiYgPiGNcA19O2eghkuw03fhuonzI/a2WZrIj4vUyo7DSm', 'staff'',1, 'Male' ),            
-            (3, 'admin@mobile.com', 'admin','0988888888',1, '$2y$10$VPm6/L3T5w4o6E31CBexU.VlGSgZO2p2SkaJRGPUKNiOQAZLkUCFW', 'admin',1, 'Male' );
-
 
             INSERT INTO products_items (product_id, serial_number, branch_id, item_status)
             VALUES (1, 00001, 1, 'IN STOCK'),
@@ -101,13 +100,13 @@
             ALTER TABLE products_items ADD CONSTRAINT product_item FOREIGN KEY (product_id) REFERENCES products`(product_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
             ALTER TABLE images ADD CONSTRAINT product_image FOREIGN KEY (product_id) REFERENCES products`(product_id`) ON DELETE CASCADE ON UPDATE CASCADE;
             DELIMITER $$
-                CREATE DEFINER=`root`@`localhost` PROCEDURE get_order_in_process (IN `in_user` INT)
+                CREATE DEFINER=`root`@`localhost` PROCEDURE get_order_in_process`(IN in_user` INT)
                 BEGIN
                     SELECT o1.order_id, o1.delivery_date, o1.order_status, o1.order_method, o1.created_at, o1.order_note, o2.total_price FROM ((SELECT * FROM orders o WHERE o.user_id = in_user AND (o.order_status = 'PENDING' OR o.order_status = 'DELIVERING') ORDER BY o.created_at) o1 JOIN (SELECT op.order_id, SUM(p.product_price) as total_price FROM orders_products op JOIN products p ON op.product_id = p.product_id GROUP BY op.order_id) o2 ON o1.order_id = o2.order_id);
                 END$$
             DELIMITER ;
                 DELIMITER $$
-                CREATE DEFINER=`root`@`localhost` PROCEDURE get_done_order(IN `in_user` INT)
+                CREATE DEFINER=`root`@`localhost` PROCEDURE get_done_order`(IN in_user` INT)
                 BEGIN
                     SELECT o1.order_id, o1.delivery_date, o1.order_status, o1.order_method, o1.created_at, o1.order_note, o2.total_price FROM ((SELECT * FROM orders o WHERE o.user_id = in_user AND (o.order_status = 'CANCEL' OR o.order_status = 'DONE') ORDER BY o.created_at) o1 JOIN (SELECT op.order_id, SUM(p.product_price) as total_price FROM orders_products op JOIN products p ON op.product_id = p.product_id GROUP BY op.order_id) o2 ON o1.order_id = o2.order_id);
                 END$$

@@ -1,5 +1,10 @@
 <h1><?php echo $name ?></h1>
+<?php
 
+$PageTitle="Contact". ' | ' . "smartphone.com";
+
+include_once('layout/header.php');
+?>
 <form action="" method="POST">
     <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>

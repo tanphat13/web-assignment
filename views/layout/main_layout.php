@@ -1,5 +1,4 @@
 <?php
-
 use app\core\Application;
 
 // echo var_dump(Application::$app->user);
@@ -8,15 +7,68 @@ use app\core\Application;
 <!doctype html>
 <html lang="en">
 
+<!-- <?php
+    // $title_error_404 = 'No site existed';
+    // if (isset($_GET['id'])) {
+    //     $id_post = trim(htmlspecialchars($_GET['id']));
+     
+
+    //     $sql_check_post = "SELECT product_id FROM products WHERE  product_id = '$id_post'";
+    //     if ($db->num_rows($sql_check_post)) {
+    //         $data_post = $db->fetch_assoc($sql_check_post, 1);
+     
+    //         $title = $data_post['title'];
+
+    //     } else {
+    //         $title = $title_error_404;
+    //     }
+  
+    // }
+    // else if (isset($_GET['sc'])) {
+    //    $slug_cate = trim(htmlspecialchars($_GET['sc']));
+     
+  
+    //     $sql_check_cate = "SELECT url, label FROM categories WHERE url = '$slug_cate'";
+    //     if ($db->num_rows($sql_check_cate)) {
+    //         $data_cate = $db->fetch_assoc($sql_check_cate, 1);
+     
+    //         $title = $data_cate['label'];
+
+    //     }
+    //      else {
+    //         $title = $title_error_404;
+    //     }
+    // } 
+    // else {
+    //     $title = $data_web['title'];
+        
+    // }
+?> -->
+
+
+
 <head>
     <!-- Required meta tags -->
+    <!-- <title>Mobile shop - Điện thoại, Smartphone chính hãng, giá tốt nhất tại Thành phố Hồ Chí Minh</title> -->
+    
+    <meta name="keywords" content="Smartphone, điện thoại di động, dtdd">
+    <meta name="description" content="Hệ thống bán lẻ điện thoại di động, smartphone chính hãng mới nhất tại khu vực thành phố Hồ Chí Minh">
+    <meta property="og:title" content="Smartphone.com - Điện thoại, Smartphone chính hãng, giá tốt nhất tại Thành phố Hồ Chí Minh">
+    <meta property="og:description" content="Hệ thống bán lẻ điện thoại di động, smartphone chính hãng mới nhất tại khu vực thành phố Hồ Chí Minh">
+    <meta content="INDEX,FOLLOW" name="robots">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta property="og:site_name" content="Smartphone.com">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="vi_VN">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png"/>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="index.css">
-    <title>Mobile shop</title>
+    
 </head>
 
 <body>

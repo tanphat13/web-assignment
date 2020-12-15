@@ -6,6 +6,12 @@
         <div class="return_col">
             <p>Month 2 - 12</p>
         </div> -->
+        <?php
+
+$PageTitle="Policy". ' | ' . "smartphone.com";
+
+include_once('layout/header.php');
+?>
     <div class="returnpolicy">
     
     <h1>RETURN POLICY</h1>

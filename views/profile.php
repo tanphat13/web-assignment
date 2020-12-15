@@ -1,6 +1,12 @@
 <?php
       use app\core\Application;
 ?>
+<?php
+
+$PageTitle="Profile". ' | ' . "smartphone.com";
+
+include_once('layout/header.php');
+?>
 <div class="box-confirm" id="box-confirm">
     <div class="message-header">
         <h6>Confirm Remove Address</h6>

@@ -1,5 +1,8 @@
 <?php
 
+//$title = "Smartphone.com - Điện thoại, Smartphone chính hãng, giá tốt nhất tại Thành phố Hồ Chí Minh";
+//require("header.php");
+
 use app\models\Product;
 
 $products_homepage = array();
@@ -12,6 +15,12 @@ $products_homepage = array();
     }
     // echo var_dump($products_homepage);
     // echo var_dump($brands);
+?>
+<?php
+
+$PageTitle="Homepage". ' | ' . "smartphone.com";
+
+include_once('layout/header.php');
 ?>
 <html>
     <div id="carouselIndicators" class="carousel slide event-slide" data-ride="carousel" data-pause="hover" data-interval=3000>
