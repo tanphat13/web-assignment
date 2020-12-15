@@ -53,7 +53,7 @@ class Admin extends AdminModel  {
             '<div class="col-sm-1 table-cell">' . $staff['gender'] . '</div>'.
             '<div class="col-md table-cell actions-btn-group">' .
                 '<button id="update-staff-btn" class="open-update-btn" onClick="getStaffId('.$staff["id"]. ')"> Upadte</button>
-                <div class="action-delete-btn" onclick="openConfirmDelete(\'users\', ' . $staff['id']["product_id"] . ')" id="update-product-btn" class="open-update-btn update-product-btn-link">
+                <div class="action-delete-btn" onclick="openConfirmDelete(\'users\', ' . $staff['id'] . ')" id="update-product-btn" class="open-update-btn update-product-btn-link">
                  <p>DELETE</p>
                  </div>
             </div>

@@ -19,7 +19,8 @@ Class AdminController extends Controller {
         $this->registerMiddleware(new AuthMiddleware(['createStaff']));
     }
     public function admin (Request $req,Response $res){  
-        $session = new Session();
+        // $session = new Session();
+        $session = Application::$app->session;
         $adminModel = new Admin();
         $user = $session->get('user');
         if (!$user) {
@@ -43,7 +44,8 @@ Class AdminController extends Controller {
     }
     public function manageProduct(Request $req, Response $res)
     {
-        $session = new Session();
+        // $session = new Session();
+        $session = Application::$app->session;
         $adminModel = new Admin();
         $user = $session->get('user');
         $page = 0;

@@ -39,7 +39,7 @@
             foreach ($branches as $availableBranch) {
                 $htmlString .= "<li>$availableBranch->branch_address - Contact: $availableBranch->branch_phone</li>";
             }
-            echo $htmlString;
+            return $htmlString;
         }
 
         public function getAllBranch() {

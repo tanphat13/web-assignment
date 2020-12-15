@@ -85,7 +85,11 @@ include_once('layout/header.php');
                     foreach($products as $nindex) {
                     echo "<div class='product_item'>
                     <a href='product?id=$nindex[product_id]' >
-                        <img src= ".$nindex['link']." ><br> $nindex[product_name] <br>" . number_format($nindex['product_price'], 0, '', '.' ) ."
+                        <img src= ".$nindex['link']." >
+                        <div class='product_info'>
+                            <p class='mb-0'>$nindex[product_name]</p>
+                            <p class='mb-0'>" . number_format($nindex['product_price'], 0, '', '.' ) ."</p>
+                        </div> 
                     </a>
                     </div>";
                     

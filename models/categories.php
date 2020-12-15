@@ -43,7 +43,7 @@ class Categories extends DbModel {
         $no_of_records_per_page = 10;
         $offset = ($pageno-1) * $no_of_records_per_page;
         $total_page_sql = $this->prepare("SELECT COUNT(products.product_name) FROM products LEFT JOIN images ON products.product_id = images.product_id WHERE (products.product_price > '$low_bound' AND products.product_price < '$high_bound') 
-        GROUP BY products.product_id ORDER BY products.product_price DESC");
+        GROUP BY products.product_id ORDER BY products.product_price ASC");
         $total_page_sql->execute();
         $records = $total_page_sql->fetchAll();
         $total_rows = sizeof($records);
@@ -53,7 +53,7 @@ class Categories extends DbModel {
         
         $sql_command = $this->prepare("SELECT products.product_id, products.product_name, products.product_price, products.product_brand, MIN(images.image_id), images.link 
             FROM products LEFT JOIN images ON products.product_id = images.product_id WHERE (products.product_price > '$low_bound' AND products.product_price < '$high_bound') 
-            GROUP BY products.product_id ORDER BY products.product_price DESC LIMIT $offset, $no_of_records_per_page");
+            GROUP BY products.product_id ORDER BY products.product_price ASC LIMIT $offset, $no_of_records_per_page");
         $sql_command->execute();
         $productList = $sql_command->fetchAll();
         $products = array();
