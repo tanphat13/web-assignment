@@ -227,7 +227,7 @@ class SiteController extends Controller{
         $body = $request->getBody();
         $new_order = (new Order())->createNewOrder($body, $session->get('user'));
         (new OrderProduct())->createProductInOrder(intval($new_order->latest_order_id), explode(',', $session->get('cart')));
-        $session->set('cart', '');
+        $session->set('cart', []);
         $response->redirect("/order?id=$new_order->latest_order_id");
         return;
     }
