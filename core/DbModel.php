@@ -48,12 +48,15 @@ abstract class DbModel extends Model{
         return $sql_command->fetchObject(static::class);
     }
     public static function findAll($tableName, $where){
-        $attributes =  array_keys(
-           $where 
-        );
-     
-        $sql_params = implode(" AND ", array_map(fn($attr)=> "$attr = :$attr",$attributes));
-
+        if ($where === []) {
+            $sql_params = 1;            
+        } else {
+            $attributes =  array_keys(
+            $where 
+            );
+        
+            $sql_params = implode(" AND ", array_map(fn($attr)=> "$attr = :$attr",$attributes));
+        }
         $sql_command = self::prepare("SELECT * FROM $tableName WHERE $sql_params");
         foreach($where as $key => $item){
             $sql_command->bindValue(":$key",$item);

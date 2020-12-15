@@ -1,6 +1,3 @@
-<?php
-    use app\core\Application;
-?>
 
 <div class="box-confirm" id="box-confirm">
     <div class="message-header">

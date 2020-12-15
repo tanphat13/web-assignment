@@ -72,9 +72,7 @@
         background: #fff;
         .order-head {
             margin-bottom: 4vh;
-            padding-bottom: 2vh; 
-            display: flex;
-            justify-content: space-between;
+            padding-bottom: 2vh;
             border-bottom: 1px solid #dedede;
         }
         .info-product {
@@ -125,7 +123,7 @@
         .cart-summary {
             margin-bottom: 4vh;
             padding: 2vh 0;
-            border-bottom: 1px dashed #dedede;
+            border-bottom: 1px solid #dedede;
             .cart-format {
                 margin-bottom: 2vh;
                 display: flex;
