@@ -94,12 +94,6 @@
 .form-order .form-horizontal .order-head {
   margin-bottom: 4vh;
   padding-bottom: 2vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   border-bottom: 1px solid #dedede;
 }
 
@@ -163,7 +157,7 @@
 .form-order .form-horizontal .cart-summary {
   margin-bottom: 4vh;
   padding: 2vh 0;
-  border-bottom: 1px dashed #dedede;
+  border-bottom: 1px solid #dedede;
 }
 
 .form-order .form-horizontal .cart-summary .cart-format {

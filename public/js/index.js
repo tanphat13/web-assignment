@@ -249,12 +249,26 @@ function cancelOrder(order_id) {
   xhttp.onreadystatechange = function() {
     if (this.readyState === 4 && this.status === 200) {
       document.getElementById('box-confirm').classList.remove('active');
-      console.log(this.responseText);
       location.reload();
     }
   }
   xhttp.open("GET", "cancel-order?id="+order_id, true);
   xhttp.send();
+}
+
+function updateOrder(order_id) {
+  let status = document.getElementById('status').value;
+  let delivery_date = document.getElementById('delivery-date').value;
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+      // console.log(this.responseText);
+      location.reload();
+    }
+  }
+  xhttp.open("POST", "update-order", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("order_id="+order_id+"&status="+status+"&delivery_date="+delivery_date);
 }
 
 // function setOnClickStore(){
@@ -323,7 +337,7 @@ function cancelOrder(order_id) {
 
 
 
-
+// update for product and staff 
  function updateStaffInfo(){
    const updateForm = document.getElementById("staff-update-form");
    const staffId = updateForm.getAttribute("data-staff");
@@ -384,4 +398,41 @@ function cancelOrder(order_id) {
    );
    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
    xhttp.send(JSON.stringify(dataObject));
+}
+function openConfirmDelete(model,key){
+  const confirmBox = document.getElementById("delete-confirm");
+  confirmBox.setAttribute('data-model',model);
+  confirmBox.setAttribute("data-key", key);
+  confirmBox.classList.add("active");
+  console.log()
+}
+function closeConfirmDelete(){
+   const confirmBox = document.getElementById("delete-confirm");
+   const message = document.getElementById("confirm-delete-message");
+   message.innerHTML = "Do you want to deletegit";
+   confirmBox.setAttribute("data-model", '');
+   confirmBox.setAttribute("data-key", '');
+   confirmBox.classList.remove("active");
+}
+function deleteModel(){
+  const confirmBox = document.getElementById("delete-confirm");
+  let model = confirmBox.getAttribute("data-model");
+  let key = confirmBox.getAttribute("data-key");
+  console.log(`${key} ${model}`);
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      const message = document.getElementById("confirm-delete-message");
+      message.innerHTML = xhttp.responseText;
+       setTimeout(function () {
+         confirmBox.classList.remove("active");
+         locatiton.href =  window.location.href;
+       }, 2000);
+    }
+  };
+  xhttp.open(
+    "GET",
+    `http://localhost:8080/admin/delete?delete=${model}&key=${key}`
+  );
+  xhttp.send();
 }

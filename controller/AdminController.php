@@ -86,7 +86,7 @@ Class AdminController extends Controller {
         if($req->isPost()){
                 $staff->loadData($req->getBody());
                 if($staff->validate() && $staff->save()){
-                    Application::$app->session->setFlash("success", "Create new staff scucessfull");
+                    Application::$app->session->setFlash("success", "Create new staff successful");
                     $res->redirect('/admin');
                 }
         }
@@ -109,10 +109,10 @@ Class AdminController extends Controller {
              $staff->loadData($dataArr);
             if($staff->validate()){
                 if($staff->updateStaffInfo()){
-                    echo "Update successfull";
+                    echo "Update successful";
                     return;
                 }else{
-                    echo "Update faild";
+                    echo "Update fail";
                 }
             }
         }
@@ -121,9 +121,19 @@ Class AdminController extends Controller {
         $option = $_GET['options'];
         $key = $_GET['key'];
         $staffModel = new Staff();
-        $searchResult = $staffModel->searchStaff($option,$key);
+        $productModel = new Product();
+        $productRegex = "/^(?=.*product_brand)|(?=.*product_name)/"; 
+        $staffRegex = "/^(?=.*fullname)|(?=.*phone)|(?=.*email)/";
+        $searchResult = "";
+        if(preg_match($productRegex,$option) !== 0 ){
+            $searchResult = $productModel->searchProduct($option, $key);
+        } else if (preg_match($staffRegex, $option)!==0){
+            $searchResult = $staffModel->searchStaff($option, $key);
+        }
+        
         echo $searchResult;
-       
+        exit;   
+        
     }
     public function getUpdateProduct(){
         $adminModel = new Admin();
@@ -152,20 +162,72 @@ Class AdminController extends Controller {
     }
     public function addNewProduct(Request $req ,Response $res){
         $product = new Product();
+        
         if ($req->isPost()) {
-            // echo"<pre>";
-            // echo var_dump($req->getBody());
-            // echo "</pre>";
-            // exit;
+            if (!isset($_FILES)) {
+                return;
+            }
             $product->loadData($req->getBody());
             if ($product->validate() && $product->save()) {
-                Application::$app->session->setFlash("success", "Add new product successfull");
-                $res->redirect('/admin/manage-products');
+                $newProductId = $product->getLastInsertId();
+                $targetDir = dirname(__DIR__) . "/public/assets/";
+                $targetFile = $targetDir . basename($_FILES['fileupload']['name']);
+                move_uploaded_file($_FILES['fileupload']['tmp_name'], $targetFile);
+                $newProductImages = "/assets/".basename($_FILES['fileupload']['name']); 
+                if($product->saveImage($newProductImages,$newProductId)){
+                    Application::$app->session->setFlash("success", "Add new product successfull");
+                    $res->redirect('/admin/manage-products');
+                }else{
+                    Application::$app->session->setFlash("fail", "Create new product fail");
+                    $res->redirect('/admin/manage-products');
+                }
+                
             }
         }
-            
+        
         $this->setLayout('adminLayout');
         return $this->render('admin-add-product',['model'=>$product]);
+    }
+    public function deleteModel(Request $req,Response $res){
+        $model = $_GET['delete'];
+        $key = $_GET['key'];
+        if(isset($_GET['delete']) && $model ==='product'){
+            $product =new Product();
+            if($product->delete($key)){
+                echo "Delete successfull";
+            }else{
+                echo "Something wrong please try it later";
+            }
+
+        }
+        if (isset($_GET['delete']) && $model === 'users') {
+            $staff = new Staff();
+            if ($staff->delete($key)) {
+                echo "Delete successfull";
+            } else {
+                echo "Something wrong please try it later";
+            }
+        }
+    }
+    public function testingUploadFile(Request $req, Response $res){
+        
+        echo var_dump(dirname(__DIR__));
+        echo"<pre>";
+        echo var_dump($_FILES);
+        echo "</pre>";
+        $targetDir = dirname(__DIR__) . "/public/assets/";
+        $targetFile = $targetDir . basename($_FILES['fileupload']['name']);
+        echo var_dump($targetFile);
+        if(move_uploaded_file($_FILES['fileupload']['tmp_name'],$targetFile)){
+            echo "<pre>";
+            echo "upload success";
+            echo "</pre>";
+        }else{
+            echo "File not saved";
+        }
+        
+        $this->setLayout('adminLayout');
+        return $this->render('upload');
     }
 }
 
