@@ -28,7 +28,7 @@
         }
 
         public function getImageEvent() {
-            $sql_command = self::prepare("SELECT * FROM images WHERE product_id IS NULL ORDER BY created_by LIMIT 4;");
+            $sql_command = self::prepare("SELECT * FROM images WHERE product_id IS NULL ORDER BY created_at LIMIT 4;");
             $sql_command->execute();
             return $sql_command->fetchAll();
         }
