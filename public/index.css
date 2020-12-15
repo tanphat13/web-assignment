@@ -94,6 +94,20 @@ body {
   right: 0;
   width: 80%;
 }
+
+.categoryPage .product_matrix .paging {
+  -ms-flex-line-pack: flex;
+      align-content: flex;
+}
+
+.categoryPage .product_matrix .paging li {
+  display: inline;
+  text-align: right;
+  font-size: xx-large;
+  position: relative;
+  right: 0;
+}
+
 .categoryPage .product_matrix .product_item {
   height: 30vh;
   width: 20%;
