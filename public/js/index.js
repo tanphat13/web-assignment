@@ -156,9 +156,9 @@ function handleRating(myRadio, product_id, user_id) {
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send("product_id="+product_id+"&user_id="+user_id+"&rate="+myRadio.value);
 }
-function loadAnswerInput(comment_id) {
+function loadAnswerInput(product_id, user_id, comment_id) {
   document.getElementById('comment-' + comment_id).innerHTML = 
-  "<textarea id='input-comment" + comment_id + "'class='form-control input-comment' rows='3' placeholder='Input your answer'></textarea><button type='submit' value='Submit' class='btn btn-primary mb-2' onclick='submitComment(<?php echo $product['product']->product_id . ',' . $session->get('user') ?>, " + comment_id + ")'>Submit</button>"
+  "<textarea id='input-comment" + comment_id + "'class='form-control input-comment' rows='3' placeholder='Input your answer'></textarea><button type='submit' value='Submit' class='btn btn-primary mb-2' onclick='submitComment("+product_id+","+user_id+","+comment_id+")'>Submit</button>";
 }
 function submitComment(product_id, user_id, answer_id = '') {
   if (user_id === undefined) {
@@ -262,7 +262,6 @@ function updateOrder(order_id) {
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState === 4 && this.status === 200) {
-      // console.log(this.responseText);
       location.reload();
     }
   }
@@ -271,15 +270,29 @@ function updateOrder(order_id) {
   xhttp.send("order_id="+order_id+"&status="+status+"&delivery_date="+delivery_date);
 }
 
-// function setOnClickStore(){
-//   var storeElements = document.querySelectorAll('.store-container');
-//   storeElements.forEach((store,index)=>{
-//     store.addEventListener('click',function(){
-//       google.maps.event.trigger(Marker[index], 'click')
-//     })
-//   })
-// }
+function suggest(str) {
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState === 4 && this.status === 200) {
+          document.getElementById("product-search-list").innerHTML = this.responseText;
+      }
+  };
+  xhttp.open("GET", "livesearch?key="+str, true);
+  xhttp.send();
+}
 
+function addProduct(product_id) {
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState === 4 && this.status === 200) {
+          let curQuantity = parseInt(document.getElementById("quantity").innerText);
+          document.getElementById("quantity").innerText = curQuantity + 1;
+      }
+  };
+  xhttp.open("POST", "add-product", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("product_id="+product_id);
+}
 
 // This is function for admin page
  function getStaffId(staffId) {

@@ -174,7 +174,7 @@
                 $comment_id = $comment['answer_id'];
                 if ($comment['is_answer'] === '1') $comment_id = $comment['comment_id'];
                 $comments_element .= "
-                    <button onclick='loadAnswerInput($comment_id)'>
+                    <button onclick='loadAnswerInput(" .$product['product']->product_id. "," .$session->get('user'). "," .$comment_id.")'>
                         Reply
                     </button>
                     </div>

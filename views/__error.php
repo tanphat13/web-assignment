@@ -3,7 +3,7 @@
 /**
  * @var $exception \Exception
  */
-echo $exception->getCode();
+
 ?>
 
 

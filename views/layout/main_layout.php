@@ -35,20 +35,6 @@ use app\core\Application;
                 <li class="nav-item">
                     <a class="nav-link" href="/category">Products</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/address">Add Address</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
             </ul>
             <!-- <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -163,17 +149,17 @@ use app\core\Application;
         <!-- ------------------------------------------- -->
         <div class="col1">
             <ul>
-                <li><a href="#">Send Feedback, Complain</a></li>
-                <li><a href="#">Recruitment</a></li>
-                <li><a href="#">Company Introduction</a></li>
+            <li>Location</li>
+            <li>288 Đường 3 tháng 2</li>
+            <li>4B Cộng Hòa</li>
+            <li>5 Nguyễn Kiệm, Gò Vấp</li>
             </ul>
 
         </div>
         <!-- ------------------------------------------- -->
         <div class="col1">
             <ul class="Contact_number">
-                <li>Hotlines
-                </li>
+                <li>Hotlines</li>
                 <li>Purchase: (0123456789)</li>
                 <li>Technical Help: (0123456789)</li>
                 <li>Warranty: (0123456789)</li>

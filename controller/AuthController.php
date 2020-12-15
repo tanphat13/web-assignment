@@ -26,7 +26,7 @@ class AuthController extends Controller{
         if($request->isPost()){
             $loginForm->loadData($request->getBody());
             if($loginForm->validate() && $loginForm->login()){
-                $session->set('cart', '');
+                $session->set('cart', []);
                 $response->redirect('/');
                 return;
             }
