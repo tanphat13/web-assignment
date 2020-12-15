@@ -13,7 +13,7 @@ $products_homepage = array();
     // echo var_dump($products_homepage);
     // echo var_dump($brands);
 ?>
-<html>
+
     <div id="carouselIndicators" class="carousel slide event-slide" data-ride="carousel" data-pause="hover" data-interval=3000>
         <div class="carousel-inner">
             <?php
@@ -57,4 +57,3 @@ $products_homepage = array();
         <!-- </div>         -->
     </div>
 
-</html>

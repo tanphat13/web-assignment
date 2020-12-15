@@ -1,9 +1,14 @@
+#carouselIndicators{
+    margin-bottom:16px;
+}
+
 .home_brand_matrix {
     
     .home_brand_row {
         height: 100%;
         border-color: rgb(133, 5, 218);
         border: solid 3px;
+        margin-bottom: 16px;
         .home_brand_header {
             display: flex;
             justify-content: space-between;
@@ -20,6 +25,7 @@
         .home_product_row{
             display: flex;
             justify-content: space-between;
+            width: 100%;
             .home_product_item {
                 height: 80%;
                 width: 15%;

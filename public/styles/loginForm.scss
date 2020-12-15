@@ -2,9 +2,10 @@
     position: relative;
     width: 100%;
     height: 100vh;
-    overflow-y: auto;
-    .container{
-        height: auto;
+    .container-fluid{
+       height: auto;
+       padding: 48px !important;
+       
     }
     .login-wrapper {
         position: fixed;

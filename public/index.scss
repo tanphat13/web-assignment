@@ -4,13 +4,6 @@
     border:1px solid red;
 }
 
-@media (min-width: 1200px) {
-    .container {
-        max-width: 1600px;
-        margin: 0 8%;
-        width: 84%;
-    }     
-}
 
 @import "./styles/footer";
 @import "./styles/installment";
@@ -29,3 +22,25 @@
 @import './styles/staff';
 @import './styles/_error';
 
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    border-top: solid;
+    border-color: black;
+    background-color: azure;
+    padding: 0px 16px;
+
+    .col1 {
+        display: inline-block;
+        width: 24vw;
+        height: 100%;
+        top: 0;
+        padding-left: 20px;
+        min-height: 200px;
+
+        li {
+            list-style: none;
+        }
+    }
+}

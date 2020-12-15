@@ -1,12 +1,6 @@
 
-body {
-    min-height: 80vh;
-}
 
 .footer-container {
-    
-    position: relative;
-    bottom:0;
     display: flex;
     justify-content: space-between;
     border-top: solid;
@@ -20,9 +14,6 @@ body {
         top: 0;
         padding-left: 20px;
         min-height: 200px;
-        // ul {
-
-        // }
         li {
             list-style: none;
         }

@@ -20,69 +20,66 @@ use app\core\Application;
 </head>
 
 <body>
+    
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/category">Products</a>
-                </li>
-            </ul>
-            <!-- <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form> -->
-
-            <?php if (Application::$app->isGuest()) : ?>
-                <ul class='navbar-nav ml-auto'>
-                    <li class="nav-item" id="loginBtn">
-                        <p class="nav-link">Login</p>
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/register">register</a>
+                        <a class="nav-link" href="/category">Products</a>
                     </li>
                 </ul>
-            <?php else : ?>
-                <ul class='navbar-nav ml-auto'>
-                    <li>
-                        <a class="nav-link" href="/profile">
-                            Profile
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="/my-cart">
-                            My Cart
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="/my-order">
-                            My Order
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">
-                            Welcome, <?php
-                                        echo Application::$app->user->displayName();
-                                        ?>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="/logout">
-                            Logout
-                        </a>
-                    </li>
-                </ul>
-            <?php endif ?>
-        </div>
-    </nav>
+                <?php if (Application::$app->isGuest()) : ?>
+                    <ul class='navbar-nav ml-auto'>
+                        <li class="nav-item btn-icon" id="loginBtn">
+                            <p class="nav-link">Login</p>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/register">Register</a>
+                        </li>
+                    </ul>
+                <?php else : ?>
+                    <ul class='navbar-nav ml-auto'>
+                        <li>
+                            <a class="nav-link" href="/profile">
+                                Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/my-cart">
+                                My Cart
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/my-order">
+                                My Order
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">
+                                Welcome, <?php
+                                            echo Application::$app->user->displayName();
+                                            ?>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/logout">
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                <?php endif ?>
+            </div>
+        </nav>
+  
+
     <div class="home-wrapper">
         <div class='login-wrapper <?php
 
@@ -129,7 +126,7 @@ use app\core\Application;
             </form>
         </div>
 
-        <div class="container">
+        <div class="container-fluid">
             <?php if (Application::$app->session->getFlash("success")) : ?>
                 <div class="alert alert-success">
                     <?php echo Application::$app->session->getFlash("success") ?>
@@ -137,46 +134,47 @@ use app\core\Application;
             <?php endif; ?>
             {{content}}
         </div>
-    </div>
-    <footer class="footer-container">
-        <div class="col1">
-            <ul>
-                <li><a href="/warranty">Warranty Policy</a></li>
-                <li><a href="/returnpolicy">Return Policy</a></li>
-                <li><a href="/installment">Installment Purchase</a></li>
-            </ul>
-        </div>
-        <!-- ------------------------------------------- -->
-        <div class="col1">
-            <ul>
-            <li>Location</li>
-            <li>288 Đường 3 tháng 2</li>
-            <li>4B Cộng Hòa</li>
-            <li>5 Nguyễn Kiệm, Gò Vấp</li>
-            </ul>
+        <footer class="footer-container">
+            <div class="col1">
+                <ul>
+                    <li><a href="/warranty">Warranty Policy</a></li>
+                    <li><a href="/returnpolicy">Return Policy</a></li>
+                    <li><a href="/installment">Installment Purchase</a></li>
+                </ul>
+            </div>
+            <!-- ------------------------------------------- -->
+            <div class="col1">
+                <ul>
+                    <li>Location</li>
+                    <li>288 Đường 3 tháng 2</li>
+                    <li>4B Cộng Hòa</li>
+                    <li>5 Nguyễn Kiệm, Gò Vấp</li>
+                </ul>
 
-        </div>
-        <!-- ------------------------------------------- -->
-        <div class="col1">
-            <ul class="Contact_number">
-                <li>Hotlines</li>
-                <li>Purchase: (0123456789)</li>
-                <li>Technical Help: (0123456789)</li>
-                <li>Warranty: (0123456789)</li>
-                <li>Complain: (0123456789)</li>
-            </ul>
-        </div>
-        <!-- ------------------------------------------- -->
-        <div class="col1">
-            <p>Location</p>
-            <div class="location-wrapper">
-                <div class="map" id="map">
+            </div>
+            <!-- ------------------------------------------- -->
+            <div class="col1">
+                <ul class="Contact_number">
+                    <li>Hotlines</li>
+                    <li>Purchase: (0123456789)</li>
+                    <li>Technical Help: (0123456789)</li>
+                    <li>Warranty: (0123456789)</li>
+                    <li>Complain: (0123456789)</li>
+                </ul>
+            </div>
+            <!-- ------------------------------------------- -->
+            <div class="col1">
+                <p>Location</p>
+                <div class="location-wrapper">
+                    <div class="map" id="map">
+                    </div>
                 </div>
+
             </div>
 
-        </div>
+        </footer>
+    </div>
 
-    </footer>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
