@@ -147,17 +147,17 @@ use app\core\Application;
         <!-- ------------------------------------------- -->
         <div class="col1"> 
             <ul>
-            <li><a href="#">Send Feedback, Complain</a></li>
-            <li><a href="#">Recruitment</a></li>
-            <li><a href="#">Company Introduction</a></li>
+            <li>Location</li>
+            <li>288 Đường 3 tháng 2</li>
+            <li>4B Cộng Hòa</li>
+            <li>5 Nguyễn Kiệm, Gò Vấp</li>
             </ul>
 
         </div>
         <!-- ------------------------------------------- -->
         <div class="col1"> 
             <ul class="Contact_number">
-                <li>Hotlines
-                </li>
+                <li>Hotlines</li>
                 <li>Purchase: (0123456789)</li>
                 <li>Technical Help: (0123456789)</li>
                 <li>Warranty: (0123456789)</li>

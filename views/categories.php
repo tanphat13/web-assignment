@@ -62,12 +62,12 @@
                 <?php
                     $array = "";
                     $array .= "<ul class='paging'>";
-                    if (isset($low_bound) && isset($high_bound)) {
+                    if (isset($low_bound) && isset($high_bound) && $pages > 1) {
                         for ($i = 1; $i <= $pages; $i++) {
                             $array .= "<li><a href=?low_bound=" .$low_bound ."&high_bound=" .$high_bound ."&pageno=" .$i ."> $i</a></li>";
                         }
                     }
-                    else if (isset($brand)) {
+                    else if (isset($brand) && $pages > 1) {
                         for ($i = 1; $i <= $pages; $i++) {
                             $array .= "<li><a href=?brand=" .$brand ."&pageno=" .$i ."> $i</a></li>";
                         }
