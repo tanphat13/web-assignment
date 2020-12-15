@@ -10,7 +10,7 @@
             Value
         </div>
     </div>
-    <form method='post' class=" create-staff-form">
+    <form method='post' class=" create-staff-form" enctype="multipart/form-data">
         <div class="form-group row product-update-table-row">
             <div class="col-md table-cell-label">
                 <label for="product_name">Product Name</label>
@@ -162,7 +162,11 @@
             </div>
 
         </div>
-        <button class="product-save-update" type="submit" >
+        <div class="row product-update-table-row form-group">
+            Choose pictures of product:
+            <input type="file" name="fileupload" id="fileupload">
+        </div>
+        <button class="product-save-update" type="submit">
             Add new product
         </button>
     </form>

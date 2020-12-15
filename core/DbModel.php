@@ -22,8 +22,21 @@ abstract class DbModel extends Model{
             }
             return $sql_command->execute();
         }
+        public function delete($key)
+        {
+            $tableName = $this->tableName();
+            $primaryKey = $this->primaryKey();
+            $sql_command = self::prepare("
+                    DELETE FROM $tableName WHERE $primaryKey=$key ;
+                ");
+            return $sql_command->execute();
+        }
     public static function prepare ($sql_command){
         return  Application::$app->db->pdo->prepare($sql_command);
+    }
+    public static function getLastInsertId()
+    {
+        return  Application::$app->db->pdo->lastInsertId();
     } 
 
     public static function findOne($tableName, $where){
@@ -48,15 +61,14 @@ abstract class DbModel extends Model{
         return $sql_command->fetchObject(static::class);
     }
     public static function findAll($tableName, $where){
-        if ($where === []) {
-            $sql_params = 1;            
-        } else {
+        if($where ===[]){
+            $sql_params =1;
+        }else{
             $attributes =  array_keys(
             $where 
             );
-        
             $sql_params = implode(" AND ", array_map(fn($attr)=> "$attr = :$attr",$attributes));
-        }
+            }
         $sql_command = self::prepare("SELECT * FROM $tableName WHERE $sql_params");
         foreach($where as $key => $item){
             $sql_command->bindValue(":$key",$item);

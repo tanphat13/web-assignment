@@ -350,7 +350,7 @@ function addProduct(product_id) {
 
 
 
-
+// update for product and staff 
  function updateStaffInfo(){
    const updateForm = document.getElementById("staff-update-form");
    const staffId = updateForm.getAttribute("data-staff");
@@ -411,4 +411,41 @@ function addProduct(product_id) {
    );
    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
    xhttp.send(JSON.stringify(dataObject));
+}
+function openConfirmDelete(model,key){
+  const confirmBox = document.getElementById("delete-confirm");
+  confirmBox.setAttribute('data-model',model);
+  confirmBox.setAttribute("data-key", key);
+  confirmBox.classList.add("active");
+  console.log()
+}
+function closeConfirmDelete(){
+   const confirmBox = document.getElementById("delete-confirm");
+   const message = document.getElementById("confirm-delete-message");
+   message.innerHTML = "Do you want to deletegit";
+   confirmBox.setAttribute("data-model", '');
+   confirmBox.setAttribute("data-key", '');
+   confirmBox.classList.remove("active");
+}
+function deleteModel(){
+  const confirmBox = document.getElementById("delete-confirm");
+  let model = confirmBox.getAttribute("data-model");
+  let key = confirmBox.getAttribute("data-key");
+  console.log(`${key} ${model}`);
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      const message = document.getElementById("confirm-delete-message");
+      message.innerHTML = xhttp.responseText;
+       setTimeout(function () {
+         confirmBox.classList.remove("active");
+         locatiton.href =  window.location.href;
+       }, 2000);
+    }
+  };
+  xhttp.open(
+    "GET",
+    `http://localhost:8080/admin/delete?delete=${model}&key=${key}`
+  );
+  xhttp.send();
 }

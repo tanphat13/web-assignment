@@ -46,11 +46,19 @@ class Product extends DbModel {
         }
 
         public function save(){
-            // echo "<pre>";
-            // echo var_dump($this);
-            // echo "</pre>";
-            // exit;
             return parent::save();
+        }
+        public function delete($key){
+            // echo var_dump($key);
+            return parent::delete($key);
+        }
+        public function saveImage($link,$productId){
+           $sql_command = self::prepare("
+            INSERT INTO images 
+            (product_id , link) 
+            VALUES ('".$productId."','".$link."');
+           ");
+           return $sql_command->execute();
         }
         public function getSpecificProduct(int $id) {
             $product = self::findOne($this->tableName(), ['product_id' => $id]);
@@ -146,5 +154,33 @@ class Product extends DbModel {
         }
         return $products_element;
         }
+
+    public function searchProductByOption($options = 'product_brand', $key)
+    {
+        $tableName = $this->tableName();
+        $sql_command =
+        self::prepare("SELECT * FROM $tableName WHERE  $options   LIKE '%" . $key . "%'");
+        $sql_command->execute();
+        $searchResult = '';
+        $searchResulArr = $sql_command->fetchAll();
+        foreach ($searchResulArr as $productItem) {
+            $searchResult .=
+                '<div class="staff-table-row">' .
+                '<div class="col-sm-1 table-cell">' . $productItem['product_id'] . '</div>' .
+                '<div class="col-md table-cell">' . $productItem['product_brand'] . '</div>' .
+                '<div class="col-md table-cell">' . $productItem['product_name'] . '</div>' .
+                '<div class="col-md table-cell actions-btn-group">' .
+                '
+                 <div id="update-product-btn" class="open-update-btn update-product-btn-link">
+                <a href="/admin/manage-products/update-product?product_id=' . $productItem["product_id"] . '" > Upadte </a>
+                </div>
+            <div class="action-delete-btn" onclick="openConfirmDelete(\'product\', ' . $productItem["product_id"] . ')" id="update-product-btn" class="open-update-btn update-product-btn-link">
+                 <p>DELETE</p>
+            </div>
+            </div> 
+            </div>';
+        }
+        return $searchResult;
+    }
     }
 ?>
