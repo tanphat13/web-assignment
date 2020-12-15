@@ -17,13 +17,8 @@ $products_homepage = array();
     // echo var_dump($brands);
 ?>
 
-<?php
 
-$PageTitle="Homepage". ' | ' . "smartphone.com";
 
-include_once('layout/header.php');
-?>
-<html>
     <div id="carouselIndicators" class="carousel slide event-slide" data-ride="carousel" data-pause="hover" data-interval=3000>
         <div class="carousel-inner">
             <?php
@@ -55,7 +50,7 @@ include_once('layout/header.php');
                         if ($index['product_brand'] == $key) {
                             echo "<div class='home_product_item'>
                                 <a href='product?id=$index[product_id]' >
-                                    <img src= ".$index['link']." ><br> $index[product_name] <br>" . number_format($index['product_price'], 0, '', '.' ) ."
+                                    <div class='product-image'><img class='image' src= " . $index['link'] . " ></div><br> $index[product_name] <br>" . number_format($index['product_price'], 0, '', '.' ) ."
                                 </a>
                                 </div>";
                         }

@@ -2,7 +2,6 @@
 #map {
   height: 200px;
   width: 100%;
-  border: 1px solid red;
 }
 
 .footer-container {
@@ -12,23 +11,66 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border-top: solid;
-  border-color: black;
-  background-color: azure;
+  background-color: #333;
   padding: 0px 16px;
 }
 
 .footer-container .col1 {
-  display: inline-block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   width: 24vw;
   height: 100%;
   top: 0;
-  padding-left: 20px;
   min-height: 200px;
 }
 
-.footer-container .col1 li {
+.footer-container .col1 h3 {
+  color: #fff;
+}
+
+.footer-container .col1 ul {
+  padding: 0px;
+}
+
+.footer-container .col1 ul li {
   list-style: none;
+  color: #888;
+}
+
+.footer-container .col1 ul li:hover {
+  color: #fff;
+}
+
+.footer-container .col1 ul li a {
+  color: #888;
+  text-decoration: none;
+}
+
+.footer-container .col1 ul li a:hover {
+  color: #fff;
+}
+
+.footer-container .location-wrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+}
+
+.footer-container .location-wrapper .map {
+  height: 200px;
+  width: 100%;
 }
 
 .installment h1 {
@@ -210,8 +252,8 @@ body {
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  width: 600px;
-  height: 400px;
+  width: 500px;
+  height: 360px;
   background-color: white;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -227,19 +269,106 @@ body {
 }
 
 .home-wrapper .login-wrapper form {
-  width: 80%;
-  height: 80%;
-  margin: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.home-wrapper .login-wrapper form .login-title {
+  width: 100%;
+  margin: 16px 45px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.home-wrapper .login-wrapper form .show-error {
+  color: red;
+  margin-left: 16px 45px;
+  margin-bottom: 8px;
+}
+
+.home-wrapper .login-wrapper form input {
+  display: block;
+  height: 50px;
+  width: 90%;
+  margin: 16px auto;
+  border: none;
+}
+
+.home-wrapper .login-wrapper form input::-webkit-input-placeholder {
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.home-wrapper .login-wrapper form input:-ms-input-placeholder {
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.home-wrapper .login-wrapper form input::-ms-input-placeholder {
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.home-wrapper .login-wrapper form input::placeholder {
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.home-wrapper .login-wrapper form input:hover, .home-wrapper .login-wrapper form input:focus, .home-wrapper .login-wrapper form input:active:focus {
+  color: #ff5722;
+  outline: none;
+  border-bottom: 1px solid #ff5722;
+}
+
+.home-wrapper .login-wrapper form input:hover::-webkit-input-placeholder, .home-wrapper .login-wrapper form input:focus::-webkit-input-placeholder, .home-wrapper .login-wrapper form input:active:focus::-webkit-input-placeholder {
+  color: #ff5722;
+  position: relative;
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+}
+
+.home-wrapper .login-wrapper form input:hover:-ms-input-placeholder, .home-wrapper .login-wrapper form input:focus:-ms-input-placeholder, .home-wrapper .login-wrapper form input:active:focus:-ms-input-placeholder {
+  color: #ff5722;
+  position: relative;
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+}
+
+.home-wrapper .login-wrapper form input:hover::-ms-input-placeholder, .home-wrapper .login-wrapper form input:focus::-ms-input-placeholder, .home-wrapper .login-wrapper form input:active:focus::-ms-input-placeholder {
+  color: #ff5722;
+  position: relative;
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+}
+
+.home-wrapper .login-wrapper form input:hover::placeholder, .home-wrapper .login-wrapper form input:focus::placeholder, .home-wrapper .login-wrapper form input:active:focus::placeholder {
+  color: #ff5722;
+  position: relative;
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+}
+
+.home-wrapper .login-wrapper form .email,
+.home-wrapper .login-wrapper form .pwd {
+  position: relative;
+  z-index: 1;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 20px;
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  color: #858585;
+  font-weight: lighter;
+  -webkit-transition: .5s;
+  transition: .5s;
 }
 
 .home-wrapper .active {
@@ -862,60 +991,6 @@ body {
 
 #carouselIndicators {
   margin-bottom: 16px;
-}
-
-.home_brand_matrix .home_brand_row {
-  height: 100%;
-  border-color: #8505da;
-  border: solid 3px;
-  margin-bottom: 16px;
-}
-
-.home_brand_matrix .home_brand_row .home_brand_header {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.home_brand_matrix .home_brand_row .home_brand_header .home_brand {
-  padding-left: 5px;
-  margin: 0;
-}
-
-.home_brand_matrix .home_brand_row .home_brand_header .seeall {
-  font-size: 150%;
-  padding-right: 1%;
-}
-
-.home_brand_matrix .home_brand_row .home_product_row {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  width: 100%;
-}
-
-.home_brand_matrix .home_brand_row .home_product_row .home_product_item {
-  height: 80%;
-  width: 15%;
-  border: solid white;
-}
-
-.home_brand_matrix .home_brand_row .home_product_row .home_product_item img {
-  height: 100%;
-  width: 100%;
-}
-
-.home_brand_matrix .home_brand_row .home_product_row .home_product_item:hover {
-  border-color: red;
 }
 
 .product {
@@ -1814,9 +1889,10 @@ body {
 
 .home_brand_matrix .home_brand_row {
   height: 100%;
-  border-color: #8505da;
-  border: solid 3px;
-  margin-bottom: 16px;
+  margin-bottom: 48px;
+  -webkit-box-shadow: 0px 1px 10px #4b4b4b;
+          box-shadow: 0px 1px 10px #4b4b4b;
+  padding: 24px 16px;
 }
 
 .home_brand_matrix .home_brand_row .home_brand_header {
@@ -1829,6 +1905,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  height: 40px;
 }
 
 .home_brand_matrix .home_brand_row .home_brand_header .home_brand {
@@ -1839,6 +1916,8 @@ body {
 .home_brand_matrix .home_brand_row .home_brand_header .seeall {
   font-size: 150%;
   padding-right: 1%;
+  text-decoration: none;
+  color: black;
 }
 
 .home_brand_matrix .home_brand_row .home_product_row {
@@ -1852,9 +1931,24 @@ body {
 }
 
 .home_brand_matrix .home_brand_row .home_product_row .home_product_item {
+  position: relative;
   height: 80%;
   width: 15%;
   border: solid white;
+  background-color: #fff;
+  padding: 5px;
+  -webkit-transition: 0.3;
+  transition: 0.3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .home_brand_matrix .home_brand_row .home_product_row .home_product_item img {
@@ -1863,6 +1957,11 @@ body {
 }
 
 .home_brand_matrix .home_brand_row .home_product_row .home_product_item:hover {
-  border-color: red;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  z-index: 15;
+  -webkit-box-shadow: 1px 1px 10px #4b4b4b;
+          box-shadow: 1px 1px 10px #4b4b4b;
+  border-radius: 5px;
 }
 /*# sourceMappingURL=index.css.map */

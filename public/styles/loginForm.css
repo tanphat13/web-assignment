@@ -16,8 +16,8 @@
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  width: 600px;
-  height: 400px;
+  width: 500px;
+  height: 360px;
   background-color: white;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -26,6 +26,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  border-radius: 8px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -33,19 +34,106 @@
 }
 
 .home-wrapper .login-wrapper form {
-  width: 80%;
-  height: 80%;
-  margin: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.home-wrapper .login-wrapper form .login-title {
+  width: 100%;
+  margin: 16px 45px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.home-wrapper .login-wrapper form .show-error {
+  color: red;
+  margin-left: 16px 45px;
+  margin-bottom: 8px;
+}
+
+.home-wrapper .login-wrapper form input {
+  display: block;
+  height: 50px;
+  width: 90%;
+  margin: 16px auto;
+  border: none;
+}
+
+.home-wrapper .login-wrapper form input::-webkit-input-placeholder {
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.home-wrapper .login-wrapper form input:-ms-input-placeholder {
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.home-wrapper .login-wrapper form input::-ms-input-placeholder {
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.home-wrapper .login-wrapper form input::placeholder {
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.home-wrapper .login-wrapper form input:hover, .home-wrapper .login-wrapper form input:focus, .home-wrapper .login-wrapper form input:active:focus {
+  color: #ff5722;
+  outline: none;
+  border-bottom: 1px solid #ff5722;
+}
+
+.home-wrapper .login-wrapper form input:hover::-webkit-input-placeholder, .home-wrapper .login-wrapper form input:focus::-webkit-input-placeholder, .home-wrapper .login-wrapper form input:active:focus::-webkit-input-placeholder {
+  color: #ff5722;
+  position: relative;
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+}
+
+.home-wrapper .login-wrapper form input:hover:-ms-input-placeholder, .home-wrapper .login-wrapper form input:focus:-ms-input-placeholder, .home-wrapper .login-wrapper form input:active:focus:-ms-input-placeholder {
+  color: #ff5722;
+  position: relative;
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+}
+
+.home-wrapper .login-wrapper form input:hover::-ms-input-placeholder, .home-wrapper .login-wrapper form input:focus::-ms-input-placeholder, .home-wrapper .login-wrapper form input:active:focus::-ms-input-placeholder {
+  color: #ff5722;
+  position: relative;
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+}
+
+.home-wrapper .login-wrapper form input:hover::placeholder, .home-wrapper .login-wrapper form input:focus::placeholder, .home-wrapper .login-wrapper form input:active:focus::placeholder {
+  color: #ff5722;
+  position: relative;
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+}
+
+.home-wrapper .login-wrapper form .email,
+.home-wrapper .login-wrapper form .pwd {
+  position: relative;
+  z-index: 1;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 20px;
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  color: #858585;
+  font-weight: lighter;
+  -webkit-transition: .5s;
+  transition: .5s;
 }
 
 .home-wrapper .active {
