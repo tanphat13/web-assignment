@@ -337,7 +337,7 @@ function updateOrder(order_id) {
 
 
 
-
+// update for product and staff 
  function updateStaffInfo(){
    const updateForm = document.getElementById("staff-update-form");
    const staffId = updateForm.getAttribute("data-staff");

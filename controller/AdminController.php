@@ -121,9 +121,19 @@ Class AdminController extends Controller {
         $option = $_GET['options'];
         $key = $_GET['key'];
         $staffModel = new Staff();
-        $searchResult = $staffModel->searchStaff($option,$key);
+        $productModel = new Product();
+        $productRegex = "/^(?=.*product_brand)|(?=.*product_name)/"; 
+        $staffRegex = "/^(?=.*fullname)|(?=.*phone)|(?=.*email)/";
+        $searchResult = "";
+        if(preg_match($productRegex,$option) !== 0 ){
+            $searchResult = $productModel->searchProduct($option, $key);
+        } else if (preg_match($staffRegex, $option)!==0){
+            $searchResult = $staffModel->searchStaff($option, $key);
+        }
+        
         echo $searchResult;
-       
+        exit;   
+        
     }
     public function getUpdateProduct(){
         $adminModel = new Admin();

@@ -3,8 +3,8 @@
         <div class="table-action-search-bar">
             <label for="search-option">Options</label>
             <select name="search-option" id="search-option">
-                <option value="Brand">Brand</option>
-                <option value="Name">phone</option>
+                <option value="product_brand">Brand</option>
+                <option value="product_name">Product name</option>
             </select>
             <input type='text' id="admimn-table-actions-search" class="search-input" placeholder="Search" onkeyup="searchStaff(this.value)">
         </div>
