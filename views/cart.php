@@ -1,7 +1,3 @@
-<?php
-    use app\core\Application;
-?>
-
 <div class="box-confirm" id="box-confirm">
     <div class="message-header">
         <h6>Confirm Removing Product</h6>
@@ -29,7 +25,8 @@
             <?php
                 $products_element = "";
                 $total_price = 0;
-                foreach ($listProducts as $product) {
+                foreach ($listProducts as $product_obj) {
+                    $product = $product_obj["product_info"];
                     $total_price += $product->product_price;
                     $formatted_price = number_format($product->product_price, 0, '', '.');
                     $products_element .= "
@@ -99,7 +96,7 @@
                 </div>
             </div>
             <div id="address" class='address-opt'></div>
-            <button type="submit" class='btn order-btn'>Order</button>
+            <button type="submit" class='btn order-btn' <?php if (count($listProducts) === 0) : ?> disabled <?php endif; ?> >Order</button>
         </div>
     </form>
 </div>

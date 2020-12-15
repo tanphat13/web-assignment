@@ -12,9 +12,6 @@
         
     </div>
     <?php
-    // echo "<pre>";
-    // echo var_dump($product_item);
-    // echo "</pre>";
     $regex = "/^(?=.*errors)|(?=.*created)|(?=.*deleted)|(?=.*updated)/";
     foreach ($product_item as $key => $value) {
         if (preg_match($regex, $key) === 0) {

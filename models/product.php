@@ -2,8 +2,9 @@
     namespace app\models;
     use app\core\Application;
     use app\core\DbModel;
+use PDO;
 
-    class Product extends DbModel {
+class Product extends DbModel {
 
         public int $product_id = 0;
         public string $product_name = '';
@@ -45,11 +46,19 @@
         }
 
         public function save(){
-            // echo "<pre>";
-            // echo var_dump($this);
-            // echo "</pre>";
-            // exit;
             return parent::save();
+        }
+        public function delete($key){
+            // echo var_dump($key);
+            return parent::delete($key);
+        }
+        public function saveImage($link,$productId){
+           $sql_command = self::prepare("
+            INSERT INTO images 
+            (product_id , link) 
+            VALUES ('".$productId."','".$link."');
+           ");
+           return $sql_command->execute();
         }
         public function getSpecificProduct(int $id) {
             $product = self::findOne($this->tableName(), ['product_id' => $id]);
@@ -86,14 +95,15 @@
 
         public function getProductInCart($listProductId) {
             $products = array();
-            foreach ($listProductId as $product_id) {
+            foreach ($listProductId as $product) {
                 $sql_command = self::prepare("SELECT products.product_id, products.product_name, products.product_price, products.product_color, products.product_ram, products.product_rom, MIN(images.image_id), images.link 
-                FROM products LEFT JOIN images ON products.product_id = images.product_id WHERE products.product_id = $product_id GROUP BY products.product_name;");
+                FROM products LEFT JOIN images ON products.product_id = images.product_id WHERE products.product_id = $product[product_id] GROUP BY products.product_name;");
                 $sql_command->execute();
-                array_push($products, $sql_command->fetchObject());
+                array_push($products, ['product_info' => $sql_command->fetchObject(), 'product_sn' => $product['serial_number']]);
             }
             return $products;
         }
+
         public function updateProduct(){
             $tableName = $this->tableName();
             $attributes = $this->attribute();
@@ -110,5 +120,67 @@
            
             return $sql_command->execute();
         }
+
+        public function getAllProduct() {
+            $sql_command = self::prepare("SELECT products.product_id, products.product_name, products.product_price, products.product_color, products.product_ram, products.product_rom, products.rating, MIN(images.image_id), images.link 
+            FROM products LEFT JOIN images ON products.product_id = images.product_id GROUP BY products.product_name ORDER BY products.rating");
+            $sql_command->execute();
+            return $sql_command->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function searchProducts($key) {
+            $sql_command = self::prepare("SELECT products.product_id, products.product_name, products.product_price, products.product_color, products.product_ram, products.product_rom, products.rating, MIN(images.image_id), images.link 
+            FROM products LEFT JOIN images ON products.product_id = images.product_id WHERE (products.product_name LIKE '%$key%' OR products.product_brand LIKE '%$key%') GROUP BY products.product_name ORDER BY products.rating;");
+            $sql_command->execute();
+            $products_list = $sql_command->fetchAll(PDO::FETCH_ASSOC);
+            $products_element = "";
+            foreach ($products_list as $product) {
+            $formatted_price = number_format($product['product_price'], 0, '', '.');
+            $products_element .= "
+                <div class='product-item' id='product-item-$product[product_id]'>
+                    <div class='product-image'>
+                        <div class='img'><img src='$product[link]' alt='$product[product_name]' /></div>
+                    </div>
+                    <div class='product-info'>
+                        <div class='product-spec'>
+                            <p class='info name' id='product-$product[product_id]'>$product[product_name] ($product[product_ram] GB/$product[product_rom] GB)</p>
+                            <p class='info'>Color: $product[product_color]</p>
+                        </div>
+                        <span id='price' class='price'> $formatted_price VND</span>
+                    </div>
+                    <button type='button' class='delete-btn' onclick='confirmRemoveProduct($product[product_id])'>Add</button>
+                </div>
+            ";
+        }
+        return $products_element;
+        }
+
+    public function searchProductByOption($options = 'product_brand', $key)
+    {
+        $tableName = $this->tableName();
+        $sql_command =
+        self::prepare("SELECT * FROM $tableName WHERE  $options   LIKE '%" . $key . "%'");
+        $sql_command->execute();
+        $searchResult = '';
+        $searchResulArr = $sql_command->fetchAll();
+        foreach ($searchResulArr as $productItem) {
+            $searchResult .=
+                '<div class="staff-table-row">' .
+                '<div class="col-sm-1 table-cell">' . $productItem['product_id'] . '</div>' .
+                '<div class="col-md table-cell">' . $productItem['product_brand'] . '</div>' .
+                '<div class="col-md table-cell">' . $productItem['product_name'] . '</div>' .
+                '<div class="col-md table-cell actions-btn-group">' .
+                '
+                 <div id="update-product-btn" class="open-update-btn update-product-btn-link">
+                <a href="/admin/manage-products/update-product?product_id=' . $productItem["product_id"] . '" > Upadte </a>
+                </div>
+            <div class="action-delete-btn" onclick="openConfirmDelete(\'product\', ' . $productItem["product_id"] . ')" id="update-product-btn" class="open-update-btn update-product-btn-link">
+                 <p>DELETE</p>
+            </div>
+            </div> 
+            </div>';
+        }
+        return $searchResult;
+    }
     }
 ?>

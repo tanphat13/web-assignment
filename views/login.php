@@ -1,6 +1,6 @@
 <div class ='admin-login-screen'>
     <h3 class="admin-login-form-title">
-        Login as admin
+        Login as admin/staff
     </h3>
     <form class="admin-login-form" action="" method="post">
         <h1 class="show-error">

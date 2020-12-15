@@ -52,7 +52,21 @@
         display: inline;
         right:0;
         width: 80%;
+
         
+        //note
+        .paging {
+            align-content: flex;
+            li {
+                display: inline;
+                text-align: right;
+                font-size: xx-large;
+                position: relative;
+                right: 0;
+            }
+        
+        }
+
         .product_item {
             &:hover {
                 border: solid;

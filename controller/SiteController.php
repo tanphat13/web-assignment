@@ -168,22 +168,19 @@ class SiteController extends Controller{
         if (in_array('email', $listField) && in_array('password', $listField)) {
             self::login($path, $loginForm, $request, $response);
         }
-        $listProductId = explode(',', $session->get('cart'));
+        $listProductId = $session->get('cart');
         if (isset($_COOKIE['productId'])) {
-            array_push($listProductId, $_COOKIE['productId']);
+            array_push($listProductId, intval($_COOKIE['productId']));
             array_multisort($listProductId);
-            $newListAsString = implode(',', $listProductId);
-            $session->set('cart', $newListAsString);
+            $session->set('cart', $listProductId);
             setcookie('productId', '', 0,'/');            
         }
-        $listProducts = array();
-        if (array_search('0', $listProductId) !== false || array_search('', $listProductId) !== false) {
-            array_shift($listProductId);
-            $newListAsString = implode(',', $listProductId);
-            $session->set('cart', $newListAsString);
+        $listProductInfo = array();
+        foreach ($listProductId as $product_id) {
+            array_push($listProductInfo, ['product_id' => $product_id, 'serial_number' => '']);
         }
-        $listProducts = (new Product())->getProductInCart($listProductId);
-        $user = (new User())->getUserInfo($session->get('user'));    
+        $listProducts = (new Product())->getProductInCart($listProductInfo);
+        $user = (new User())->getUserInfo($session->get('user'));
         return $this->render('cart', ["listProducts" => $listProducts, "user" => $user]);
     }
 
@@ -230,9 +227,21 @@ class SiteController extends Controller{
         $body = $request->getBody();
         $new_order = (new Order())->createNewOrder($body, $session->get('user'));
         (new OrderProduct())->createProductInOrder(intval($new_order->latest_order_id), explode(',', $session->get('cart')));
-        $session->set('cart', '');
+        $session->set('cart', []);
         $response->redirect("/order?id=$new_order->latest_order_id");
         return;
+    }
+
+    public function reviewAllOrder(Request $request, Response $response) {
+        $loginForm = new LoginForm();
+        $session = Application::$app->session;
+        $listField = array_keys($request->getBody());
+        $path = $request->getPath();
+        if (in_array('email', $listField) && in_array('password', $listField)) {
+            self::login($path, $loginForm, $request, $response);
+        }
+        $all_order = (new Order())->getAllOrder($session->get('user'));
+        return $this->render('my-order', ['orders' => $all_order]);
     }
 
     public function reviewOrder(Request $request) {
@@ -241,11 +250,11 @@ class SiteController extends Controller{
         $user = (new User())->getUserInfo($session->get('user'));
         $order = (new Order())->getDetailedOrder($param['id']);
         $product_in_order = (new OrderProduct())->getOrderProduct(intval($param['id']));
-        $listProductId = array();
+        $listProductInfo = array();
         foreach ($product_in_order as $product) {
-            array_push($listProductId, $product['product_id']);
+            array_push($listProductInfo, $product);
         }
-        $listProducts = (new Product())->getProductInCart($listProductId);
+        $listProducts = (new Product())->getProductInCart($listProductInfo);
         return $this->render('order', ["user" => $user, "order" => $order, "listProducts" => $listProducts]);
     }
 
@@ -315,7 +324,7 @@ class SiteController extends Controller{
             $model->loadData($request->getBody());
             
             if ($model->validate() && $model->login()) {
-                $session->set('cart', '0');
+                $session->set('cart', []);
                 $response->redirect($path);
                 return;
             }
@@ -323,20 +332,19 @@ class SiteController extends Controller{
     }
     public function renderCategory(Request $request) {
         $param = $request->getBody();
+       
         $categoryList = (new Categories())->getCategoryList();
-        // echo var_dump($categoryList[0]);
-        // echo var_dump($param);
-        if ($param == null) {
-            $productList = (new Categories())->getBrandProduct($categoryList[0]);            
+        $paramlist = [];
+        if (array_key_exists('low_bound', $param) && array_key_exists('high_bound', $param)) {
+            $productList = (new Categories())->getProductByRange($param['low_bound'], $param['high_bound'], $param['pageno']);
+            $paramlist =  ['low_bound' => $param['low_bound'], 'high_bound' => $param['high_bound']  ];
+        } else {
+            $curBrand = (!isset($param['brand']) ? $categoryList[0] : $param['brand']);
+            $productList = (new Categories())->getBrandProduct($curBrand, array_key_exists('pageno', $param)? $param['pageno'] : 1);
+            $paramlist = ['brand' => $curBrand];
         }
-        // else $productList = (new Categories())->getBrandProduct($param['brand']);
-        else if (array_key_exists('brand', $param))  {
-            $productList = (new Categories())->getBrandProduct($param['brand']);
-        }
-        else if (array_key_exists('low_bound', $param) && array_key_exists('high_bound', $param)) {
-            $productList = (new Categories())->getProductByRange($param['low_bound'], $param['high_bound']);
-        }
-        return $this->render('categories', ['category' => $categoryList, 'product' => $productList]);
+        $paramlist = array_merge($paramlist,  ['category' => $categoryList, 'product' => $productList['products'], 'total_page' => $productList['total_page']]);
+        return $this->render('categories', $paramlist);
     }
 }
 

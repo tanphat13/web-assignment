@@ -37,7 +37,7 @@ $products_homepage = array();
                     echo "<div class='home_brand_row'> 
                     <div class='home_brand_header'>
                     <h4 class='home_brand'> $key </h4>
-                    <a class='seeall' href='/category?brand=$key'>See all
+                    <a class='seeall' href='/category?brand=$key&pageno=1'>See all
                     </a>
                     </div>
                     <div class='home_product_row'>";

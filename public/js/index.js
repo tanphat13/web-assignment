@@ -156,9 +156,9 @@ function handleRating(myRadio, product_id, user_id) {
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send("product_id="+product_id+"&user_id="+user_id+"&rate="+myRadio.value);
 }
-function loadAnswerInput(comment_id) {
+function loadAnswerInput(product_id, user_id, comment_id) {
   document.getElementById('comment-' + comment_id).innerHTML = 
-  "<textarea id='input-comment" + comment_id + "'class='form-control input-comment' rows='3' placeholder='Input your answer'></textarea><button type='submit' value='Submit' class='btn btn-primary mb-2' onclick='submitComment(<?php echo $product['product']->product_id . ',' . $session->get('user') ?>, " + comment_id + ")'>Submit</button>"
+  "<textarea id='input-comment" + comment_id + "'class='form-control input-comment' rows='3' placeholder='Input your answer'></textarea><button type='submit' value='Submit' class='btn btn-primary mb-2' onclick='submitComment("+product_id+","+user_id+","+comment_id+")'>Submit</button>";
 }
 function submitComment(product_id, user_id, answer_id = '') {
   if (user_id === undefined) {
@@ -249,7 +249,6 @@ function cancelOrder(order_id) {
   xhttp.onreadystatechange = function() {
     if (this.readyState === 4 && this.status === 200) {
       document.getElementById('box-confirm').classList.remove('active');
-      console.log(this.responseText);
       location.reload();
     }
   }
@@ -257,15 +256,43 @@ function cancelOrder(order_id) {
   xhttp.send();
 }
 
-// function setOnClickStore(){
-//   var storeElements = document.querySelectorAll('.store-container');
-//   storeElements.forEach((store,index)=>{
-//     store.addEventListener('click',function(){
-//       google.maps.event.trigger(Marker[index], 'click')
-//     })
-//   })
-// }
+function updateOrder(order_id) {
+  let status = document.getElementById('status').value;
+  let delivery_date = document.getElementById('delivery-date').value;
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+      location.reload();
+    }
+  }
+  xhttp.open("POST", "update-order", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("order_id="+order_id+"&status="+status+"&delivery_date="+delivery_date);
+}
 
+function suggest(str) {
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState === 4 && this.status === 200) {
+          document.getElementById("product-search-list").innerHTML = this.responseText;
+      }
+  };
+  xhttp.open("GET", "livesearch?key="+str, true);
+  xhttp.send();
+}
+
+function addProduct(product_id) {
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState === 4 && this.status === 200) {
+          let curQuantity = parseInt(document.getElementById("quantity").innerText);
+          document.getElementById("quantity").innerText = curQuantity + 1;
+      }
+  };
+  xhttp.open("POST", "add-product", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("product_id="+product_id);
+}
 
 // This is function for admin page
  function getStaffId(staffId) {
@@ -323,7 +350,7 @@ function cancelOrder(order_id) {
 
 
 
-
+// update for product and staff 
  function updateStaffInfo(){
    const updateForm = document.getElementById("staff-update-form");
    const staffId = updateForm.getAttribute("data-staff");
@@ -384,4 +411,41 @@ function cancelOrder(order_id) {
    );
    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
    xhttp.send(JSON.stringify(dataObject));
+}
+function openConfirmDelete(model,key){
+  const confirmBox = document.getElementById("delete-confirm");
+  confirmBox.setAttribute('data-model',model);
+  confirmBox.setAttribute("data-key", key);
+  confirmBox.classList.add("active");
+  console.log()
+}
+function closeConfirmDelete(){
+   const confirmBox = document.getElementById("delete-confirm");
+   const message = document.getElementById("confirm-delete-message");
+   message.innerHTML = "Do you want to deletegit";
+   confirmBox.setAttribute("data-model", '');
+   confirmBox.setAttribute("data-key", '');
+   confirmBox.classList.remove("active");
+}
+function deleteModel(){
+  const confirmBox = document.getElementById("delete-confirm");
+  let model = confirmBox.getAttribute("data-model");
+  let key = confirmBox.getAttribute("data-key");
+  console.log(`${key} ${model}`);
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      const message = document.getElementById("confirm-delete-message");
+      message.innerHTML = xhttp.responseText;
+       setTimeout(function () {
+         confirmBox.classList.remove("active");
+         locatiton.href =  window.location.href;
+       }, 2000);
+    }
+  };
+  xhttp.open(
+    "GET",
+    `http://localhost:8080/admin/delete?delete=${model}&key=${key}`
+  );
+  xhttp.send();
 }

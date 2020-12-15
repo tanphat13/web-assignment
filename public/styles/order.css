@@ -49,6 +49,7 @@
   padding-bottom: 2vh;
 }
 
+<<<<<<< HEAD
 .form-order .form-horizontal .form-group button {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
@@ -58,5 +59,37 @@
 
 .form-order .form-horizontal .form-group button:hover {
   background-color: #b6ab15;
+=======
+.order {
+  margin: 2% 0;
+  width: 100%;
+}
+
+.order .h4 {
+  margin-bottom: 1%;
+}
+
+.order .order-container {
+  margin: 0;
+  width: 100%;
+  font-size: 80%;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.order .order-container .row {
+  padding: 1% 0;
+}
+
+.order .order-container .row .col {
+  padding: 0;
+  text-align: center;
+}
+
+.order .order-container .heading {
+  font-weight: 600;
+  border-bottom: 1px solid #dedede;
+>>>>>>> 33e455a4ec1f1773e0ef0953600fff766a821830
 }
 /*# sourceMappingURL=order.css.map */
