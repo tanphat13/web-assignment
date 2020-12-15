@@ -1,3 +1,9 @@
+<?php
+     
+$PageTitle="Category". ' | ' . "smartphone.com";
+ 
+include_once('layout/header.php');
+?>
 <script>
         function setbounds($low, $high) {
             low_bound = $low;

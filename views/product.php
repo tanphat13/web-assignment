@@ -1,7 +1,12 @@
 <?php
     use app\core\Application;
 ?>
+<?php
 
+$PageTitle = $product['product']->product_name . ' | ' . "smartphone.com";
+
+include_once('layout/header.php');
+?>
 <h3><?php echo $product['product']->product_name . "(" . $product['product']->product_ram . "GB/" . $product['product']->product_rom . "GB)" ?></h3>
 <div class="product">
     <div id="carouselIndicators" class="carousel slide" data-ride="carousel">

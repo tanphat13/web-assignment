@@ -1,5 +1,4 @@
 <?php
-
 use app\core\Application;
 
 // echo var_dump(Application::$app->user);
@@ -46,11 +45,13 @@ use app\core\Application;
     // }
 ?> -->
 
+
+
 <head>
     <!-- Required meta tags -->
-    <!-- <title>Smartphone.com - Điện thoại, Smartphone chính hãng, giá tốt nhất tại Thành phố Hồ Chí Minh</title> -->
-    <title><?php echo $title; ?></title>
-    <meta name="keywords" content="" Smartphone, điện thoại di động, dtdd">
+    <!-- <title>Mobile shop - Điện thoại, Smartphone chính hãng, giá tốt nhất tại Thành phố Hồ Chí Minh</title> -->
+    
+    <meta name="keywords" content="Smartphone, điện thoại di động, dtdd">
     <meta name="description" content="Hệ thống bán lẻ điện thoại di động, smartphone chính hãng mới nhất tại khu vực thành phố Hồ Chí Minh">
     <meta property="og:title" content="Smartphone.com - Điện thoại, Smartphone chính hãng, giá tốt nhất tại Thành phố Hồ Chí Minh">
     <meta property="og:description" content="Hệ thống bán lẻ điện thoại di động, smartphone chính hãng mới nhất tại khu vực thành phố Hồ Chí Minh">
@@ -67,7 +68,7 @@ use app\core\Application;
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="index.css">
-    <title>Mobile shop</title>
+    
 </head>
 
 <body>

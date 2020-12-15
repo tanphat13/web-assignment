@@ -1,3 +1,10 @@
+<?php
+
+$PageTitle="Register". ' | ' . "smartphone.com";
+
+include_once('layout/header.php');
+?>
+
 <form action="" method="post">
     <div class="form-group">
         <label for="fullname">Name</label>

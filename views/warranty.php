@@ -1,4 +1,10 @@
 
+<?php
+
+$PageTitle="Warranty". ' | ' . "smartphone.com";
+
+include_once('layout/header.php');
+?>
     <div class="warranty">
         <h1>Warranty conditions</h1>
         <p>Products are free warranty if guaranteed all the following conditions:</p>
