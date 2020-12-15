@@ -1,6 +1,12 @@
 <?php
       use app\core\Application;
 ?>
+<?php
+
+$PageTitle="Profile". ' | ' . "smartphone.com";
+
+include_once('layout/header.php');
+?>
 <div class="box-confirm" id="box-confirm">
     <div class="message-header">
         <h6>Confirm Remove Address</h6>
@@ -98,7 +104,7 @@
       <h5>Add new address form</h5>
       <form action="/add-address" method='post' class='container add-address'>
             <label for="new-address">New Address:</label>
-            <textarea type="textarea" name="new-address" id="new-address" placeholder="Input Your New Address" class="input-address"></textarea>
+            <textarea type="textarea" name="new-address" id="new-address" placeholder="Input Your New Address" class="input-address" required></textarea>
             <button type='submit'  class="btn btn-outline-success">
                   Add
             </button>

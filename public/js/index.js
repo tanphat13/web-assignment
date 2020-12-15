@@ -185,7 +185,7 @@ function addToCart(user_id) {
     document.getElementById('loginForm').classList.add('active');
     return;
   }
-  window.location.href = window.location.origin+'/my-cart';
+  window.location.href = window.location.origin+'/review-cart';
   return;
 }
 

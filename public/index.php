@@ -56,12 +56,13 @@ $app->router->post('/delete-address', [SiteController::class, 'deleteAddress']);
 $app->router->post('/update-info', [SiteController::class, 'updateInfo']);
 
 // Review Cart
-$app->router->get('/my-cart', [SiteController::class, 'reviewCart']);
-$app->router->post('/my-cart', [SiteController::class, 'reviewCart']);
-$app->router->post('/remove-product', [SiteController::class, 'removeProduct']);
-$app->router->get('/my-address', [SiteController::class, 'getUserAddress']);
-$app->router->get('/all-branch', [SiteController::class, 'getAllBranch']);
-$app->router->post('/ordering', [SiteController::class, 'createOrder']);
+$app->router->get('/review-cart', [SiteController::class, 'reviewCart', ['user']]);
+$app->router->post('/review-cart', [SiteController::class, 'reviewCart']);
+$app->router->get('/my-cart', [SiteController::class, 'reviewMyCart', ['user']]);
+$app->router->post('/remove-product', [SiteController::class, 'removeProduct', ['user']]);
+$app->router->get('/my-address', [SiteController::class, 'getUserAddress', ['user']]);
+$app->router->get('/all-branch', [SiteController::class, 'getAllBranch', ['user']]);
+$app->router->post('/ordering', [SiteController::class, 'createOrder', ['user']]);
 
 // Review My Order
 $app->router->get('/my-order', [SiteController::class, 'reviewAllOrder']);
