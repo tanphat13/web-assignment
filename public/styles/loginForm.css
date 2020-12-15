@@ -21,10 +21,10 @@
   padding: 7px;
   right: 0;
   position: fixed;
-  z-index: 5;
+  z-index: 100;
   width: 50%;
-  height: 300px;
-  border: 3px solid black;
+  height: 50vh;
+  border: 1px solid black;
   visibility: hidden;
   background-color: #dad3d3;
 }

@@ -74,7 +74,7 @@
         ?>
         <button class='purchase-btn' onclick="addToCart(<?php echo $session->get('user') ?>)">
             <h6>Purchase Now</h6>
-            <p>Shipping Or Receive At Nearest Store</p>
+            <!--  <p>Shipping Or Receive At Nearest Store</p>   -->
         </button>
         <div class='divider'></div>
         <p><em class="font-weight-bold">Hotline: </em>1800.9988</p>

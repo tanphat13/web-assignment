@@ -22,10 +22,7 @@
     } 
     $pages = $total_page;    
 ?>
-<<<<<<< HEAD
-=======
     
->>>>>>> 33e455a4ec1f1773e0ef0953600fff766a821830
 
     <div class="categoryPage">
         
@@ -60,22 +57,6 @@
                 </li>
             </ul>
         </div>
-<<<<<<< HEAD
-        <div class="product_matrix" >
-            <?php 
-                foreach($products as $nindex) {
-                   echo "<div class='product_item'>
-                   <a href='product?id=$nindex[product_id]' >
-                    <img src= ".$nindex['link']." ><br> $nindex[product_name] <br>" . number_format($nindex['product_price'], 0, '', '.' ) ."
-                   </a>
-                   </div>";
-                   
-                }
-            ?>
-        </div>
-        
-    </div>
-=======
         <!-- <div class="product_page"> -->
             <div class="product_matrix" >
                 <?php
@@ -135,4 +116,3 @@
   
     
     
->>>>>>> 33e455a4ec1f1773e0ef0953600fff766a821830

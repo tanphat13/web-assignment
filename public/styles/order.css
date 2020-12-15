@@ -49,7 +49,6 @@
   padding-bottom: 2vh;
 }
 
-<<<<<<< HEAD
 .form-order .form-horizontal .form-group button {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
@@ -59,7 +58,8 @@
 
 .form-order .form-horizontal .form-group button:hover {
   background-color: #b6ab15;
-=======
+}
+
 .order {
   margin: 2% 0;
   width: 100%;
@@ -90,6 +90,5 @@
 .order .order-container .heading {
   font-weight: 600;
   border-bottom: 1px solid #dedede;
->>>>>>> 33e455a4ec1f1773e0ef0953600fff766a821830
 }
 /*# sourceMappingURL=order.css.map */

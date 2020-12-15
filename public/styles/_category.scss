@@ -1,13 +1,13 @@
 .home-wrapper{
     background-color: rgb(177, 173, 173);
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
+    //font-weight: bold;
 .container{
     padding:0;
     margin-left: 100px;
-    //margin-right: 50px;
+    margin-right: 0px;
     background-color:  rgb(218, 211, 211);
-    width: 100%;
+    //width: 700px !important;
    // margin: 0;
 .categoryPage {
     //width: 90vw;
@@ -34,10 +34,6 @@
         background-color:  rgb(126, 122, 122);
         //width: auto;
         height: 100%;
-
-
-        //display: inline-block;
-
         display: inline-block;
         ul {
             list-style: none;
@@ -52,8 +48,6 @@
         display: inline;
         right:0;
         width: 80%;
-
-        
         //note
         .paging {
             align-content: flex;
@@ -63,10 +57,15 @@
                 font-size: xx-large;
                 position: relative;
                 right: 0;
+                a{
+                    color:black;
+                    &:hover{
+                    color: rgb(192, 180, 14);
+                    }
+                }
             }
         
         }
-
         .product_item {
             &:hover {
                 border: solid;
@@ -77,10 +76,11 @@
                 &:hover{
                     color: rgb(165, 155, 10);
                 }
+                height: 100vh;
+                width: 100vw;
             }
             height: 30vh;
             width: 20%;
-            //border:  solid white;
             display: inline-block;
             img {
                 height: 100%;
@@ -89,11 +89,6 @@
             &:hover {
                 border: solid;
                 border-color: rgb(243, 212, 36) ;
-            }
-            a {
-                
-                height: 100vh;
-                width: 100vw;;
             }
         }
     }
