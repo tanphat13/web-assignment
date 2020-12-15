@@ -2,35 +2,52 @@
     
     .home_brand_row {
         height: 100%;
-        border-color: rgb(133, 5, 218);
-        border: solid 3px;
+        border-bottom-color:rgb(177, 173, 173) !important;
+        border-bottom: solid 3px;
         .home_brand_header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             .home_brand {
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
                 padding-left: 5px;
                 margin: 0;
             }
             .seeall {
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+                color: rgb(126, 122, 122);
                 font-size: 150%;
                 padding-right: 1%;
+                &:hover {
+                    //border-color: red ;
+                    color: rgb(192, 180, 14);
+                }
             }
         }
         .home_product_row{
+            margin-left:5px ;
             display: flex;
             justify-content: space-between;
             .home_product_item {
+                &:hover {
+                    border: solid;
+                    border-color: rgb(243, 212, 36) ;
+                }
                 height: 80%;
                 width: 15%;
-                border:  solid white;
+                //border:  solid black;
                 img {
                     height: 100%;
                     width: 100%;
                 }
+                a{
+                    color:black;
                 &:hover {
-                    border-color: red ;
-                }
+                    //border-color: red ;
+                    color: rgb(192, 180, 14);
+                }}
             }
         }
     }

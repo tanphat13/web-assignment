@@ -176,6 +176,14 @@
           justify-content: space-between;
 }
 
+.form-order .form-horizontal .cart-summary .cart-format .cart-label {
+  font-size: 20px;
+}
+
+.form-order .form-horizontal .cart-summary .cart-format .price {
+  font-size: 20px;
+}
+
 .form-order .form-horizontal .form-group {
   margin-bottom: 4vh;
 }

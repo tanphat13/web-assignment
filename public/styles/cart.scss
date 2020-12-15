@@ -130,6 +130,12 @@
                 margin-bottom: 2vh;
                 display: flex;
                 justify-content: space-between;
+                .cart-label{
+                    font-size: 20px;
+                }
+                .price{
+                    font-size: 20px;
+                }
             }
         }
         .form-group {

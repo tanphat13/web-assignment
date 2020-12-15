@@ -1,25 +1,57 @@
 .form-order {
+    padding:0;
     .form-horizontal {
+        .order-head{
+            .heading-cart{
+                font-size: 20px;
+            }
+            .more-buy{
+                a{
+                    font-size: 20px;
+                    color: rgb(126, 122, 122);
+                    &:hover{
+                        color:rgb(156, 147, 15);
+                    }
+                }
+            }
+        }
+        background-color: rgb(218, 211, 211);
         .user-info {
             margin-bottom: 4vh;
             padding-bottom: 2vh;
             width: 100%;
-            border-bottom: 1px solid #dedede;
+            border-bottom-color:rgb(177, 173, 173) ;
+            border-bottom: 2px solid;
         }
         .order-info {
             margin-bottom: 4vh;
             padding-bottom: 2vh;
             width: 100%;
-            border-bottom: 1px solid #dedede;
+            border-bottom-color:rgb(177, 173, 173) ;
+            border-bottom: 2px solid;
         }
         .info-product {
             margin-bottom: 4vh;
             padding-bottom: 2vh;
             width: 100%;
-            border-bottom: 1px solid #dedede;
+            border-bottom-color:rgb(177, 173, 173) ;
+            border-bottom: 2px solid;
             .product-item {
-                border-bottom: 1px dashed #dedede;
+                border-bottom-color:rgb(177, 173, 173) ;
+                border-bottom: 2px dashed;
                 padding-bottom: 2vh;
+            }
+        }
+        .form-group{
+            button{
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+                color:black !important;
+                background-color: rgb(192, 180, 14);
+                &:hover{
+                    background-color:  rgb(182, 171, 21);
+                }
+
             }
         }
     }

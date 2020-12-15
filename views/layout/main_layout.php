@@ -61,7 +61,7 @@ use app\core\Application;
                         <p class="nav-link">Login</p>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/register">register</a>
+                        <a class="nav-link" href="/register">Register</a>
                     </li>
                 </ul>
             <?php else : ?>

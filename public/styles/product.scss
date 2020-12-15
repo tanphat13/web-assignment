@@ -1,4 +1,11 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+.container{
+    h3{
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: 50px;
+    }
+}
 .product {
     padding: 2vh 2vw;
     display: flex;
@@ -60,6 +67,16 @@
         }
     }
     .product-info {
+        h4{
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        font-size:40px;
+        }
+        h6, p{
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: 19px;
+            }
         width: 30%;
         .alternative {
             display: table;
@@ -85,8 +102,11 @@
             height: 10vh;
             border: none;
             border-radius: 5px;
-            background-color: #FFC107;
-            color: #F8F9FA;
+            background-color: rgb(192, 180, 14);
+            &:hover{
+                background-color:  rgb(156, 147, 15);
+            }
+            color: black;
             font-size: 90%;
         }
         .divider {
@@ -101,6 +121,7 @@
             text-align: center;
         }
         .btn-group {
+            
             margin-bottom: 5vh;
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -120,12 +141,17 @@
                     text-align: left;
                 }
                 &:focus {
-                    border: 1px solid red;
+                    background-color: rgb(192, 180, 14);
+                    border: 1px solid black;
                 }
             }
         }
     }
     .rightInfo {
+        .font-weight-bold.bg-warning.text-light.label{
+            background-color:rgb(192, 180, 14) !important;
+            color: black !important;
+        }
         width: 30%;
         height: 100%;
         display: flex;
@@ -144,6 +170,7 @@
                     display: flex;
                     justify-content: space-between;
                     svg {
+                        color:black !important;
                         position: relative;
                         top: 1vh;
                     }
@@ -173,6 +200,12 @@
     }
 }
 .additional-info {
+    .about-product{
+        h4{
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        }
+    }
     height: max-content;
     #rating{
         padding: 0;
@@ -200,7 +233,7 @@
         input:checked ~ label,
         &:not(:checked) > label:hover,
         &:not(:checked) > label:hover ~ label {
-            color:#FFD700;
+            color: rgb(192, 180, 14);
         }
         input:checked+label:hover,
         input:checked~label:hover,
@@ -212,7 +245,7 @@
     .form-group {
         position: relative;
         width: 100%;
-        height: 25vh;
+        height: 15vh;
         .input-comment {
             margin-top: 10vh;
         }
@@ -233,8 +266,11 @@
         margin-bottom: 5vh;
         width: 100%;
         .comment-element {
+            border-top: 3px dashed rgb(177, 173, 173);
+            border-bottom: 3px dashed rgb(177, 173, 173);
             margin: 1vh 0;
             .comment-info {
+                font-size: 20px;
                 padding: 0 1vw;
                 display: flex;
                 height: 5vh;
@@ -242,11 +278,12 @@
                 align-items: center;
                 .time {
                     margin: 0;
-                    font-size: 70%;
+                    font-size: 90%;
                 }
             }
             .content {
                 padding: 1em;
+                font-weight: normal;
                 border-radius: 15px;
             }
         }

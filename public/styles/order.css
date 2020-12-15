@@ -1,26 +1,62 @@
+.form-order {
+  padding: 0;
+}
+
+.form-order .form-horizontal {
+  background-color: #dad3d3;
+}
+
+.form-order .form-horizontal .order-head .heading-cart {
+  font-size: 20px;
+}
+
+.form-order .form-horizontal .order-head .more-buy a {
+  font-size: 20px;
+  color: #7e7a7a;
+}
+
+.form-order .form-horizontal .order-head .more-buy a:hover {
+  color: #9c930f;
+}
+
 .form-order .form-horizontal .user-info {
   margin-bottom: 4vh;
   padding-bottom: 2vh;
   width: 100%;
-  border-bottom: 1px solid #dedede;
+  border-bottom-color: #b1adad;
+  border-bottom: 2px solid;
 }
 
 .form-order .form-horizontal .order-info {
   margin-bottom: 4vh;
   padding-bottom: 2vh;
   width: 100%;
-  border-bottom: 1px solid #dedede;
+  border-bottom-color: #b1adad;
+  border-bottom: 2px solid;
 }
 
 .form-order .form-horizontal .info-product {
   margin-bottom: 4vh;
   padding-bottom: 2vh;
   width: 100%;
-  border-bottom: 1px solid #dedede;
+  border-bottom-color: #b1adad;
+  border-bottom: 2px solid;
 }
 
 .form-order .form-horizontal .info-product .product-item {
-  border-bottom: 1px dashed #dedede;
+  border-bottom-color: #b1adad;
+  border-bottom: 2px dashed;
   padding-bottom: 2vh;
+}
+
+.form-order .form-horizontal .form-group button {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: black !important;
+  background-color: #c0b40e;
+}
+
+.form-order .form-horizontal .form-group button:hover {
+  background-color: #b6ab15;
 }
 /*# sourceMappingURL=order.css.map */

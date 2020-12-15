@@ -9,7 +9,6 @@
     }    
 ?>
 
-
     <div class="categoryPage">
         <div class='categoryList'>
         <h2>Brand List</h2>
