@@ -209,26 +209,26 @@ Class AdminController extends Controller {
             }
         }
     }
-    public function testingUploadFile(Request $req, Response $res){
+    // public function testingUploadFile(Request $req, Response $res){
         
-        echo var_dump(dirname(__DIR__));
-        echo"<pre>";
-        echo var_dump($_FILES);
-        echo "</pre>";
-        $targetDir = dirname(__DIR__) . "/public/assets/";
-        $targetFile = $targetDir . basename($_FILES['fileupload']['name']);
-        echo var_dump($targetFile);
-        if(move_uploaded_file($_FILES['fileupload']['tmp_name'],$targetFile)){
-            echo "<pre>";
-            echo "upload success";
-            echo "</pre>";
-        }else{
-            echo "File not saved";
-        }
+    //     echo var_dump(dirname(__DIR__));
+    //     echo"<pre>";
+    //     echo var_dump($_FILES);
+    //     echo "</pre>";
+    //     $targetDir = dirname(__DIR__) . "/public/assets/";
+    //     $targetFile = $targetDir . basename($_FILES['fileupload']['name']);
+    //     echo var_dump($targetFile);
+    //     if(move_uploaded_file($_FILES['fileupload']['tmp_name'],$targetFile)){
+    //         echo "<pre>";
+    //         echo "upload success";
+    //         echo "</pre>";
+    //     }else{
+    //         echo "File not saved";
+    //     }
         
-        $this->setLayout('adminLayout');
-        return $this->render('upload');
-    }
+    //     $this->setLayout('adminLayout');
+    //     return $this->render('upload');
+    // }
 }
 
 

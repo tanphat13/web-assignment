@@ -1,8 +1,9 @@
-<div class ='admin-login-screen'>
-    <h3 class="admin-login-form-title">
-        Login as admin/staff
-    </h3>
+<div class='admin-login-screen'>
+
     <form class="admin-login-form" action="" method="post">
+        <h3 class="admin-login-form-title">
+            Login as admin/staff
+        </h3>
         <h1 class="show-error">
             <?php
             if ($model->hasError('password')) {
