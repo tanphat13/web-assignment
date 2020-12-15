@@ -395,7 +395,7 @@ function openConfirmDelete(model,key){
 function closeConfirmDelete(){
    const confirmBox = document.getElementById("delete-confirm");
    const message = document.getElementById("confirm-delete-message");
-   message.innerHTML = "Do you want to delete";
+   message.innerHTML = "Do you want to deletegit";
    confirmBox.setAttribute("data-model", '');
    confirmBox.setAttribute("data-key", '');
    confirmBox.classList.remove("active");
