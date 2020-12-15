@@ -53,7 +53,7 @@ class Order extends DbModel {
             $sql_command = self::prepare("CALL get_order_in_process($user_id)");
             $sql_command->execute();
             $undone_order = $sql_command->fetchAll(PDO::FETCH_ASSOC);
-            $sql_command = self::prepare("CALL get_order_done($user_id)");
+            $sql_command = self::prepare("CALL get_done_order($user_id)");
             $sql_command->execute();
             $done_order = $sql_command->fetchAll(PDO::FETCH_ASSOC);
             return ['undone_order' => $undone_order, 'done_order' => $done_order];
