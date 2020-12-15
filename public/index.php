@@ -111,5 +111,6 @@ $app->router->get('/staff/new-order', [StaffController::class, 'renderOrder', ['
 $app->router->get('/staff/livesearch', [StaffController::class, 'searchProducts', ['staff']]);
 $app->router->post('/staff/add-product', [StaffController::class, 'addProduct', ['staff']]);
 $app->router->get('/staff/review-cart', [StaffController::class, 'reviewCart', ['staff']]);
+$app->router->post('/staff/ordering', [StaffController::class, 'createOrder', ['staff']]);
 $app->run();
 ?>

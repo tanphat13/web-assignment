@@ -60,11 +60,11 @@
             $order = (new Order())->getDetailedOrder($param['id']);
             $user = (new User())->getUserInfo($order->user_id);
             $product_in_order = (new OrderProduct())->getOrderProduct(intval($param['id']));
-            $listProductId = array();
+            $listProductInfo= array();
             foreach ($product_in_order as $product) {
-                array_push($listProductId, $product);
+                array_push($listProductInfo, $product);
             }
-            $listProducts = (new Product())->getProductInCart($listProductId);
+            $listProducts = (new Product())->getProductInCart($listProductInfo);
             $this->setLayout('staffLayout');
             return $this->render('review-order', ["user" => $user, "order" => $order, "listProducts" => $listProducts]);
         }
@@ -72,6 +72,11 @@
         public function updateOrder(Request $request) {
             $body = $request->getBody();
             (new Order())->updateOrder($body['order_id'], $body['status'], $body['delivery_date']);
+            if ($body['status'] === 'CANCEL') {
+                (new Order())->cancelOrder($body['order_id']);
+                $list_items = (new OrderProduct())->removeProduct($body['order_id']);
+                (new ProductItem())->restockItem($list_items);
+            }
         }
 
         public function renderOrder() {
@@ -120,6 +125,24 @@
                 </div>";
             }
             return $branchOption;
+        }
+
+        public function createOrder(Request $request, Response $response) {
+            $session = Application::$app->session;
+            $body = $request->getBody();
+            $user = new User();
+            $user_id = $user->checkExistUser($body['phone']);
+            if ( $user_id === FALSE) {
+                $user->loadData(['fullname' => $body['name'], 'email' => $body['email'], 'phone' => $body['phone'], 
+                'password' => '12345678', 'gender' => 'female', 'status' => 1, 'role' => 'user']);
+                $user->save();
+                $user_id = (object) array('id' => $user->getLastInsertId());
+            }
+            $new_order = (new Order())->createNewOrder($body, $user_id->id);
+            (new OrderProduct())->createProductInOrder(intval($new_order->latest_order_id), $session->get('cart'));
+            $session->set('cart', []);
+            $response->redirect("/staff/order?id=$new_order->latest_order_id");
+            return;
         }
     }
 ?>

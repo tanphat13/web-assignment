@@ -13,6 +13,7 @@ use app\core\UserModel;
     public string $phone ='';
     public string $password = '';
     public string $comfirmPassword='';
+    public string $role = '';
     public int $status = self::STATUS_INACTIVE;
 
     public function save(){
@@ -63,6 +64,12 @@ use app\core\UserModel;
         $this->phone = $info['phone'];
         $sql_command = self::prepare("UPDATE users SET fullname = '$this->fullname', email = '$this->email', phone = '$this->phone' WHERE id = $user_id;");
         return $sql_command->execute();
+    }
+
+    public function checkExistUser($phone) {
+        $sql_command = self::prepare("SELECT id FROM users WHERE phone = '$phone';");
+        $sql_command->execute();
+        return $sql_command->fetchObject();
     }
 }
 

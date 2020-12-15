@@ -18,13 +18,17 @@
         <div class="form-horizontal">
 
             <div class="order-head">
-                <h3>Order #<?php echo "$order->order_id"; ?></h3> 
+                <h3>Order #<?php echo "$order->order_id"; ?></h3>
+                <?php if ($order->order_status !== 'CANCEL') :?>
                 <select id="status" class="order-status">
                     <option value="PENDING" <?php if ($order->order_status === "PENDING") echo 'selected'  ?>>PENDING</option>
                     <option value="DELIVERING" <?php if ($order->order_status === "DELIVERING") echo 'selected'  ?>>DELIVERING</option>
                     <option value="CANCEL" <?php if ($order->order_status === "CANCEL") echo 'selected'  ?>>CANCEL</option>
                     <option value="DONE" <?php if ($order->order_status === "DONE") echo 'selected'  ?>>DONE</option>
                 </select>
+                <?php else : ?>
+                <h6> CANCEL</h6>
+                <?php endif; ?>
             </div>
             <div class="user-info">
                 <?php
