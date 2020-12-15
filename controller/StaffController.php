@@ -60,11 +60,11 @@
             $order = (new Order())->getDetailedOrder($param['id']);
             $user = (new User())->getUserInfo($order->user_id);
             $product_in_order = (new OrderProduct())->getOrderProduct(intval($param['id']));
-            $listProductId = array();
+            $listProductInfo= array();
             foreach ($product_in_order as $product) {
-                array_push($listProductId, $product);
+                array_push($listProductInfo, $product);
             }
-            $listProducts = (new Product())->getProductInCart($listProductId);
+            $listProducts = (new Product())->getProductInCart($listProductInfo);
             $this->setLayout('staffLayout');
             return $this->render('review-order', ["user" => $user, "order" => $order, "listProducts" => $listProducts]);
         }

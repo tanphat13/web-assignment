@@ -250,11 +250,11 @@ class SiteController extends Controller{
         $user = (new User())->getUserInfo($session->get('user'));
         $order = (new Order())->getDetailedOrder($param['id']);
         $product_in_order = (new OrderProduct())->getOrderProduct(intval($param['id']));
-        $listProductId = array();
+        $listProductInfo = array();
         foreach ($product_in_order as $product) {
-            array_push($listProductId, $product['product_id']);
+            array_push($listProductInfo, $product);
         }
-        $listProducts = (new Product())->getProductInCart($listProductId);
+        $listProducts = (new Product())->getProductInCart($listProductInfo);
         return $this->render('order', ["user" => $user, "order" => $order, "listProducts" => $listProducts]);
     }
 
