@@ -57,20 +57,12 @@ body {
   color: #f3d424;
 }
 
-.installment {
-  position: relative;
-}
-
 .installment h1 {
   text-align: center;
 }
 
 body {
   height: 80%;
-}
-
-.returnpolicy {
-  position: relative;
 }
 
 .returnpolicy h1 {
@@ -94,10 +86,6 @@ body {
 
 .returnpolicy .return_table td {
   border: solid 4px;
-}
-
-.warranty {
-  position: relative;
 }
 
 .warranty h1 {
@@ -183,6 +171,7 @@ body {
 .home-wrapper .container .categoryPage .product_matrix .product_item {
   height: 30vh;
   width: 20%;
+  border: solid white;
   display: inline-block;
 }
 
