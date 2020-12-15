@@ -25,7 +25,7 @@
             </svg>
             </button>
       </div>
-      <form method="POST" action="http://localhost:8000/update-info" class="form-group">
+      <form method="POST" action="/update-info" class="form-group">
             <div class="personal-info">
                   <div class="row">
                         <label class="col-2 col-form-label" for="name" >Full Name: </label>
@@ -96,7 +96,7 @@
 </div>
 <div class="container manage-address">
       <h5>Add new address form</h5>
-      <form action="http://localhost:8000/add-address" method='post' class='container add-address'>
+      <form action="/add-address" method='post' class='container add-address'>
             <label for="new-address">New Address:</label>
             <textarea type="textarea" name="new-address" id="new-address" placeholder="Input Your New Address" class="input-address"></textarea>
             <button type='submit'  class="btn btn-outline-success">
