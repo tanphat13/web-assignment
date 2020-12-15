@@ -228,6 +228,18 @@
 .admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row .actions-btn-group .update-product-btn-link a {
   text-decoration: none;
   color: #ffffff;
+  height: 30px;
+  border-radius: 5px;
+  -webkit-box-shadow: 1px 1px 10px #00b994;
+          box-shadow: 1px 1px 10px #00b994;
+  font-weight: normal;
+}
+
+.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .actions-btn-group .open-update-btn a a,
+.admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .actions-btn-group .update-product-btn-link a a, .admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row .actions-btn-group .open-update-btn a a,
+.admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row .actions-btn-group .update-product-btn-link a a {
+  text-decoration: none;
+  color: #ffffff;
 }
 
 .admin-layout .container .manage-staff-container .staff-table-wrapper .staff-table-row .actions-btn-group .action-delete-btn, .admin-layout .container .manage-products-container .staff-table-wrapper .staff-table-row .actions-btn-group .action-delete-btn {

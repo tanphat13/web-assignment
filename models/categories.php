@@ -18,30 +18,49 @@ class Categories extends DbModel {
         return $brand;
     }
 
-    public function getBrandProduct($brand) {
+    public function getBrandProduct($brand, $pageno) {
+        $no_of_records_per_page = 10;
+        $offset = ($pageno-1) * $no_of_records_per_page;
+        $total_page_sql = $this->prepare("SELECT COUNT(products.product_name) FROM products LEFT JOIN images ON products.product_id = images.product_id WHERE products.product_brand = '$brand' 
+        GROUP BY  products.product_name ORDER BY products.product_price DESC");
+        $total_page_sql->execute();
+        $records = $total_page_sql->fetchAll();
+        $total_rows = sizeof($records);
+        $total_page = ceil($total_rows / $no_of_records_per_page);
+
         $sql_command = $this->prepare("SELECT DISTINCT products.product_id, products.product_name, products.product_price, products.product_brand, MIN(images.image_id), images.link 
             FROM products LEFT JOIN images ON products.product_id = images.product_id WHERE products.product_brand = '$brand' 
-            GROUP BY  products.product_name ORDER BY products.product_price DESC");
+            GROUP BY  products.product_name ORDER BY products.product_price DESC LIMIT $offset, $no_of_records_per_page");
         $sql_command->execute();
         $productList = $sql_command->fetchAll();
         $products = array();
         foreach ($productList as $key) {
             array_push($products, $key);
         }
-        // echo var_dump($products);
-        return $products;
+        return ['products' => $products, 'total_page' => $total_page];
     }
-    public function getProductByRange($low_bound, $high_bound) {
+    public function getProductByRange($low_bound, $high_bound, $pageno) {
+        $no_of_records_per_page = 10;
+        $offset = ($pageno-1) * $no_of_records_per_page;
+        $total_page_sql = $this->prepare("SELECT COUNT(products.product_name) FROM products LEFT JOIN images ON products.product_id = images.product_id WHERE (products.product_price > '$low_bound' AND products.product_price < '$high_bound') 
+        GROUP BY products.product_id ORDER BY products.product_price DESC");
+        $total_page_sql->execute();
+        $records = $total_page_sql->fetchAll();
+        $total_rows = sizeof($records);
+        $total_page = ceil($total_rows / $no_of_records_per_page);
+        
+        
+        
         $sql_command = $this->prepare("SELECT products.product_id, products.product_name, products.product_price, products.product_brand, MIN(images.image_id), images.link 
             FROM products LEFT JOIN images ON products.product_id = images.product_id WHERE (products.product_price > '$low_bound' AND products.product_price < '$high_bound') 
-            GROUP BY products.product_id ORDER BY products.product_price DESC");
+            GROUP BY products.product_id ORDER BY products.product_price DESC LIMIT $offset, $no_of_records_per_page");
         $sql_command->execute();
         $productList = $sql_command->fetchAll();
         $products = array();
         foreach ($productList as $key) {
             array_push($products, $key);
         }
-        return $products;
+        return ['products' => $products, 'total_page' => $total_page];
     }
 
     public function getBrandList() {

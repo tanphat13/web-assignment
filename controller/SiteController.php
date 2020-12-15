@@ -235,6 +235,18 @@ class SiteController extends Controller{
         return;
     }
 
+    public function reviewAllOrder(Request $request, Response $response) {
+        $loginForm = new LoginForm();
+        $session = Application::$app->session;
+        $listField = array_keys($request->getBody());
+        $path = $request->getPath();
+        if (in_array('email', $listField) && in_array('password', $listField)) {
+            self::login($path, $loginForm, $request, $response);
+        }
+        $all_order = (new Order())->getAllOrder($session->get('user'));
+        return $this->render('my-order', ['orders' => $all_order]);
+    }
+
     public function reviewOrder(Request $request) {
         $session = Application::$app->session;
         $param = $request->getBody();
@@ -323,20 +335,19 @@ class SiteController extends Controller{
     }
     public function renderCategory(Request $request) {
         $param = $request->getBody();
+       
         $categoryList = (new Categories())->getCategoryList();
-        // echo var_dump($categoryList[0]);
-        // echo var_dump($param);
-        if ($param == null) {
-            $productList = (new Categories())->getBrandProduct($categoryList[0]);            
+        $paramlist = [];
+        if (array_key_exists('low_bound', $param) && array_key_exists('high_bound', $param)) {
+            $productList = (new Categories())->getProductByRange($param['low_bound'], $param['high_bound'], $param['pageno']);
+            $paramlist =  ['low_bound' => $param['low_bound'], 'high_bound' => $param['high_bound']  ];
+        } else {
+            $curBrand = (!isset($param['brand']) ? $categoryList[0] : $param['brand']);
+            $productList = (new Categories())->getBrandProduct($curBrand, array_key_exists('pageno', $param)? $param['pageno'] : 1);
+            $paramlist = ['brand' => $curBrand];
         }
-        // else $productList = (new Categories())->getBrandProduct($param['brand']);
-        else if (array_key_exists('brand', $param))  {
-            $productList = (new Categories())->getBrandProduct($param['brand']);
-        }
-        else if (array_key_exists('low_bound', $param) && array_key_exists('high_bound', $param)) {
-            $productList = (new Categories())->getProductByRange($param['low_bound'], $param['high_bound']);
-        }
-        return $this->render('categories', ['category' => $categoryList, 'product' => $productList]);
+        $paramlist = array_merge($paramlist,  ['category' => $categoryList, 'product' => $productList['products'], 'total_page' => $productList['total_page']]);
+        return $this->render('categories', $paramlist);
     }
 }
 

@@ -71,9 +71,19 @@ use app\core\Application;
                             Profile
                         </a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="/my-cart">
+                            My Cart
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/my-order">
+                            My Order
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link">
-                            Wellcome <?php
+                            Welcome, <?php
                                         echo Application::$app->user->displayName();
                                         ?>
                         </a>

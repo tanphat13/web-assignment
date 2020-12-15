@@ -99,7 +99,7 @@
                 </div>
             </div>
             <div id="address" class='address-opt'></div>
-            <button type="submit" class='btn order-btn'>Order</button>
+            <button type="submit" class='btn order-btn' <?php if (count($listProducts) === 0) : ?> disabled <?php endif; ?> >Order</button>
         </div>
     </form>
 </div>
