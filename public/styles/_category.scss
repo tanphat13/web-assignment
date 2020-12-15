@@ -35,6 +35,7 @@
         //width: auto;
         height: 100%;
 
+
         //display: inline-block;
 
         display: inline-block;
@@ -45,7 +46,6 @@
         h2 {
             font-size: 28px;
         }
-
     }
     .product_matrix {
         margin: 5px;
@@ -54,21 +54,19 @@
         width: 80%;
         
         .product_item {
-
+            &:hover {
+                border: solid;
+                border-color: rgb(243, 212, 36) ;
+            }
             a{
                 color: black;
                 &:hover{
                     color: rgb(165, 155, 10);
                 }
             }
-            //border: solid;
-            //border-color: white;
-            //border: solid;
-
             height: 30vh;
             width: 20%;
             //border:  solid white;
-
             display: inline-block;
             img {
                 height: 100%;

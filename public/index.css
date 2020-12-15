@@ -166,6 +166,11 @@ body {
   display: inline-block;
 }
 
+.home-wrapper .container .categoryPage .product_matrix .product_item:hover {
+  border: solid;
+  border-color: #f3d424;
+}
+
 .home-wrapper .container .categoryPage .product_matrix .product_item a {
   color: black;
 }
@@ -1467,7 +1472,7 @@ body {
   color: black;
   position: absolute;
   top: 4%;
-  left: 30%;
+  left: 390px;
   margin-top: 2px;
   padding: 0;
   width: 5vh;
