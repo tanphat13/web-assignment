@@ -3,3 +3,70 @@
     font-size: 80%;
     height: 100vh;
 }
+
+.manage-staff-container {
+    .next-btn {
+        position: fixed;
+        top: 1vh;
+        right: 5vw;
+        z-index: 20;
+        background-color: rgb(0, 152, 121);
+        &:hover {
+            color:rgb(0, 152, 121);
+            background-color: white;
+        }
+    }
+
+    .quantity-notification {
+        margin: 1% 35%;
+        width: fit-content;
+        font-size: 120%;
+    }
+    .search-bar {
+        width: 100%;
+        input {
+            margin: 0 10%;
+            width: 80%;
+        }
+    }
+    .product-item {
+        position: relative;
+        margin-bottom: 4vh;
+        width: 100%;
+        height: 20vh;
+        display: inline-flex;
+        justify-content: space-between;
+        .product-image {
+            height: 100%;
+            .img {
+                height: 100%;
+                img {
+                    height: 100%;
+                }
+            }
+        }
+        .product-info {
+            width: 70%;
+            .product-spec {
+                .info {
+                    margin: 0;
+                }
+                .name {
+                    font-size: 1.5em;
+                }
+            }
+            .price {
+                margin-top: 2vh;
+                font-size: 1.25em;
+            }
+        }
+        .delete-btn {
+            position: absolute;
+            top: 40%;
+            right: 5%;
+            background: none;
+            color: #009879;
+            border: none;
+        }
+    }
+}

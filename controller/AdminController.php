@@ -126,7 +126,7 @@ Class AdminController extends Controller {
         $staffRegex = "/^(?=.*fullname)|(?=.*phone)|(?=.*email)/";
         $searchResult = "";
         if(preg_match($productRegex,$option) !== 0 ){
-            $searchResult = $productModel->searchProduct($option, $key);
+            $searchResult = $productModel->searchProductByOption($option, $key);
         } else if (preg_match($staffRegex, $option)!==0){
             $searchResult = $staffModel->searchStaff($option, $key);
         }

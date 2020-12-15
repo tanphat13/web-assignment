@@ -168,22 +168,19 @@ class SiteController extends Controller{
         if (in_array('email', $listField) && in_array('password', $listField)) {
             self::login($path, $loginForm, $request, $response);
         }
-        $listProductId = explode(',', $session->get('cart'));
+        $listProductId = $session->get('cart');
         if (isset($_COOKIE['productId'])) {
-            array_push($listProductId, $_COOKIE['productId']);
+            array_push($listProductId, intval($_COOKIE['productId']));
             array_multisort($listProductId);
-            $newListAsString = implode(',', $listProductId);
-            $session->set('cart', $newListAsString);
+            $session->set('cart', $listProductId);
             setcookie('productId', '', 0,'/');            
         }
-        $listProducts = array();
-        if (array_search('0', $listProductId) !== false || array_search('', $listProductId) !== false) {
-            array_shift($listProductId);
-            $newListAsString = implode(',', $listProductId);
-            $session->set('cart', $newListAsString);
+        $listProductInfo = array();
+        foreach ($listProductId as $product_id) {
+            array_push($listProductInfo, ['product_id' => $product_id, 'serial_number' => '']);
         }
-        $listProducts = (new Product())->getProductInCart($listProductId);
-        $user = (new User())->getUserInfo($session->get('user'));    
+        $listProducts = (new Product())->getProductInCart($listProductInfo);
+        $user = (new User())->getUserInfo($session->get('user'));
         return $this->render('cart', ["listProducts" => $listProducts, "user" => $user]);
     }
 
@@ -327,7 +324,7 @@ class SiteController extends Controller{
             $model->loadData($request->getBody());
             
             if ($model->validate() && $model->login()) {
-                $session->set('cart', '0');
+                $session->set('cart', []);
                 $response->redirect($path);
                 return;
             }

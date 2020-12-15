@@ -12,6 +12,7 @@
     use app\models\OrderProduct;
     use app\models\Product;
     use app\models\ProductItem;
+    use app\models\Branch;
 
     Class StaffController extends Controller {
         public function __construct() {
@@ -74,9 +75,51 @@
         }
 
         public function renderOrder() {
+            $session = Application::$app->session;
+            if (($session->get('cart')) === FALSE || $session->get('cart') === '') $session->set('cart', []);
             $products_list = (new Product())->getAllProduct();
             $this->setLayout('staffLayout');
-            return $this->render('order-form', ['products_list' => $products_list]);
+            return $this->render('order-form', ['products_list' => $products_list, 'session' => $session]);
+        }
+
+        public function searchProducts(Request $request) {
+            $param = $request->getBody();
+            return (new Product())->searchProducts($param['key']);
+        }
+
+        public function addProduct(Request $request) {
+            $session = Application::$app->session;
+            $body = $request->getBody();
+            $current_list_id = $session->get('cart');
+            array_push($current_list_id, intval($body['product_id']));
+            $session->set('cart', $current_list_id);
+            return;
+        }
+
+        public function reviewCart(Request $request, Response $response) {
+            $session = Application::$app->session;
+            if (($session->get('cart')) === FALSE || $session->get('cart') === '') $session->set('cart', []);
+            $listProductId = $session->get('cart');
+            $listProductInfo = array();
+            foreach ($listProductId as $product_id) {
+                array_push($listProductInfo, ['product_id' => $product_id, 'serial_number' => '']);
+            }
+            $listProducts = (new Product())->getProductInCart($listProductInfo);
+            $address = $this->getAllBranch($request);
+            $this->setLayout('staffLayout');
+            return $this->render('review-cart', ["listProducts" => $listProducts, "storeAddress" => $address]);
+        }
+
+        public function getAllBranch(Request $request) {
+            $list_branches = (new Branch())->getAllBranch();
+            $branchOption = '';
+            foreach ($list_branches as $branch) {
+                $branchOption .= "<div class='form-check form-check-inline'>
+                    <input class='form-check-input' type='radio' name='address' id='$branch[branch_id]' value='$branch[branch_address]' />
+                    <label class='form-check-label' for='$branch[branch_id]'>$branch[branch_address] - Contact: $branch[branch_phone]</label>
+                </div>";
+            }
+            return $branchOption;
         }
     }
 ?>
