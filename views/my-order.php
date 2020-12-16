@@ -21,10 +21,12 @@ include_once('layout/header.php');
             <?php
                 $order_list = "";
                 foreach ($orders["undone_order"] as $order_item) {
+                    $is_id = false;
                     $order_list .= "<div class='row'>";
                     foreach ($order_item as $item) {
-                        if (array_search($item, $order_item) === "order_id") {
+                        if (array_search($item, $order_item) === "order_id" && !$is_id) {
                             $order_list .= "<div class='col'><a href='/order?id=$item'>$item</a></div>";
+                            $is_id = true;
                             continue;
                         }
                         if ($item === NULL or $item === '') $item = "N/A";
