@@ -1,5 +1,28 @@
 @charset "UTF-8";
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+body {
+  background-color: #fbe8a6;
+}
+body .navbar {
+  background-color: #b4dfe5;
+  color: white;
+}
+body .navbar .navbar-brand {
+  color: white;
+}
+body .navbar .navbar-collapse {
+  color: white;
+}
+body .navbar .navbar-collapse ul li .nav-link {
+  color: white;
+}
+body .navbar .navbar-collapse ul li .nav-link .active {
+  color: white !important;
+}
+body .container {
+  background-color: white;
+}
+
 #map {
   height: 400px;
   width: 80%;
@@ -172,6 +195,20 @@ body {
 }
 .home-wrapper .main-screen {
   z-index: 1;
+}
+
+.register-form {
+  position: relative;
+  padding: 5% 0;
+  font-size: 80%;
+}
+.register-form .heading-form {
+  text-align: center;
+}
+.register-form .register-btn {
+  position: absolute;
+  right: 0;
+  margin-bottom: 5%;
 }
 
 .admin-layout {
