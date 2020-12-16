@@ -1,28 +1,5 @@
 @charset "UTF-8";
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
-body {
-  background-color: #fbe8a6;
-}
-body .navbar {
-  background-color: #b4dfe5;
-  color: white;
-}
-body .navbar .navbar-brand {
-  color: white;
-}
-body .navbar .navbar-collapse {
-  color: white;
-}
-body .navbar .navbar-collapse ul li .nav-link {
-  color: white;
-}
-body .navbar .navbar-collapse ul li .nav-link .active {
-  color: white !important;
-}
-body .container {
-  background-color: white;
-}
-
 #map {
   height: 200px;
   width: 100%;
@@ -30,8 +7,6 @@ body .container {
 }
 
 .footer-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   justify-content: space-between;
   border-top: solid;
@@ -138,69 +113,43 @@ body {
   height: 100%;
   width: 100%;
 }
-
 .footer-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
   border-top: solid;
   background-color: #333;
   padding: 0px 16px;
 }
-
 .footer-container .col1 {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-direction: column;
+  justify-content: center;
   width: 24vw;
   height: 100%;
   top: 0;
   min-height: 200px;
 }
-
 .footer-container .col1 h3 {
   color: #fff;
 }
-
 .footer-container .col1 ul {
   padding: 0px;
 }
-
 .footer-container .col1 ul li {
   list-style: none;
   color: #888;
 }
-
 .footer-container .col1 ul li:hover {
   color: #fff;
 }
-
 .footer-container .location-wrapper {
   width: 100%;
   height: 100%;
   min-height: 400px;
 }
-<<<<<<< HEAD
-.footer-container .col1 .location-wrapper .map {
-  height: 400px;
-=======
-
 .footer-container .location-wrapper .map {
   height: 200px;
->>>>>>> 5c86e9055e1535750923066f2f572882aef26a85
   width: 100%;
 }
 
@@ -209,12 +158,7 @@ body {
   width: 100%;
   height: 100vh;
 }
-<<<<<<< HEAD
-.home-wrapper .container {
-=======
-
 .home-wrapper .container-fluid {
->>>>>>> 5c86e9055e1535750923066f2f572882aef26a85
   height: auto;
   padding: 48px !important;
 }
@@ -763,9 +707,7 @@ body {
 }
 .home_brand_matrix .home_brand_row .home_product_row {
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   width: 100%;
 }
 .home_brand_matrix .home_brand_row .home_product_row .home_product_item {
@@ -1490,57 +1432,4 @@ body {
   font-size: 12px;
 }
 
-.home_brand_matrix .home_brand_row {
-  height: 100%;
-  border-color: #8505da;
-  border: solid 3px;
-  margin-bottom: 16px;
-}
-
-.home_brand_matrix .home_brand_row .home_brand_header {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.home_brand_matrix .home_brand_row .home_brand_header .home_brand {
-  padding-left: 5px;
-  margin: 0;
-}
-
-.home_brand_matrix .home_brand_row .home_brand_header .seeall {
-  font-size: 150%;
-  padding-right: 1%;
-}
-
-.home_brand_matrix .home_brand_row .home_product_row {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  width: 100%;
-}
-
-.home_brand_matrix .home_brand_row .home_product_row .home_product_item {
-  height: 80%;
-  width: 15%;
-  border: solid white;
-}
-
-.home_brand_matrix .home_brand_row .home_product_row .home_product_item img {
-  height: 100%;
-  width: 100%;
-}
-
-.home_brand_matrix .home_brand_row .home_product_row .home_product_item:hover {
-  border-color: red;
-}
 /*# sourceMappingURL=index.css.map */

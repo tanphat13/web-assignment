@@ -1,29 +1,4 @@
-body {
-    background-color: #fbe8a6;
-    // .navbar {
-    //     background-color: #b4dfe5;
-    //     .navbar-brand {
-    //         color: white;
-    //     }
-    //     .navbar-collapse {
-    //         color: white;
-    //         ul {
-    //             li {
-    //                 .nav-link {
-    //                     color: white;
-    //                     .active {
-    //                         color: white !important;
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     color: white;
-    // }
-    .container {
-        background-color: white;
-    }
-}
+
 #map{
     height: 200px;
     width: 100%;
@@ -46,52 +21,3 @@ body {
 @import './styles/address';
 @import './styles/staff';
 @import './styles/_error';
-
-
-.home_brand_matrix {
-
-    .home_brand_row {
-        height: 100%;
-        border-color: rgb(133, 5, 218);
-        border: solid 3px;
-        margin-bottom: 16px;
-
-        .home_brand_header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            .home_brand {
-                padding-left: 5px;
-                margin: 0;
-            }
-
-            .seeall {
-                font-size: 150%;
-                padding-right: 1%;
-            }
-        }
-
-        .home_product_row {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-
-            .home_product_item {
-                height: 80%;
-                width: 15%;
-                border: solid white;
-
-                img {
-                    height: 100%;
-                    width: 100%;
-                }
-
-                &:hover {
-                    border-color: red;
-                }
-            }
-        }
-    }
-
-}

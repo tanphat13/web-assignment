@@ -59,7 +59,7 @@ include_once('layout/header.php');
                     <a href="?low_bound=20000000&high_bound=25000000&pageno=1">20.000.000 - 25.000.000</a> 
                 </li>
                 <li>  
-                    <a href="?low_bound=25000000&high_bound=100000000&pageno=1"> 25.000.000 </a> 
+                    <a href="?low_bound=25000000&high_bound=100000000&pageno=1"> > 25.000.000 </a> 
                 </li>
             </ul>
         </div>
