@@ -70,11 +70,11 @@ class Application{
             return !self::$app->user;
         }
 
-        public function getData(){
-            $sql_get_data_web = "SELECT * FROM mobile_shop";
-            if ($db->num_rows($sql_get_data_web)) {
-                $data_web = $db->fetch_assoc($sql_get_data_web, 1);
-            }
-        }
+        // public function getData(){
+        //     $sql_get_data_web = "SELECT * FROM mobile_shop";
+        //     if ($this->db->num_rows($sql_get_data_web)) {
+        //         $data_web = $this->db->fetch_assoc($sql_get_data_web, 1);
+        //     }
+        // }
     }
 ?>
