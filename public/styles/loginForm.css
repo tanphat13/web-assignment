@@ -143,4 +143,20 @@
 .home-wrapper .main-screen {
   z-index: 1;
 }
+
+.register-form {
+  position: relative;
+  padding: 5% 0;
+  font-size: 80%;
+}
+
+.register-form .heading-form {
+  text-align: center;
+}
+
+.register-form .register-btn {
+  position: absolute;
+  right: 0;
+  margin-bottom: 5%;
+}
 /*# sourceMappingURL=loginForm.css.map */

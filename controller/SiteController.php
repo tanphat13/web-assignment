@@ -64,8 +64,9 @@ class SiteController extends Controller{
             self::login($_SERVER['REQUEST_URI'], $loginForm, $request, $response);
         }
         $product = (new Product())->getSpecificProduct(intval($param['id']));
+        $branches = (new Branch())->getAvailableBranch(intval($param['id']));
         $comments = (new Comment())->getRecentComment($param['id']);
-        return $this->render('product', ['product' => $product, 'comments' => $comments, 'session' => $session]);
+        return $this->render('product', ['product' => $product, 'comments' => $comments, 'branches' => $branches , 'session' => $session]);
     }
 
     // Personal Info

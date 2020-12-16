@@ -70,7 +70,7 @@ class Product extends DbModel {
             $product_images = self::findAll('images', ['product_id' => $product->product_id]);
             
             // Get list of same model but different specificity in RAM/ROM
-            $sql_command = self::prepare("SELECT product_id,product_ram,product_rom,product_price FROM products WHERE product_id IN (SELECT MIN(product_id) FROM products WHERE product_name = '$product->product_name' GROUP BY product_rom) AND (NOT product_ram = $product->product_ram OR NOT product_rom = $product->product_rom)");
+            $sql_command = self::prepare("SELECT product_id,product_ram,product_rom,product_price, rating FROM products WHERE product_id IN (SELECT MIN(product_id) FROM products WHERE product_name = '$product->product_name' GROUP BY product_rom) AND (NOT product_ram = $product->product_ram OR NOT product_rom = $product->product_rom)");
             $sql_command->execute();
             $diff_spec = $sql_command->fetchAll();
             

@@ -1,3 +1,4 @@
+
 #map{
     height: 200px;
     width: 100%;
@@ -22,58 +23,3 @@
 @import './styles/_error';
 
 
-.home_brand_matrix {
-
-    .home_brand_row {
-        height: 100%;
-        margin-bottom: 48px;
-        box-shadow: 0px 1px 10px rgb(75, 75, 75);
-        padding:24px 16px;
-        .home_brand_header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 40px;
-            .home_brand {
-                padding-left: 5px;
-                margin: 0;
-            }
-            .seeall {
-                font-size: 150%;
-                padding-right: 1%;
-                text-decoration: none;
-                color:black;
-            }
-        }
-        .home_product_row {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-
-            .home_product_item {
-                position: relative;
-                height: 80%;
-                width: 15%;
-                border: solid white;
-                background-color: #fff;
-                padding:5px;
-                transition: 0.3;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                img {
-                    height: 100%;
-                    width: 100%;
-
-                }
-                &:hover {
-                    transform: scale(1.1);
-                    z-index:15;
-                    box-shadow: 1px 1px 10px rgb(75, 75, 75);
-                    border-radius: 5px;
-                }
-            }
-        }
-    }
-
-}
