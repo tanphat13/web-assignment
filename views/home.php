@@ -16,6 +16,7 @@ $products_homepage = array();
     // echo var_dump($products_homepage);
     // echo var_dump($brands);
 ?>
+
 <?php
 
 $PageTitle="Homepage". ' | ' . "smartphone.com";
@@ -66,4 +67,3 @@ include_once('layout/header.php');
         <!-- </div>         -->
     </div>
 
-</html>

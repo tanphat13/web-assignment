@@ -2,11 +2,11 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  overflow-y: auto;
 }
 
-.home-wrapper .container {
+.home-wrapper .container-fluid {
   height: auto;
+  padding: 48px !important;
 }
 
 .home-wrapper .login-wrapper {

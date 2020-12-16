@@ -25,17 +25,9 @@ body {
     }
 }
 #map{
-    height: 400px;
-    width: 80%;
+    height: 200px;
+    width: 100%;
     border:1px solid red;
-}
-
-@media (min-width: 1200px) {
-    .container {
-        max-width: 1600px;
-        margin: 0 8%;
-        width: 84%;
-    }     
 }
 
 @import "./styles/footer";
@@ -55,3 +47,51 @@ body {
 @import './styles/staff';
 @import './styles/_error';
 
+
+.home_brand_matrix {
+
+    .home_brand_row {
+        height: 100%;
+        border-color: rgb(133, 5, 218);
+        border: solid 3px;
+        margin-bottom: 16px;
+
+        .home_brand_header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .home_brand {
+                padding-left: 5px;
+                margin: 0;
+            }
+
+            .seeall {
+                font-size: 150%;
+                padding-right: 1%;
+            }
+        }
+
+        .home_product_row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+
+            .home_product_item {
+                height: 80%;
+                width: 15%;
+                border: solid white;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                }
+
+                &:hover {
+                    border-color: red;
+                }
+            }
+        }
+    }
+
+}
