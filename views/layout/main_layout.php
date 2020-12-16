@@ -172,8 +172,8 @@ use app\core\Application;
 
 
                 <div class="login-btn-group">
-                    <button onclick="test" class="btn btn-primary">Login</button>
-                    <a href='/register'>Register</a>
+                    <button onclick="test" class="btn btn-primary login">Login</button>
+                    <a class =" btn register" href='/register'>Register</a>
                 </div>
 
             </form>
